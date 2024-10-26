@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TG - @FinallyliveStreaming</title>
+  <script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+</head>
+<body>
+  <div id="video"></div>
+
+  <script type="text/javascript">
+    // Function to get video URL from the domain
+    function getVideoUrlFromDomain() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('url');
+    }
+
+    jwplayer("video").setup({
+      width: "100%",
+      height: "100%",
+      autostart: true,
+      mute: false,
+      file: getVideoUrlFromDomain()
+    });
+
+    if(confirm("Join Our Telegram Channel @FinallyliveStreaming  ")) { window.location.href = "https://telegram.me/FinallyliveStreaming" }
+  </script>
+
+  <div style="background-color: #0074d9; text-align: center; padding: 10px;">
+    <a href="https://telegram.me/FinallyliveStreaming" target="_blank">
+      <button id="joinTelegramButton" style="background-color: #fff; color: #0074d9; border: 2px solid #0074d9; padding: 5px 10px;">Join
+        Telegram</button>
+    </a>
+  </div>
+</body>
+</html>
