@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@Finallylivestreaming</title>
+  <link rel="stylesheet" href="https://cxh.pages.dev/style.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- Fullscreen Video CSS -->
+<style>
+  #player {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+  }
+</style>
+
+<!-- Player -->
+<div id="player"></div>
+<script src='https://content.jwplatform.com/libraries/KB5zFt7A.js'></script>
+<script>
+  const playerInstance = jwplayer("player").setup({
+    controls: true,
+    displaytitle: true,
+    autoplay: true,    
+    displaydescription: true,
+    abouttext: "",
+    aboutlink: "https://telegram.me/FinallyliveStreaming",  // Updated Telegram channel link
+
+    skin: {
+      name: "netflix"
+    },
+
+    logo: {
+      file: "",
+      link: "https://telegram.me/FinallyliveStreaming"  // Updated Telegram channel link
+    },
+
+    captions: {
+      color: "#FFF",
+      fontSize: 14,
+      backgroundOpacity: 0,
+      edgeStyle: "raised"
+    },
+
+    playlist: [
+      {
+        image: "",
+        sources: [
+          {
+            file: "https://vkvsd55.okcdn.ru/cmaf/7420912732903/sig/QrSPSuJCumQ/srcIp/3.110.172.89/urls/185.226.53.64/expires/1733999665240/clientType/13/srcAg/CHROME/fromCache/1/mid/8992320924647/id/7420912732903/get/dash_8992320924647.EVDz5RqR1uI.mpd",
+            label: "1080p",
+            default: true
+          }
+        ],
+      }
+    ],
+    advertising: {
+      client: "vast",
+      schedule: [
+        {
+          offset: "pre",
+          tag: ""
+        }
+      ]
+    }
+  });
+
+  playerInstance.on("ready", function () {
+    const playerContainer = playerInstance.getContainer();
+    const buttonContainer = playerContainer.querySelector(".jw-button-container");
+
+    // Rewind button functionality
+    const rewindContainer = playerContainer.querySelector(".jw-display-icon-rewind");
+    const rewindButton = rewindContainer.cloneNode(true);
+    const rewindIcon = rewindButton.querySelector(".jw-icon-rewind");
+    rewindIcon.style.transform = "scaleX(1)";
+    rewindIcon.ariaLabel = "Rewind 10 Seconds";
+
+    const nextContainer = playerContainer.querySelector(".jw-display-icon-next");
+    nextContainer.parentNode.insertBefore(rewindButton, nextContainer);
+
+    // Rewind functionality for the control bar
+    const rewindControlBarButton = buttonContainer.querySelector(".jw-icon-rewind");
+    const rewindControlBarClone = rewindControlBarButton.cloneNode(true);
+    rewindControlBarClone.style.transform = "scaleX(1)";
+    rewindControlBarClone.ariaLabel = "Rewind 10 Seconds";
+    buttonContainer.insertBefore(rewindControlBarClone, buttonContainer.firstChild);
+
+    // On click of rewind button, seek backward by 10 seconds
+    [rewindButton, rewindControlBarClone].forEach((button) => {
+      button.onclick = () => {
+        const currentPosition = playerInstance.getPosition();
+        const newPosition = Math.max(currentPosition - 10, 0); // Prevent going below 0
+        playerInstance.seek(newPosition);
+      };
+    });
+
+    // Detect adblock
+    playerInstance.on("adBlock", () => {
+      const modal = document.querySelector("div.modal");
+      modal.style.display = "flex";
+      document
+        .getElementById("close")
+        .addEventListener("click", () => location.reload());
+    });
+  });
+
+  // Confirmation message for joining Telegram channel
+  var a = confirm("Join For More Links!!");
+  if (a == true) {
+    window.location.href = "https://telegram.me/finallylivestreaming";  // Updated Telegram channel link
+  }
+
+  function welcome() {
+    window.open("https://telegram.me/finallylivestreaming");  // Updated Telegram channel link
+  }
+</script>
+
+<script disable-devtool-auto='true' src='https://cdn.jsdelivr.net/npm/disable-devtool' clear-log='true' disable-select='true' disable-copy='true' disable-cut='true' disable-paste='true'></script>
+</body>
+</html>
