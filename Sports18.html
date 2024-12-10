@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>@finallylivestreaming </title>
+  <link rel="stylesheet" href="https://cxh.pages.dev/style.css">
+</head>
+<body>
+
+<!-- Fullscreen Video CSS -->
+<style>
+  #player {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+  }
+</style>
+
+<!-- Player -->
+<div id="player"></div>
+<script src="https://cdn.jwplayer.com/libraries/KB5zFt7A.js"></script>
+
+<script>
+  // Video stream configurations (without token)
+  const videoConfigs = {
+    "1": {
+      url: "https://prod-sports-eng-cf.jiocinema.com/hls/live/2100307/hd_akamai_merged_avc_eng_cricket_m9_101224/master.m3u8"  // M3U8 stream URL (HLS)
+    },
+    "2": {
+      url: "https://jcevents.jiocinema.com/bpk-tv/JC_Sports18_1HD/JCHLS/hdntl=exp=1733930792~acl=%2F*~id=aaf549ec51984c86b32dd7de3e1334c7~data=hdntl~hmac=bcb326e8b6a3bbbf8533262c8cf6c82adc4213a53bb8f7042380bae8243a4c1d/JC_Sports18_1HD.m3u8"  // Example M3U8 URL
+    },
+    "WILLOWHD1": {
+      url: "https://example.com/WILLOWHD1/index.m3u8"  // Example M3U8 URL
+    },
+    // Add more streams as needed
+  };
+
+  // Get the query parameter 'id' from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const streamId = urlParams.get('id');  // Extract 'id' parameter from URL
+
+  // Check if the 'id' parameter exists and is valid
+  const videoConfig = videoConfigs[streamId];
+
+  if (videoConfig) {
+    // Initialize JW Player with the selected stream
+    jwplayer("player").setup({
+      file: videoConfig.url, // M3U8 stream URL
+      width: "100%",  // Player width
+      height: "100%", // Player height
+      autostart: true, // Autoplay when ready
+      controls: true,  // Enable player controls (play, pause, volume, etc.)
+    });
+  } else {
+    // If the stream ID is invalid or missing, use the default stream (first one) or display an error
+    alert('Invalid or missing stream ID. Please specify a valid "id" in the URL.');
+    // Optionally redirect to a default stream or show a message to the user
+    // jwplayer("player").setup({
+    //   file: videoConfigs["1"].url, // Load the default stream (1)
+    //   width: "100%",
+    //   height: "100%",
+    //   autostart: true,
+    //   controls: true,
+    // });
+  }
+
+  // Optionally show a confirmation link for Telegram
+  if (confirm("Join Our Telegram Channel @finallylivestreaming")) { 
+    window.location.href = "https://telegram.me/finallylivestreaming"; 
+  }
+</script>
+
+</body>
+</html>
