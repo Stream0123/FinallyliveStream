@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@Finallylivestreaming</title>
+  <title>@finallylivestreaming </title>
   <link rel="stylesheet" href="https://cxh.pages.dev/style.css">
 </head>
 <body>
-<!-- partial:index.partial.html -->
+
 <!-- Fullscreen Video CSS -->
 <style>
   #player {
@@ -19,106 +19,62 @@
 
 <!-- Player -->
 <div id="player"></div>
-<script src='https://content.jwplatform.com/libraries/KB5zFt7A.js'></script>
+<script src="https://cdn.jwplayer.com/libraries/KB5zFt7A.js"></script>
+
 <script>
-  const playerInstance = jwplayer("player").setup({
-    controls: true,
-    displaytitle: true,
-    autoplay: true,    
-    displaydescription: true,
-    abouttext: "",
-    aboutlink: "https://telegram.me/FinallyliveStreaming",  // Updated Telegram channel link
-
-    skin: {
-      name: "netflix"
+  // Video stream configurations (without token)
+  const videoConfigs = {
+    "1": {
+      url: "https://vkvsd63.okcdn.ru/cmaf/7443308808935/sig/BT8V7s3Ni4g/srcIp/3.7.253.57/urls/45.136.21.84/expires/1734386859441/clientType/13/srcAg/CHROME/fromCache/1/mid/9109154376679/id/7443308808935/get/dash_9109154376679.FR5QsSfmxmU.mpd"  // M3U8 stream URL (HLS)
     },
-
-    logo: {
-      file: "",
-      link: "https://telegram.me/FinallyliveStreaming"  // Updated Telegram channel link
+    "2": {
+      url: "https://vkvsd63.okcdn.ru/cmaf/7443308808935/sig/BT8V7s3Ni4g/srcIp/3.7.253.57/urls/45.136.21.84/expires/1734386859441/clientType/13/srcAg/CHROME/fromCache/1/mid/9109154376679/id/7443308808935/get/dash_9109154376679.FR5QsSfmxmU.mpd"  // Example M3U8 URL
     },
-
-    captions: {
-      color: "#FFF",
-      fontSize: 14,
-      backgroundOpacity: 0,
-      edgeStyle: "raised"
+    "3": {
+      url: "https://prod-sports-eng-cf.jiocinema.com/hls/live/2100307/hd_akamai_merged_avc_eng_cricket_m9_131224/master.m3u8"  // Example M3U8 URL
     },
-
-    playlist: [
-      {
-        image: "",
-        sources: [
-          {
-            file:"https://vkvsd63.okcdn.ru/cmaf/7420895300327/sig/vAxD2p3F77g/srcIp/13.203.71.167/urls/185.226.52.89/expires/1733938236976/clientType/13/srcAg/CHROME/fromCache/1/mid/8992305851367/id/7420895300327/get/dash_8992305851367.kdZZAqR8hIo.mpd",
-            label: "1080p",
-            default: true
-          }
-        ],
-      }
-    ],
-    advertising: {
-      client: "vast",
-      schedule: [
-        {
-          offset: "pre",
-          tag: ""
-        }
-      ]
+    "4": {
+      url: "https://jiotvbpklive.cdn.jio.com/bpk-tv/IDCDemo_IPL23_Sports18_MOB/Fallback/IDCDemo_IPL23_Sports18.m3u8"  // Example M3U8 URL
+    },
+    "5": {
+      url: "https://prod-sports-eng-cf.jiocinema.com/hls/live/2100307/hd_akamai_merged_avc_eng_cricket_m9_131224/master.m3u8"  // Example M3U8 URL
     }
-  });
+  };
 
-  playerInstance.on("ready", function () {
-    const playerContainer = playerInstance.getContainer();
-    const buttonContainer = playerContainer.querySelector(".jw-button-container");
+  // Get the query parameter 'id' from the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const streamId = urlParams.get('id');  // Extract 'id' parameter from URL
 
-    // Rewind button functionality
-    const rewindContainer = playerContainer.querySelector(".jw-display-icon-rewind");
-    const rewindButton = rewindContainer.cloneNode(true);
-    const rewindIcon = rewindButton.querySelector(".jw-icon-rewind");
-    rewindIcon.style.transform = "scaleX(1)";
-    rewindIcon.ariaLabel = "Rewind 10 Seconds";
+  // Check if the 'id' parameter exists and is valid
+  const videoConfig = videoConfigs[streamId];
 
-    const nextContainer = playerContainer.querySelector(".jw-display-icon-next");
-    nextContainer.parentNode.insertBefore(rewindButton, nextContainer);
-
-    // Rewind functionality for the control bar
-    const rewindControlBarButton = buttonContainer.querySelector(".jw-icon-rewind");
-    const rewindControlBarClone = rewindControlBarButton.cloneNode(true);
-    rewindControlBarClone.style.transform = "scaleX(1)";
-    rewindControlBarClone.ariaLabel = "Rewind 10 Seconds";
-    buttonContainer.insertBefore(rewindControlBarClone, buttonContainer.firstChild);
-
-    // On click of rewind button, seek backward by 10 seconds
-    [rewindButton, rewindControlBarClone].forEach((button) => {
-      button.onclick = () => {
-        const currentPosition = playerInstance.getPosition();
-        const newPosition = Math.max(currentPosition - 10, 0); // Prevent going below 0
-        playerInstance.seek(newPosition);
-      };
+  if (videoConfig) {
+    // Initialize JW Player with the selected stream
+    jwplayer("player").setup({
+      file: videoConfig.url, // M3U8 stream URL
+      width: "100%",  // Player width
+      height: "100%", // Player height
+      autostart: true, // Autoplay when ready
+      controls: true,  // Enable player controls (play, pause, volume, etc.)
     });
-
-    // Detect adblock
-    playerInstance.on("adBlock", () => {
-      const modal = document.querySelector("div.modal");
-      modal.style.display = "flex";
-      document
-        .getElementById("close")
-        .addEventListener("click", () => location.reload());
+  } else {
+    // If the stream ID is invalid or missing, use the default stream (first one) or display an error
+    alert('Invalid or missing stream ID. Please specify a valid "id" in the URL.');
+    // Optionally redirect to a default stream or show a message to the user
+    jwplayer("player").setup({
+      file: videoConfigs["1"].url, // Load the default stream (1)
+      width: "100%",
+      height: "100%",
+      autostart: true,
+      controls: true,
     });
-  });
-
-  // Confirmation message for joining Telegram channel
-  var a = confirm("Join For More Links!!");
-  if (a == true) {
-    window.location.href = "https://telegram.me/finallylivestreaming";  // Updated Telegram channel link
   }
 
-  function welcome() {
-    window.open("https://telegram.me/finallylivestreaming");  // Updated Telegram channel link
+  // Optionally show a confirmation link for Telegram
+  if (confirm("Join Our Telegram Channel @finallylivestreaming")) { 
+    window.location.href = "https://telegram.me/finallylivestreaming"; 
   }
 </script>
 
-<script disable-devtool-auto='true' src='https://cdn.jsdelivr.net/npm/disable-devtool' clear-log='true' disable-select='true' disable-copy='true' disable-cut='true' disable-paste='true'></script>
 </body>
 </html>
