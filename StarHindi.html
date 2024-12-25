@@ -1,80 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@finallylivestreaming</title>
-  <link rel="stylesheet" href="https://cxh.pages.dev/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinallyliveStream</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+</style>
 </head>
 <body>
-
-<!-- Fullscreen Video CSS -->
-<style>
-  #player {
-    position: absolute;
-    width: 100% !important;
-    height: 100% !important;
-  }
-</style>
-
-<!-- Player -->
-<div id="player"></div>
-<script src="https://cdn.jwplayer.com/libraries/KB5zFt7A.js"></script>
-
 <script>
-  // Video stream configurations (without token)
-  const videoConfigs = {
-    "1": {
-      url: "https://vkvsd55.okcdn.ru/cmaf/7443308808935/sig/esxrZxGt2cE/srcIp/3.110.165.205/urls/45.136.22.88/expires/1734569291503/clientType/13/srcAg/CHROME/fromCache/1/mid/9109154376679/id/7443308808935/get/dash_9109154376679.FR5QsSfmxmU.mpd"  // M3U8 stream URL (HLS)
-    },
-    "2": {
-      url: "https://vkvsd63.okcdn.ru/cmaf/7443308808935/sig/BT8V7s3Ni4g/srcIp/3.7.253.57/urls/45.136.21.84/expires/1734386859441/clientType/13/srcAg/CHROME/fromCache/1/mid/9109154376679/id/7443308808935/get/dash_9109154376679.FR5QsSfmxmU.mpd"  // Example M3U8 URL
-    },
-    "3": {
-      url: "https://prod-sports-eng-cf.jiocinema.com/hls/live/2100307/hd_akamai_merged_avc_eng_cricket_m9_131224/master.m3u8"  // Example M3U8 URL
-    },
-    "4": {
-      url: "https://jiotvbpklive.cdn.jio.com/bpk-tv/IDCDemo_IPL23_Sports18_MOB/Fallback/IDCDemo_IPL23_Sports18.m3u8"  // Example M3U8 URL
-    },
-    "5": {
-      url: "https://m118753.protect-cdn.net/live/m4-720p.m3u8"  // Example M3U8 URL
-    }
-  };
-
-  // Get the query parameter 'id' from the URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const streamId = urlParams.get('id');  // Extract 'id' parameter from URL
-
-  // Check if the 'id' parameter exists and is valid
-  const videoConfig = videoConfigs[streamId];
-
-  if (videoConfig) {
-    // Initialize JW Player with the selected stream
-    jwplayer("player").setup({
-      file: videoConfig.url, // M3U8 stream URL
-      width: "100%",  // Player width
-      height: "100%", // Player height
-      autostart: true, // Autoplay when ready
-      controls: true,  // Enable player controls (play, pause, volume, etc.)
-    });
-  } else {
-    // If the stream ID is invalid or missing, use the default stream (first one) or display an error
-    alert('Invalid or missing stream ID. Please specify a valid "id" in the URL.');
-    // Optionally redirect to a default stream or show a message to the user
-    jwplayer("player").setup({
-      file: videoConfigs["1"].url, // Load the default stream (1)
-      width: "100%",
-      height: "100%",
-      autostart: true,
-      controls: true,
-    });
-  }
-
-  // Optionally show a confirmation link for Telegram
-  if (confirm("Join Our Telegram Channel @finallylivestreaming")) { 
-    window.location.href = "https://telegram.me/finallylivestreaming"; 
-  }
+ if (confirm("Join For More Links!!")) {
+    window.location.href = "https://telegram.me/finallylivestreaming";}
 </script>
+
+<iframe src="https://m118753.protect-cdn.net/live/m4-720p.m3u8"
+ allowfullscreen></iframe>
 
 </body>
 </html>
