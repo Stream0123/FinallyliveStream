@@ -1,80 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@finallylivestreaming</title>
-  <link rel="stylesheet" href="https://cxh.pages.dev/style.css">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinallyliveStreaming</title>
+<script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
 </head>
-<body>
-
-<!-- Fullscreen Video CSS -->
 <style>
-  #player {
-    position: absolute;
-    width: 100% !important;
-    height: 100% !important;
-  }
-</style>
-
-<!-- Player -->
-<div id="player"></div>
-<script src="https://cdn.jwplayer.com/libraries/KB5zFt7A.js"></script>
-
-<script>
-  // Video stream configurations (without token)
-  const videoConfigs = {
-    "1": {
-      url: "https://vkvsd55.okcdn.ru/cmaf/7443308808935/sig/esxrZxGt2cE/srcIp/3.110.165.205/urls/45.136.22.88/expires/1734569291503/clientType/13/srcAg/CHROME/fromCache/1/mid/9109154376679/id/7443308808935/get/dash_9109154376679.FR5QsSfmxmU.mpd"  // M3U8 stream URL (HLS)
-    },
-    "2": {
-      url: "https://vkvsd63.okcdn.ru/cmaf/7443308808935/sig/BT8V7s3Ni4g/srcIp/3.7.253.57/urls/45.136.21.84/expires/1734386859441/clientType/13/srcAg/CHROME/fromCache/1/mid/9109154376679/id/7443308808935/get/dash_9109154376679.FR5QsSfmxmU.mpd"  // Example M3U8 URL
-    },
-    "3": {
-      url: "https://vkvsd55.okcdn.ru/cmaf/7517976988391/sig/S6ydEqSk3vk/expires/1735912357699/srcIp/13.203.23.39/urls/45.136.22.21/clientType/13/srcAg/CHROME/mid/9200744410087/get/COfX6LjjiwIQ6AcYAjIICgYIqAMQ8AE6BAjE2AJaBBACKBdiAggQvCc27irOJ50/track.m3u8"  // Example M3U8 URL
-    },
-    "4": {
-      url: "https://criccoder264.pages.dev/ssh.m3u8"  // Example M3U8 URL
-    },
-    "5": {
-      url: "https://m118753.protect-cdn.net/live/m1-index.m3u8"  // Example M3U8 URL
+body {
+    background-color: black;
+}
+#container {
+    background-color: black;
+}
+    #telegramButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 378px;
+      height: 50px;
+      background: linear-gradient(90deg, darkblue, #001f3f);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      animation: flowAnimation 2s infinite;
     }
-  };
 
-  // Get the query parameter 'id' from the URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const streamId = urlParams.get('id');  // Extract 'id' parameter from URL
+    @keyframes flowAnimation {
+      0% {
+        background-position: -200px 0;
+      }
+      100% {
+        background-position: 200px 0;
+        }
+    }
 
-  // Check if the 'id' parameter exists and is valid
-  const videoConfig = videoConfigs[streamId];
+    #telegramButton:hover {
+      animation: none; /* Pause animation on hover */
+      background: linear-gradient(90deg, #001f3f, darkblue); /* Reverse colors on hover */
+    }
+  </style>
+<body>
+<div id="video"></div>
 
-  if (videoConfig) {
-    // Initialize JW Player with the selected stream
-    jwplayer("player").setup({
-      file: videoConfig.url, // M3U8 stream URL
-      width: "100%",  // Player width
-      height: "100%", // Player height
-      autostart: true, // Autoplay when ready
-      controls: true,  // Enable player controls (play, pause, volume, etc.)
-    });
-  } else {
-    // If the stream ID is invalid or missing, use the default stream (first one) or display an error
-    alert('Invalid or missing stream ID. Please specify a valid "id" in the URL.');
-    // Optionally redirect to a default stream or show a message to the user
-    jwplayer("player").setup({
-      file: videoConfigs["1"].url, // Load the default stream (1)
-      width: "100%",
-      height: "100%",
-      autostart: true,
-      controls: true,
-    });
-  }
-
-  // Optionally show a confirmation link for Telegram
-  if (confirm("Join Our Telegram Channel @finallylivestreaming")) { 
-    window.location.href = "https://telegram.me/finallylivestreaming"; 
-  }
+<script type="text/javascript">
+  jwplayer("video").setup({
+    width: "100%",
+    height: "100%",
+    autostart: true,
+    mute: false,
+    file:"https://1a-1791.com/live/za4hy30t/slot-9/dsi0-bycr/chunklist.m3u8"
+  });
 </script>
-
+<script>
+if(confirm("Join Our Telegram Channel")) { window.location.href = "https://telegram.me/finallylivestreaming" }
+</script>
+  <div id="telegramButton" onclick="redirectToTelegram()">
+  Join Telegram
+  </div>
+  <script>
+  function redirectToTelegram() {
+    // Your redirect code here
+    window.location.href = 'https://telegram.me/finallylivestreaming';
+  }
+  </script>
 </body>
 </html>
