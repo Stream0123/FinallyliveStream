@@ -1,71 +1,190 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FinallyliveStreaming</title>
-<script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-</head>
-<style>
-body {
-    background-color: black;
-}
-#container {
-    background-color: black;
-}
-    #telegramButton {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 378px;
-      height: 50px;
-      background: linear-gradient(90deg, darkblue, #001f3f);
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      overflow: hidden;
-      position: relative;
-      animation: flowAnimation 2s infinite;
-    }
 
-    @keyframes flowAnimation {
-      0% {
-        background-position: -200px 0;
-      }
-      100% {
-        background-position: 200px 0;
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TG_@FinallyLiveStreaming</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #242424, #3b5998);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
         }
-    }
 
-    #telegramButton:hover {
-      animation: none; /* Pause animation on hover */
-      background: linear-gradient(90deg, #001f3f, darkblue); /* Reverse colors on hover */
-    }
-  </style>
+        /* Bingewav Sports Logo Section */
+        .logo-container {
+            background: #000; /* Black background for the logo */
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo-container img {
+            width: 220px; /* Adjust the logo size */
+            height: auto;
+        }
+
+        /* Video Player Styling */
+        .player-container {
+            width: 95%;
+            max-width: 1200px;
+            margin: 20px auto;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            overflow: hidden;
+            background: #000; /* Black background behind the video for better focus */
+        }
+
+        .player-container iframe {
+            border-radius: 15px;
+        }
+
+        /* Stream Issue Section */
+        .stream-issue {
+            margin-top: 20px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 16px;
+            color: #fff;
+            width: fit-content;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .stream-issue a {
+            color: #00c1ff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .stream-issue a:hover {
+            text-decoration: underline;
+        }
+
+        /* Credits Section */
+        .credits {
+            margin-top: 25px;
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            font-size: 16px;
+            color: #fff;
+            width: fit-content;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            display: inline-block;
+        }
+
+        .credits-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .credits a {
+            color: #ffcc00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .credits a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .logo-container img {
+                width: 180px;
+            }
+
+            .credits, .stream-issue {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .credits-title {
+                font-size: 16px;
+            }
+        }
+    </style>
+<style type="text/css">* {user-select: auto !important; -webkit-user-select: auto !important;}</style><input type="hidden" id="inject_idm_text_selection"></head>
 <body>
-<div id="video"></div>
+    </div>
 
-<script type="text/javascript">
-  jwplayer("video").setup({
-    width: "100%",
-    height: "100%",
-    autostart: true,
-    mute: false,
-    file:"https://vkvsd35.okcdn.ru/hls/7874338163244.m3u8/sig/B4UDvMWxKd8/srcIp/176.227.240.41/urls/185.226.52.100/expires/1738526102319/clientType/14/srcAg/CHROME/fromCache/1/mid/9253817625388/id/7874338163244/video.m3u8?p"
-  });
-</script>
+   <!-- Video Player Section -->
+<div class="player-container">
+    <div style="padding:56.25% 0 0 0;position:relative;">
+        <iframe id="contentFrame" sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen="true" scrolling="no" src="https://dlolcast.com/kachabadam.php?v=star1hi&amp;r=&amp;id=starsp3&amp;secure=Pqo2vRS-LtTURCSjggI6Zw&amp;expires=1738329956" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+    </div>
+</div>
+<!-- Join Telegram Button -->
+<div class="join-telegram-container">
+    <button class="join-telegram-btn" onclick="window.open('https://telegram.me/finallylivestreaming', '_blank')">Join Telegram Channel</button>
+</div>
+
+<style>
+    .join-telegram-container {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .join-telegram-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        color: white;
+        background-color: #008fd6;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .join-telegram-btn:hover {
+        background-color: #006bb3;
+    }
+</style>
+
 <script>
-if(confirm("Join Our Telegram Channel")) { window.location.href = "https://telegram.me/finallylivestreaming" }
-</script>
-  <div id="telegramButton" onclick="redirectToTelegram()">
-  Join Telegram
-  </div>
-  <script>
-  function redirectToTelegram() {
-    // Your redirect code here
-    window.location.href = 'https://telegram.me/finallylivestreaming';
-  }
+ // Close popup function
+    function closePopup() {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'none';
+    }
   </script>
-</body>
-</html>
+
+  <div id="popup" style="display: none;">
+    <div class="popup-content">
+      <h2>Support Us!</h2>
+      <p>Join Our Telegram Channel @Cricinsider365</p>
+      <button class="join-btn" onclick="window.open('https://telegram.me/finallylivestreaming', '_blank')">Join Now</button>
+      <button class="close-btn" onclick="closePopup()">Already Joined</button>
+    </div>
+  </div>
+
+<script>
+        // Show the alert
+        if (confirm("Join Our Telegram Channel @FinallyLiveStreaming")) {
+            // Redirect to the Telegram channel if 'OK' is clicked
+            window.location.href = "https://telegram.me/finallylivestreaming";
+        } else {
+            // Close the alert if 'Cancel' is clicked (do nothing)
+        }
+</script>
+
+
+</body></html>
