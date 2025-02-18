@@ -1,71 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FinallyliveStreaming</title>
-<script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
-</head>
-<style>
-body {
-    background-color: black;
-}
-#container {
-    background-color: black;
-}
-    #telegramButton {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 378px;
-      height: 50px;
-      background: linear-gradient(90deg, darkblue, #001f3f);
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-      overflow: hidden;
-      position: relative;
-      animation: flowAnimation 2s infinite;
-    }
-
-    @keyframes flowAnimation {
-      0% {
-        background-position: -200px 0;
-      }
-      100% {
-        background-position: 200px 0;
-        }
-    }
-
-    #telegramButton:hover {
-      animation: none; /* Pause animation on hover */
-      background: linear-gradient(90deg, #001f3f, darkblue); /* Reverse colors on hover */
-    }
-  </style>
-<body>
-<div id="video"></div>
-
-<script type="text/javascript">
-  jwplayer("video").setup({
-    width: "100%",
-    height: "100%",
-    autostart: true,
-    mute: false,
-    file:"https://jcevents.jiocinema.com/bpk-tv/JC_ColorsCineplexHD/JCHLS/hdntl=exp=1739428832~acl=%2f*~id=1acd007748ec1f80292d0a7d5e128f5f~data=hdntl~hmac=697723bf7c0cdc7361bcdc9d218bf7d0d59d2c388cca7a9cacc98f1328668d0b/index.m3u8"
-  });
-</script>
-<script>
-if(confirm("Join Our Telegram Channel")) { window.location.href = "https://telegram.me/Finally_Live_Streaming" }
-</script>
-  <div id="telegramButton" onclick="redirectToTelegram()">
-  Join Telegram
-  </div>
-  <script>
-  function redirectToTelegram() {
-    // Your redirect code here
-    window.location.href = 'https://telegram.me/Finally_Live_Streaming';
-  }
-  </script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="shortcut icon"
+			href="../icons/ptv-sports.jpg"
+			type="image/x-icon"
+		/>
+		<link rel="stylesheet" href="./style/style.css" />
+		<title>PTV sports</title>
+	</head>
+	<body>
+		<div id="main" class="main">
+				<marquee scrollamount="5" class="blink">
+					 সাউন্ড 🔊 শুনতে সমস্যা এবং অ্যাড এর ইস্যু এড়াতে ডিজেবল অ্যাড বাটনে ক্লিক করুন অথবা অ্যাড ব্লকার ব্যবহার করুন। ধন্যবাদ...। To avoid sound 🔊 hearing issues and ad issues, Click the Disable Ads button or use an Ads Blocker. Thank you...
+ 			</marquee>
+			<iframe
+				id="myIframe"
+				src="//stream.crichd.vip/update/ptv.php"
+				width="100%"
+				height="500px"
+				marginheight="0"
+				marginwidth="0"
+				scrolling="no"
+				frameborder="0"
+				allowfullscreen
+				allow="encrypted-media"
+			></iframe>
+			<div class="button-bar">
+				<button class="fs-btn" onclick="toggleFullscreen()">Fullscreen</button>
+				<button id="da">Disabled Ads</button>
+			</div>
+		</div>
+			<script src="./script/script.js"></script>
+	</body>
 </html>
