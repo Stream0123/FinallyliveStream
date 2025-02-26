@@ -31,7 +31,7 @@ body{
             player.configure({
                 drm: {
                     clearKeys: {
-                        'ae7076b647133606b704d33e4cef5134:810251515584cf71216d9a2d1ebf04bb"
+                        '7641daa5bacfbb61936c40a221c9e78e':"5732dd242f28338e909dc06cb1a1e5a2"
                     }
                 }
             });
@@ -56,7 +56,7 @@ body{
             controls.addEventListener("error", onUIErrorEvent);
 
             try {
-                await player.load("https://mix.drmlive.au/mix/icctv1.mpd");
+                await player.load("https://live3.shoq.com.pk/live/eds/Geo_Super/DASH/Geo_Super.mpd");
                 console.log("The video has now been loaded!");
             } catch (error) {
                 onPlayerError(error); 
