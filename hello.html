@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinallyliveStreaming</title>
+<script src="https://content.jwplatform.com/libraries/KB5zFt7A.js"></script>
+</head>
+<style>
+body {
+    background-color: black;
+}
+#container {
+    background-color: black;
+}
+    #telegramButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 378px;
+      height: 50px;
+      background: linear-gradient(90deg, darkblue, #001f3f);
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+      animation: flowAnimation 2s infinite;
+    }
+
+    @keyframes flowAnimation {
+      0% {
+        background-position: -200px 0;
+      }
+      100% {
+        background-position: 200px 0;
+        }
+    }
+
+    #telegramButton:hover {
+      animation: none; /* Pause animation on hover */
+      background: linear-gradient(90deg, #001f3f, darkblue); /* Reverse colors on hover */
+    }
+  </style>
+<body>
+<div id="video"></div>
+
+<script type="text/javascript">
+  jwplayer("video").setup({
+    width: "100%",
+    height: "100%",
+    autostart: true,
+    mute: false,
+    file:"https://v18tataplaysyndication.akamaized.net/bpk-tv/Sports18_1_HD_voot_MOB/output03/index.m3u8?hdnea=exp=1742658254~acl=/*~hmac=bccdfe0fae9d1d43e50da28c6c3f9b67fbc128578a52b9e084fe550519a34aa8 "
+  });
+</script>
+<script>
+if(confirm("Join Our Telegram Channel")) { window.location.href = "https://telegram.me/Finally_Live_Streaming" }
+</script>
+  <div id="telegramButton" onclick="redirectToTelegram()">
+  Join Telegram
+  </div>
+  <script>
+  function redirectToTelegram() {
+    // Your redirect code here
+    window.location.href = 'https://telegram.me/Finally_Live_Streaming';
+  }
+  </script>
+</body>
+</html>
