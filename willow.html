@@ -1,0 +1,233 @@
+<html>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer"> <title>TG_@Finally_Live_Streaming</title></title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/shaka-player.ui.min.js" crossorigin="anonymous"></script>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/controls.min.css" crossorigin="anonymous">
+  <style>img{position:relative;right:130;bottom:10;margin:auto auto;max-width:20%;max-height:20%;object-fit:contain;pointer-events:none}.shaka-spinner-container{display:none}.uc{pointer-events:none}
+body{
+    background-color: #000;
+        }
+body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; /* Prevent scrolling */
+            background-color: black; /* Set background to black */
+        }
+        #player-container {
+            position: absolute; /* Full-screen positioning */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: none; /* Hide cursor */
+        }
+        video {
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            object-fit: fit; /* Maintain aspect ratio */
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #my-video {
+            width: 100%;
+            height: 100vh;
+            height: 100svh;
+        }
+
+        li a {
+            text-transform: capitalize;
+
+        }
+
+        video {
+            width: 100% !important;
+            height: 100vh;
+            height: 100svh !important;
+        }
+
+        .tg-banner {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #1da1f2, #0077b5);
+            border-radius: 12px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tg-banner:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .tg-banner img {
+            width: 36px;
+            height: 36px;
+            margin-right: 12px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        .tg-banner span {
+            font-size: 18px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .relative {
+            position: relative !important;
+            left: 0 !important;
+            top: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+        }
+
+        .Top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .Top h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #1da1f2;
+            margin-bottom: 1rem;
+            text-decoration: underline;
+        }
+
+        .Top p {
+            font-size: 1rem;
+            font-weight: 400;
+            margin-bottom: 0.2rem;
+            opacity: 0.7;
+        }
+
+        .Bottom {
+            display: flex;
+            flex-direction: column;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            margin: 0 auto;
+            max-width: 300px;
+        }
+
+Links, [3/22/2025 6:33 AM]
+.m2 {
+            margin-left: 2rem;
+            margin-top: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+</style>
+</head>
+<body bgcolor='white' style='margin:0'>
+
+<body>
+<body bgcolor="black" style="margin: 0;">
+<a href="https://t.me/Cricket_SportsTv" class="tg-banner" target="_blank" rel="noopener noreferrer">
+        <img src="https://i.pinimg.com/originals/31/2a/f9/312af9235aadad69655688eaee97eabf.png" alt="Telegram Icon">
+        <span>@Finally_Live_Streaming - Join!</span>
+        </a>
+    <div data-shaka-player-container style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+        <video autoplay muted data-shaka-player id=video poster=https://cxh.pages.dev/L.jpg style=width:100%;height:100%></video>
+    </div>
+    <script>
+       if (confirm("Join For More Links!!")) {
+            window.location.href = "https://t.me/Finally_Live_Streaming";
+        }
+
+        async function init() {
+            const video = document.getElementById("video");
+            const ui = video.ui;
+            const controls = ui.getControls();
+            const player = controls.getPlayer();
+
+            player.configure({
+                drm: {
+                    clearKeys: {
+                '1779c27b9d077a3ba0c9cc1bb9a94b9f':"cc5cf3b7928fb9e0a1ee6a8b566f0a8e"
+                    }
+                }
+            });
+
+            ui.configure({
+                controlPanelElements: ["play_pause", "mute", "volume", "spacer", "time_and_duration", "quality", "fullscreen", "overflow_menu"],
+                volumeBarColors: {
+                    base: "rgba(0, 0, 255, 1)", // Blue base color for the volume bar
+                    level: "rgb(0, 255, 0)"     // Green color for the volume level
+                },
+                seekBarColors: {
+                    base: "rgb(255, 0, 0)",       // Red base color for the seek bar
+                    buffered: "rgb(255, 255, 0)", // Yellow color for the buffered portion
+                    played: "rgba(0, 128, 128, 1)" // Teal color for the played portion
+                }
+            });
+
+            window.player = player;
+            window.ui = ui;
+
+            player.addEventListener("error", onPlayerErrorEvent);
+            controls.addEventListener("error", onUIErrorEvent);
+
+            try {
+                await player.load("https://a201aivottlinear-a.akamaihd.net/OTTB/lhr-nitro/clients/dash/enc/f60kqesunw/out/v1/a435ed7a00f947deb4369b46d8f2fb70/cenc.mpd");
+                console.log("The video has now been loaded!");
+            } catch (error) {
+                onPlayerError(error); 
+            }
+        }
+
+        function onPlayerErrorEvent(event) {
+            onPlayerError(event.detail);
+        }
+
+        function onPlayerError(error) {
+            console.error("Error code", error.code, "object", error);
+        }
+
+        function onUIErrorEvent(event) {
+            onPlayerError(event.detail);
+        }
+
+        function initFailed() {
+            console.error("Unable to load the UI library!");
+        }
+
+        document.addEventListener("shaka-ui-loaded", init);
+        document.addEventListener("shaka-ui-load-failed", initFailed);
+    
+</script>
+    </body>
+</html>
