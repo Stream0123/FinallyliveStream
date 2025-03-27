@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+      <html>
+      <head>
+        <title>TG: @finally_live_streaming</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <style>
+          * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+          }
+          body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #1a1a1a;
+            min-height: 100vh;
+          }
+          .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+          }
+          .iframe-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+            background: #000;
+            transition: transform 0.3s ease;
+          }
+          .iframe-wrapper:hover {
+            transform: scale(1.02);
+          }
+          iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: transparent;
+          }
+          @media (max-width: 768px) {
+            body {
+              padding: 10px;
+            }
+            .iframe-wrapper {
+              border-radius: 8px;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <div class="iframe-wrapper">
+            <iframe 
+              src="https://vk.com/video_ext.php?oid=889693256&id=456239034&hd=2&autoplay=1"
+              allow="fullscreen; autoplay"
+              sandbox="allow-same-origin allow-scripts allow-popups"
+              loading="eager"
+            ></iframe>
+          </div>
+        </div>
+      </body>
+      </html>
