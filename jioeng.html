@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title> @finally_live_streaming</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+    <style>
+        #message,
+        .telegram-toggle {
+            color: #fff;
+            align-items: center;
+            z-index: 1001;
+            display: flex;
+            position: fixed
+        }
+
+        .popup a,
+        .telegram-toggle,
+        .tg-banner {
+            text-decoration: none
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f4f4f4;
+            overflow: hidden
+        }
+
+        .jwplayer {
+            position: absolute !important
+        }
+
+        .jwplayer.jw-flag-aspect-mode {
+            min-height: 100%;
+            max-height: 100%
+        }
+
+        .telegram-toggle {
+            top: 10px;
+            right: 10px;
+            background-color: #08c;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-weight: 700
+        }
+
+        .telegram-toggle img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px
+        }
+
+        #message {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .8);
+            justify-content: center;
+            font-size: 24px
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1c1c1c;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(255, 255, 255, .2);
+            z-index: 1002;
+            width: 90%;
+            max-width: 400px;
+            animation: .5s fadeIn
+        }
+
+        .popup h2 {
+            color: #fc0;
+            margin-bottom: 10px;
+            font-size: 20px
+        }
+
+        .popup p {
+            margin-bottom: 20px;
+            color: #ccc;
+            font-size: 16px
+        }
+
+        .popup button {
+            background-color: #08c;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color .3s;
+            margin-bottom: 10px;
+            width: 100%
+        }
+
+        .popup button:hover {
+            background-color: #069
+        }
+
+        .popup .close-btn {
+            background-color: #555
+        }
+
+        .popup .close-btn:hover {
+            background-color: #333
+        }
+
+        .popup a {
+            color: #fc0
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @media (max-width:600px) {
+            .popup {
+                width: 90%
+            }
+
+            .popup h2 {
+                font-size: 18px
+            }
+
+            .popup p {
+                font-size: 14px
+            }
+
+            .popup button {
+                padding: 10px
+            }
+        }
+
+        .tg-banner {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(135deg, #1da1f2, #0077b5);
+            border-radius: 8px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+            z-index: 1000;
+            transition: transform .3s, box-shadow .3s
+        }
+
+        .tg-banner:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .4)
+        }
+
+        .tg-banner img {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+            border-radius: 50%;
+            border: 1px solid #fff
+        }
+
+        .tg-banner span {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: .3px
+        }
+    </style>
+</head>
+
+<body>
+    <div id="jwplayerDiv"></div>
+    <a href="https://t.me/finally_live_streaming" class="tg-banner">
+        <img src="https://i.pinimg.com/originals/31/2a/f9/312af9235aadad69655688eaee97eabf.png" alt="Telegram logo">
+        <span>
+            Join  @finally_live_streaming
+        </span>
+    </a>
+    <script type="text/javascript">
+        jwplayer("jwplayerDiv").setup({
+            file: "https://prod-sports-eng-fa.jiocinema.com/hls/live/2117030/inallow-ipl-2025/eng/1540040243/15mindvrm01f15d6223ccd742da93085a408526bb9c09april2025/master.m3u8",
+            type: "hls",
+            autostart: true,
+            width: "100%"
+        });
+
+        window.addEventListener("load", function () {
+            if (window.confirm("Join  @finally_live_streamingfor more updates?")) {
+                window.location.href = "https://t.me/finally_live_streaming";
+            }
+        });
+    </script>
+    <script>
+        if (window.top !== window.self) {
+            window.addEventListener('DOMContentLoaded', function () {
+                document.body.innerHTML = '<div id="message">Ab to copy mat kar chutiye</div>';
+            });
+        }
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'i' || e.key === 'I' || (e.shiftKey && e.key === 'I'))) {
+                e.preventDefault();
+            }
+        });
+
+        // Display a modern pop-up message when the page starts
+        window.addEventListener("load", function () {
+            // Create the popup element
+            var popup = document.createElement("div");
+            popup.className = "popup";
+
+            // Set the popup content
+            popup.innerHTML = `
+          <h2>Support Us!</h2>
+          <p>Join our Telegram channel <br> @finally_live_streaming for more updates.</p>
+          <button id="joinButton">Join Now and support us</button>
+          <button id="closeButton" class="close-btn">Already Joined</button>
+        `;
+
+            // Append the popup to the body
+            document.body.appendChild(popup);
+
+            // Add click event to the Join Now button
+            document.getElementById("joinButton").addEventListener("click", function () {
+                window.location.href = "https://t.me/finally_live_streaming";
+            });
+
+            // Add click event to the Already Joined button to close the popup
+            document.getElementById("closeButton").addEventListener("click", function () {
+                document.body.removeChild(popup);
+            });
+        });
+    </script>
+</body>
+
+</html>
