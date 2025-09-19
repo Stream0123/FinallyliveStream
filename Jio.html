@@ -1,257 +1,110 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title> @finally_live_streaming</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
-    <style>
-        #message,
-        .telegram-toggle {
-            color: #fff;
-            align-items: center;
-            z-index: 1001;
-            display: flex;
-            position: fixed
-        }
-
-        .popup a,
-        .telegram-toggle,
-        .tg-banner {
-            text-decoration: none
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #f4f4f4;
-            overflow: hidden
-        }
-
-        .jwplayer {
-            position: absolute !important
-        }
-
-        .jwplayer.jw-flag-aspect-mode {
-            min-height: 100%;
-            max-height: 100%
-        }
-
-        .telegram-toggle {
-            top: 10px;
-            right: 10px;
-            background-color: #08c;
-            padding: 10px 15px;
-            border-radius: 50px;
-            font-weight: 700
-        }
-
-        .telegram-toggle img {
-            width: 20px;
-            height: 20px;
-            margin-right: 5px
-        }
-
-        #message {
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, .8);
-            justify-content: center;
-            font-size: 24px
-        }
-
-        .popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #1c1c1c;
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 0 15px rgba(255, 255, 255, .2);
-            z-index: 1002;
-            width: 90%;
-            max-width: 400px;
-            animation: .5s fadeIn
-        }
-
-        .popup h2 {
-            color: #fc0;
-            margin-bottom: 10px;
-            font-size: 20px
-        }
-
-        .popup p {
-            margin-bottom: 20px;
-            color: #ccc;
-            font-size: 16px
-        }
-
-        .popup button {
-            background-color: #08c;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color .3s;
-            margin-bottom: 10px;
-            width: 100%
-        }
-
-        .popup button:hover {
-            background-color: #069
-        }
-
-        .popup .close-btn {
-            background-color: #555
-        }
-
-        .popup .close-btn:hover {
-            background-color: #333
-        }
-
-        .popup a {
-            color: #fc0
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0
-            }
-
-            to {
-                opacity: 1
-            }
-        }
-
-        @media (max-width:600px) {
-            .popup {
-                width: 90%
-            }
-
-            .popup h2 {
-                font-size: 18px
-            }
-
-            .popup p {
-                font-size: 14px
-            }
-
-            .popup button {
-                padding: 10px
-            }
-        }
-
-        .tg-banner {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: linear-gradient(135deg, #1da1f2, #0077b5);
-            border-radius: 8px;
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            color: #fff;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
-            z-index: 1000;
-            transition: transform .3s, box-shadow .3s
-        }
-
-        .tg-banner:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, .4)
-        }
-
-        .tg-banner img {
-            width: 24px;
-            height: 24px;
-            margin-right: 8px;
-            border-radius: 50%;
-            border: 1px solid #fff
-        }
-
-        .tg-banner span {
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: .3px
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram-Live-Cric-Hd</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #000;
+      color: white;
+    }
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border: 4px solid #fff;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px #00ffcc;
+    }
+    .button-group {
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background-color: #007bff;
+      color: white;
+      transition: background 0.3s;
+    }
+    button.active {
+      background-color: #28a745;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
-
 <body>
-    <div id="jwplayerDiv"></div>
-    <a href="https://t.me/finally_live_streaming" class="tg-banner">
-        <img src="https://i.pinimg.com/originals/31/2a/f9/312af9235aadad69655688eaee97eabf.png" alt="Telegram logo">
-        <span>
-            Join  @finally_live_streaming
-        </span>
-    </a>
-    <script type="text/javascript">
-        jwplayer("jwplayerDiv").setup({
-            file: "https://ee4ee8c03a26.eu-central-1.playback.live-video.net/api/video/v1/eu-central-1.755921704393.channel.LOohfipmCQDP.m3u8",
-            type: "hls",
-            autostart: true,
-            width: "100%"
-        });
 
-        window.addEventListener("load", function () {
-            if (window.confirm("Join  @finally_live_streamingfor more updates?")) {
-                window.location.href = "https://t.me/finally_live_streaming";
-            }
-        });
-    </script>
-    <script>
-        if (window.top !== window.self) {
-            window.addEventListener('DOMContentLoaded', function () {
-                document.body.innerHTML = '<div id="message">Ab to copy mat kar chutiye</div>';
-            });
-        }
+  <iframe id="videoFrame" src="https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_3500.m3u8" allowfullscreen></iframe>
 
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
+  <!-- Language buttons -->
+  <div class="button-group">
+    <button id="btnHindi" class="active" onclick="setLanguage('hindi')">Hindi</button>
+    <button id="btnEnglish" onclick="setLanguage('english')">English</button>
+  </div>
 
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'i' || e.key === 'I' || (e.shiftKey && e.key === 'I'))) {
-                e.preventDefault();
-            }
-        });
+  <!-- Quality buttons -->
+  <div class="button-group">
+    <button id="btn1080p" class="active" onclick="setQuality('1080p')">1080p</button>
+    <button id="btn720p" onclick="setQuality('720p')">720p</button>
+    <button id="btn360p" onclick="setQuality('360p')">360p</button>
+    <button id="btn240p" onclick="setQuality('240p')">240p</button>
+  </div>
 
-        // Display a modern pop-up message when the page starts
-        window.addEventListener("load", function () {
-            // Create the popup element
-            var popup = document.createElement("div");
-            popup.className = "popup";
+  <script>
+    if (confirm("Join Our Telegram Channel @Finally_Live_Streaming ")) {
+      window.location.href = "https://t.me/Finally_Live_Streaming";
+    }
 
-            // Set the popup content
-            popup.innerHTML = `
-          <h2>Support Us!</h2>
-          <p>Join our Telegram channel <br> @finally_live_streaming for more updates.</p>
-          <button id="joinButton">Join Now and support us</button>
-          <button id="closeButton" class="close-btn">Already Joined</button>
-        `;
+    let currentLanguage = 'hindi';
+    let currentQuality = '1080p';
 
-            // Append the popup to the body
-            document.body.appendChild(popup);
+    const sources = {
+      hindi: {
+        '1080p': 'https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_3500.m3u8',
+        '720p':  'https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_1300.m3u8',
+        '360p':  'https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_664.m3u8',
+        '240p':  'https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_224.m3u8'
+      },
+      english: {
+        '1080p': 'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_3500.m3u8',
+        '720p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_1300.m3u8',
+        '360p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_664.m3u8',
+        '240p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_224.m3u8'
+      }
+    };
 
-            // Add click event to the Join Now button
-            document.getElementById("joinButton").addEventListener("click", function () {
-                window.location.href = "https://t.me/finally_live_streaming";
-            });
+    function updateStream() {
+      const iframe = document.getElementById("videoFrame");
+      iframe.src = sources[currentLanguage][currentQuality];
+    }
 
-            // Add click event to the Already Joined button to close the popup
-            document.getElementById("closeButton").addEventListener("click", function () {
-                document.body.removeChild(popup);
-            });
-        });
-    </script>
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      document.getElementById("btnHindi").classList.toggle("active", lang === 'hindi');
+      document.getElementById("btnEnglish").classList.toggle("active", lang === 'english');
+      updateStream();
+    }
+
+    function setQuality(q) {
+      currentQuality = q;
+      ['1080p', '720p', '360p', '240p'].forEach(res => {
+        document.getElementById('btn' + res).classList.remove('active');
+      });
+      document.getElementById('btn' + q).classList.add('active');
+      updateStream();
+    }
+  </script>
+
 </body>
-
 </html>
