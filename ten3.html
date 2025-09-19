@@ -1,234 +1,76 @@
-
-<html>
-<meta charset="UTF-8">
+<title>Astro Cricket HD</title>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer"> <title>TG_@Finally_Live_Streaming</title></title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/shaka-player.ui.min.js" crossorigin="anonymous"></script>    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/controls.min.css" crossorigin="anonymous">
-  <style>img{position:relative;right:130;bottom:10;margin:auto auto;max-width:20%;max-height:20%;object-fit:contain;pointer-events:none}.shaka-spinner-container{display:none}.uc{pointer-events:none}
-body{
-    background-color: #000;
-        }
-body, html {
-            height: 100%;
-            margin: 0;
-            overflow: hidden; /* Prevent scrolling */
-            background-color: black; /* Set background to black */
-        }
-        #player-container {
-            position: absolute; /* Full-screen positioning */
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            cursor: none; /* Hide cursor */
-        }
-        video {
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            object-fit: fit; /* Maintain aspect ratio */
-        }
-
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        #my-video {
-            width: 100%;
-            height: 100vh;
-            height: 100svh;
-        }
-
-        li a {
-            text-transform: capitalize;
-
-        }
-
-        video {
-            width: 100% !important;
-            height: 100vh;
-            height: 100svh !important;
-        }
-
-        .tg-banner {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: linear-gradient(135deg, #1da1f2, #0077b5);
-            border-radius: 12px;
-            padding: 12px 18px;
-            display: flex;
-            align-items: center;
-            color: white;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .tg-banner:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .tg-banner img {
-            width: 36px;
-            height: 36px;
-            margin-right: 12px;
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-
-        .tg-banner span {
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
-
-        .relative {
-            position: relative !important;
-            left: 0 !important;
-            top: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-        }
-
-        .Top {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .Top h1 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: #1da1f2;
-            margin-bottom: 1rem;
-            text-decoration: underline;
-        }
-
-        .Top p {
-            font-size: 1rem;
-            font-weight: 400;
-            margin-bottom: 0.2rem;
-            opacity: 0.7;
-        }
-
-        .Bottom {
-            display: flex;
-            flex-direction: column;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-            margin: 0 auto;
-            max-width: 300px;
-        }
-
-Links, [3/22/2025 6:33 AM]
-.m2 {
-            margin-left: 2rem;
-            margin-top: 0.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-</style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/shaka-player.ui.min.js"></script><style type="text/css">* {user-select: auto !important; -webkit-user-select: auto !important;}</style><input type="hidden" id="inject_idm_text_selection"><style></style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/controls.min.css" rel="stylesheet">
 </head>
-<body bgcolor='white' style='margin:0'>
+<body bgcolor="black" style="margin:0;">
+<center>
+    <div data-shaka-player-container="" style="width: 100%; height: 100%; cursor: none;" class="shaka-mobile shaka-video-container" shaka-controls="true">
+        <video poster="https://linear-poster.astro.com.my/prod/poster/Astro-Cricket_2024_IVP_LAND_917x516.jpg" autoplay="" data-shaka-player="" id="video" style="width: 100%; height: 100%;" class="shaka-video" src="blob:https://t20wc.pages.dev/da763d4e-fd51-4e2a-a817-2b73e4643682"></video>
+</center>
 
-<body>
-<body bgcolor="black" style="margin: 0;">
-<a href="https://telegram.me/Finally_Live_Streaming" class="tg-banner" target="_blank" rel="noopener noreferrer">
-        <img src="https://i.pinimg.com/originals/31/2a/f9/312af9235aadad69655688eaee97eabf.png" alt="Telegram Icon">
-        <span>@Finally_Live_Streaming - Join!</span>
-        </a>
-    <div data-shaka-player-container style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-        <video autoplay muted data-shaka-player id=video poster=https://cxh.pages.dev/L.jpg style=width:100%;height:100%></video>
-    </div>
-    <script>
-       if (confirm("Join For More Links!!")) {
-            window.location.href = "https://telegram.me/Finally_live_streaming";
-        }
+<script>
+    if(confirm("Join Our Telegram Channel ")) { window.location.href = "https://telegram.me/Finally_Live_Streaming" }
+const manifestUri =
+    'https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/lsdasbvglv/out/v1/bb548a3626cd4708afbb94a58d71dce9/cenc.mpd';
+async function init() {
+  // When using the UI, the player is made automatically by the UI object.
+  const video = document.getElementById('video');
+  const ui = video['ui'];
+  const controls = ui.getControls();
+  const player = controls.getPlayer();
+  const config = {
+  'controlPanelElements': ['play_pause', 'time_and_duration', 'spacer', 'mute', 'picture_in_picture', 'playback_rate', 'quality', 'fullscreen'],
+  'playbackRates': [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
+}
+ui.configure(config);
+player.configure({
+  drm: {
+    clearKeys: {
+      // 'key-id-in-hex': 'key-in-hex',
+      '4e993aa8c1f295f8b94e8e9e6f6d0bfe': '86a1ed6e96caab8eb1009fe530d2cf4f',
+    }
+  }
+});
+  // Attach player and ui to the window to make it easy to access in the JS console.
+  window.player = player;
+  window.ui = ui;
+  // Listen for error events.
+  player.addEventListener('error', onPlayerErrorEvent);
+  controls.addEventListener('error', onUIErrorEvent);
+  // Try to load a manifest.
+  // This is an asynchronous process.
+  try {
+    await player.load(manifestUri);
+    // This runs if the asynchronous load is successful.
+    console.log('The video has now been loaded!');
+  } catch (error) {
+    onPlayerError(error);
+  }
+}
+function onPlayerErrorEvent(errorEvent) {
+  // Extract the shaka.util.Error object from the event.
+  onPlayerError(event.detail);
+}
+function onPlayerError(error) {
+  // Handle player error
+  console.error('Error code', error.code, 'object', error);
+}
+function onUIErrorEvent(errorEvent) {
+  // Extract the shaka.util.Error object from the event.
+  onPlayerError(event.detail);
+}
+function initFailed(errorEvent) {
+  // Handle the failure to load; errorEvent.detail.reasonCode has a
+  // shaka.ui.FailReasonCode describing why.
+  console.error('Unable to load the UI library!');
+}
+// Listen to the custom shaka-ui-loaded event, to wait until the UI is loaded.
+document.addEventListener('shaka-ui-loaded', init);
+// Listen to the custom shaka-ui-load-failed event, in case Shaka Player fails
+// to load (e.g. due to lack of browser support).
+document.addEventListener('shaka-ui-load-failed', initFailed);</script>
 
-        async function init() {
-            const video = document.getElementById("video");
-            const ui = video.ui;
-            const controls = ui.getControls();
-            const player = controls.getPlayer();
-
-            player.configure({
-                drm: {
-                    clearKeys: {
-                '4e993aa8c1f295f8b94e8e9e6f6d0bfe':"86a1ed6e96caab8eb1009fe530d2cf4f"
-                    }
-                }
-            });
-
-            ui.configure({
-                controlPanelElements: ["play_pause", "mute", "volume", "spacer", "time_and_duration", "quality", "fullscreen", "overflow_menu"],
-                volumeBarColors: {
-                    base: "rgba(0, 0, 255, 1)", // Blue base color for the volume bar
-                    level: "rgb(0, 255, 0)"     // Green color for the volume level
-                },
-                seekBarColors: {
-                    base: "rgb(255, 0, 0)",       // Red base color for the seek bar
-                    buffered: "rgb(255, 255, 0)", // Yellow color for the buffered portion
-                    played: "rgba(0, 128, 128, 1)" // Teal color for the played portion
-                }
-            });
-
-            window.player = player;
-            window.ui = ui;
-
-            player.addEventListener("error", onPlayerErrorEvent);
-            controls.addEventListener("error", onUIErrorEvent);
-
-            try {
-                await player.load("https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/clients/dash/enc/lsdasbvglv/out/v1/bb548a3626cd4708afbb94a58d71dce9/cenc.mpd");
-                console.log("The video has now been loaded!");
-            } catch (error) {
-                onPlayerError(error); 
-            }
-        }
-
-        function onPlayerErrorEvent(event) {
-            onPlayerError(event.detail);
-        }
-
-        function onPlayerError(error) {
-            console.error("Error code", error.code, "object", error);
-        }
-
-        function onUIErrorEvent(event) {
-            onPlayerError(event.detail);
-        }
-
-        function initFailed() {
-            console.error("Unable to load the UI library!");
-        }
-
-        document.addEventListener("shaka-ui-loaded", init);
-        document.addEventListener("shaka-ui-load-failed", initFailed);
-    
-</script>
-    </body>
-</html>
+</body></html>
