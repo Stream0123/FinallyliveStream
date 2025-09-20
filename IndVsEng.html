@@ -1,103 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@finally_live_streaming</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background-color: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            font-weight: bold;
-            margin-bottom: 2rem;
-            text-align: center;
-            text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
-        }
-
-        .button-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
-        }
-
-        .link-box {
-            background: #000;
-            color: #ff0;
-            padding: 15px 30px;
-            font-size: 1.2em;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 10px;
-            border: 2px solid #ff0;
-            position: relative;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 5px 0 0 #cc0,
-                        inset 0 0 10px rgba(255, 255, 0, 0.2);
-        }
-
-        .link-box:hover {
-            background: #ff0;
-            color: #000;
-            transform: translateY(2px);
-            box-shadow: 0 3px 0 0 #cc0,
-                        inset 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .link-box:active {
-            transform: translateY(4px);
-            box-shadow: 0 1px 0 0 #cc0;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-                margin-bottom: 1.5rem;
-            }
-
-            .link-box {
-                padding: 12px 25px;
-                font-size: 1em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.5em;
-            }
-
-            body {
-                padding: 10px;
-            }
-        }
-    </style>
-    <script>
-        if (confirm("Join Our Telegram Channel @Finally_Live_Streaming")) {
-            window.location.href = "https://t.me/Finally_Live_Streaming";
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram-Live-Cric-Hd</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #000;
+      color: white;
+    }
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border: 4px solid #fff;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px #00ffcc;
+    }
+    .button-group {
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background-color: #007bff;
+      color: white;
+      transition: background 0.3s;
+    }
+    button.active {
+      background-color: #28a745;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
 <body>
-    <h1>IND VS ENG LIVE</h1>
-    <div class="button-container">
-        <a href="https://t.me/+z2fkCgVeRaVmYTRl" target="_blank" class="link-box">
-            HINDI LINK
-       
+
+  <iframe id="videoFrame" src="https://tataplay.slivcdn.com/hls/live/2020591/TEN3HD/master_3500.m3u8" allowfullscreen></iframe>
+
+  <!-- Language buttons -->
+  <div class="button-group">
+    <button id="btnHindi" class="active" onclick="setLanguage('hindi')">Hindi</button>
+    <button id="btnEnglish" onclick="setLanguage('english')">English</button>
+  </div>
+
+  <!-- Quality buttons -->
+  <div class="button-group">
+    <button id="btn1080p" class="active" onclick="setQuality('1080p')">1080p</button>
+    <button id="btn720p" onclick="setQuality('720p')">720p</button>
+    <button id="btn360p" onclick="setQuality('360p')">360p</button>
+    <button id="btn240p" onclick="setQuality('240p')">240p</button>
+  </div>
+
+  <script>
+    if (confirm("Join Our Telegram Channel @livecrichdofficial")) {
+      window.location.href = "https://telegram.me/livecrichdofficial";
+    }
+
+    let currentLanguage = 'hindi';
+    let currentQuality = '1080p';
+
+    const sources = {
+      hindi: {
+        '1080p': 'https://tataplay.slivcdn.com/hls/live/2020591/TEN3HD/master_3500.m3u8',
+        '720p':  'https://tataplay.slivcdn.com/hls/live/2020591/TEN3HD/master_1300.m3u8',
+        '360p':  'https://tataplay.slivcdn.com/hls/live/2020591/TEN3HD/master_664.m3u8',
+        '240p':  'https://tataplay.slivcdn.com/hls/live/2020591/TEN3HD/master_224.m3u8'
+      },
+      english: {
+        '1080p': 'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_3500.m3u8',
+        '720p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_1300.m3u8',
+        '360p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_664.m3u8',
+        '240p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_224.m3u8'
+      }
+    };
+
+    function updateStream() {
+      const iframe = document.getElementById("videoFrame");
+      iframe.src = sources[currentLanguage][currentQuality];
+    }
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      document.getElementById("btnHindi").classList.toggle("active", lang === 'hindi');
+      document.getElementById("btnEnglish").classList.toggle("active", lang === 'english');
+      updateStream();
+    }
+
+    function setQuality(q) {
+      currentQuality = q;
+      ['1080p', '720p', '360p', '240p'].forEach(res => {
+        document.getElementById('btn' + res).classList.remove('active');
+      });
+      document.getElementById('btn' + q).classList.add('active');
+      updateStream();
+    }
+  </script>
+
+</body>
+</html>
