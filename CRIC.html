@@ -1,76 +1,515 @@
-<title>Ten Cricket HD</title>
-    <meta charset="UTF-8">
-    <meta name="referrer" content="no-referrer">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/shaka-player.ui.min.js"></script><style type="text/css">* {user-select: auto !important; -webkit-user-select: auto !important;}</style><input type="hidden" id="inject_idm_text_selection"><style></style>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/controls.min.css" rel="stylesheet">
-</head>
-<body bgcolor="black" style="margin:0;">
-<center>
-    <div data-shaka-player-container="" style="width: 100%; height: 100%; cursor: none;" class="shaka-mobile shaka-video-container" shaka-controls="true">
-        <video poster="https://linear-poster.astro.com.my/prod/poster/Astro-Cricket_2024_IVP_LAND_917x516.jpg" autoplay="" data-shaka-player="" id="video" style="width: 100%; height: 100%;" class="shaka-video" src="blob:https://t20wc.pages.dev/da763d4e-fd51-4e2a-a817-2b73e4643682"></video>
-</center>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Final Live</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="referrer" content="no-referrer" />
+        <link href="fav.png" rel="shortcut icon" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.12.5/shaka-player.ui.min.js" crossorigin="anonymous" defer></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.12.5/controls.min.css" />
 
-<script>
-    if(confirm("Join Our Telegram Channel @Finally_Live_Streaming ")) { window.location.href = "https://telegram.me/+4dadpTmOImQzOWE1" }
-const manifestUri =
-    'https://ev-fast-mpd.starzplayarabia.com/live/eds/CricLifeMax/DASH/CricLifeMax.mpd';
-async function init() {
-  // When using the UI, the player is made automatically by the UI object.
-  const video = document.getElementById('video');
-  const ui = video['ui'];
-  const controls = ui.getControls();
-  const player = controls.getPlayer();
-  const config = {
-  'controlPanelElements': ['play_pause', 'time_and_duration', 'spacer', 'mute', 'picture_in_picture', 'playback_rate', 'quality', 'fullscreen'],
-  'playbackRates': [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2],
-}
-ui.configure(config);
-player.configure({
-  drm: {
-    clearKeys: {
-      // 'key-id-in-hex': 'key-in-hex',
-      'ad59b720bd4b44d063686212b99484b5': 'e1744990edf98acc729c0773a3766583',
-    }
-  }
-});
-  // Attach player and ui to the window to make it easy to access in the JS console.
-  window.player = player;
-  window.ui = ui;
-  // Listen for error events.
-  player.addEventListener('error', onPlayerErrorEvent);
-  controls.addEventListener('error', onUIErrorEvent);
-  // Try to load a manifest.
-  // This is an asynchronous process.
-  try {
-    await player.load(manifestUri);
-    // This runs if the asynchronous load is successful.
-    console.log('The video has now been loaded!');
-  } catch (error) {
-    onPlayerError(error);
-  }
-}
-function onPlayerErrorEvent(errorEvent) {
-  // Extract the shaka.util.Error object from the event.
-  onPlayerError(event.detail);
-}
-function onPlayerError(error) {
-  // Handle player error
-  console.error('Error code', error.code, 'object', error);
-}
-function onUIErrorEvent(errorEvent) {
-  // Extract the shaka.util.Error object from the event.
-  onPlayerError(event.detail);
-}
-function initFailed(errorEvent) {
-  // Handle the failure to load; errorEvent.detail.reasonCode has a
-  // shaka.ui.FailReasonCode describing why.
-  console.error('Unable to load the UI library!');
-}
-// Listen to the custom shaka-ui-loaded event, to wait until the UI is loaded.
-document.addEventListener('shaka-ui-loaded', init);
-// Listen to the custom shaka-ui-load-failed event, in case Shaka Player fails
-// to load (e.g. due to lack of browser support).
-document.addEventListener('shaka-ui-load-failed', initFailed);</script>
+        <style>
+            :root{
+                --mint: #00d8ff;
+                --muted: #cbd5e1;
+                --glass-border: rgba(255,255,255,0.06);
+                --radius: 12px;
+            }
 
-</body></html>
+            html {
+                box-sizing: border-box;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            *,
+            ::before,
+            ::after {
+                box-sizing: inherit;
+            }
+            body {
+                height: 100%;
+                line-height: 1;
+                margin: 0;
+                outline: 0;
+                overflow: hidden;
+                padding: 12px;
+                background: #0b0b10;
+                color: #fff;
+                font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            }
+
+            .body::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+                border-radius: 10px; /* Match the outer element's border radius */
+                background: linear-gradient(to right bottom, rgba(255, 0, 150, 0.7), rgba(0, 204, 255, 0.7));
+                padding: 3px; /* Border thickness */
+            }
+
+            .video-container {
+                align-items: center;
+                border-radius: 12px;
+                box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -3px, rgba(0, 0, 0, 0.2) 0 -3px 0 inset;
+                display: flex;
+                height: 100%;
+                justify-content: center;
+                margin-bottom: 0;
+                overflow: hidden;
+                padding: 3px;
+                position: relative;
+                width: 100%;
+            }
+
+            .video-container::before {
+                background: ;
+                background-size: 300% 300%;
+                border: px solid transparent;
+                border-radius: 12px;
+                content: "";
+                inset: 0;
+                position: absolute;
+                z-index: 1;
+                animation: gradientShift 6s ease infinite;
+            }
+
+            @keyframes gradientShift {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            /* Video element style */
+            #video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                border-radius: 12px;
+            }
+
+            /* Logo Image */
+            img {
+                position: absolute;
+                top: 10px;
+                left: 15px;
+                height: auto;
+                max-width: 115px;
+                width: 100%;
+                max-height: 25px;
+            }
+
+            /* Prevent body overflow */
+            html,
+            body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+            }
+
+            /* Desktop view adjustments */
+            @media (min-width: 1024px) {
+                .video-container {
+                    height: 94vh;
+                }
+
+                #video {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: fill;
+                }
+            }
+
+            /* Mobile view */
+            @media (max-width: 1023px) {
+                .video-container {
+                    padding-bottom: 56.25%;
+                    min-height: 100%;
+                }
+
+                #video {
+                    object-fit: contain;
+                }
+
+                @media (max-width: 767px) {
+                    img {
+                        max-width: 90px;
+                        max-height: 20px;
+                        left: 5px;
+                        top: 5px;
+                    }
+
+                    .shaka-overlay .shaka-controls .shaka-control-button.shaka-button-overflow-menu {
+                        transform: scale(0.7);
+                    }
+
+                    .shaka-overlay .shaka-controls {
+                        padding: 5px;
+                    }
+                }
+
+                @media (orientation: landscape) {
+                    .video-container {
+                        height: 100vh;
+                        padding-bottom: 0;
+                    }
+
+                    #video {
+                        object-fit: fill;
+                    }
+                }
+            }
+
+            .shaka-overflow-menu,
+            .shaka-settings-menu {
+                background-color: rgba(255, 0, 120, 0.9);
+            }
+
+            .shaka-current-selection-span,
+            .shaka-settings-menu button {
+                color: #00ffcc;
+                font-weight: bold;
+            }
+
+            .shaka-overflow-menu button:hover,
+            .shaka-settings-menu button:hover {
+                background-color: #000;
+            }
+
+            .shaka-overflow-button-label {
+                color: #ffffe6;
+                font-weight: bold;
+            }
+
+            .material-icons-round {
+                color: #e6e6e6;
+            }
+
+            img {
+                -webkit-animation: 5s ease-in-out infinite both blink3;
+                animation: 5s ease-in-out infinite both blink3;
+            }
+
+            @-webkit-keyframes blink3 {
+                0%, 100%, 50% { opacity: 1; }
+                25%, 75% { opacity: 0; }
+            }
+            @keyframes blink3 {
+                0%, 100%, 50% { opacity: 1; }
+                25%, 75% { opacity: 0; }
+            }
+
+            /* Container for the spinner */
+            .shaka-spinner-container {
+                position: relative;
+                width: 110px; /* Default size for larger screens */
+                height: 110px; /* Default size for larger screens */
+                background: transparent;
+                border: 2px solid #0066ff; /* Example border to match the theme */
+                border-radius: 50%;
+                text-align: center;
+                line-height: 110px;
+                font-family: sans-serif;
+                font-size: 15px;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                text-shadow: 0 0 20px #fff000;
+                margin: 0 auto; /* Center the spinner horizontally */
+            }
+
+            /* Spinner element inside the container */
+            .shaka-spinner {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top: 5px solid #fff000; /* Matches the spinning border */
+                border-right: 5px solid #fff000;
+                animation: animateSpinner 2s linear infinite;
+            }
+
+            /* Path inside the spinner, if needed, you can add further styling here */
+            .shaka-spinner-path {
+                position: absolute;
+                stroke: none;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top: 5px solid #fff000;
+                border-right: 5px solid #fff000;
+                animation: animateSpinner 2s linear infinite;
+            }
+
+            /* Keyframes to animate the spinner */
+            @keyframes animateSpinner {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            @media (max-width: 480px) {
+                .shaka-spinner-container {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+                    flex-shrink: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: none;
+                }
+
+                .shaka-spinner {
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    margin: 0;
+                    box-sizing: border-box;
+                    padding: calc(15.6% / 2);
+                    width: 0;
+                    height: 0;
+                    filter: drop-shadow(0 0 2px rgba(255 255 255 / 50%));
+                }
+
+                .shaka-spinner-path {
+                    stroke: #0066ff;
+                    stroke-dashoffset: 0;
+                    animation: dash 1s ease-in-out infinite;
+                    stroke-linecap: round;
+                    color: none;
+                }
+                @keyframes rotate { 100% { transform: rotate(360deg); } }
+                @keyframes dash {
+                    0% { stroke-dasharray: 1, 200; stroke-dashoffset: 0; }
+                    50% { stroke-dasharray: 89, 200; stroke-dashoffset: -35px; }
+                    100% { stroke-dasharray: 89, 200; stroke-dashoffset: -124px; }
+                }
+            }
+
+            /* Redesigned Modal / Telegram Popup Styles */
+            .popup-overlay{
+              position:fixed;
+              inset:0;
+              background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.6));
+              display:none;
+              align-items:center;
+              justify-content:center;
+              z-index:9999; /* higher than player UI */
+              backdrop-filter: blur(4px);
+            }
+            .telegram-popup{
+              position:fixed;
+              top:50%;
+              left:50%;
+              transform:translate(-50%,-50%);
+              background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+              border-radius:var(--radius);
+              padding:24px;
+              border:1px solid var(--glass-border);
+              box-shadow:0 20px 40px rgba(0,0,0,0.6);
+              z-index:10000;
+              max-width:420px;
+              width:90%;
+              text-align:center;
+              display:none;
+            }
+            .telegram-popup h2{ margin:0 0 8px; font-size:1.25rem; color:var(--mint); }
+            .telegram-popup p{ margin:0 0 18px; color:var(--muted); font-size:13px; line-height:1.4; }
+            .telegram-popup .btn{ display:inline-flex; gap:8px; align-items:center; padding:10px 16px; border-radius:8px; background:#FFD400; color:#041014; font-weight:700; text-decoration:none; border:none; box-shadow:0 8px 20px rgba(255,212,64,0.12); cursor:pointer; }
+            .telegram-popup .btn .fab-icon{ font-size:16px; }
+            .telegram-popup .close-btn{ position:absolute; top:10px; right:10px; background:transparent; border:none; color:var(--muted); font-size:20px; cursor:pointer; }
+            .small-muted{ font-size:12px; color:var(--muted); }
+
+            /* responsive small tweaks */
+            @media (max-width: 767px) {
+              .telegram-popup{ padding:18px; }
+              .telegram-popup h2{ font-size:1.05rem; }
+            }
+        </style>
+    </head>
+
+    <body>
+        <center>
+            <!-- Video Container with Shaka Player -->
+            <div class="video-container" data-shaka-player-container>
+                <video autoplay data-shaka-player id="video" muted poster="https://iili.io/Kc9Sa7p.png" preload="auto"></video>
+
+                <!-- Logo Image -->
+                <img src="https://iili.io/Kc9jgtf.png" />
+
+                <!-- Loading Spinner -->
+                <div class="loader" id="loadingSpinner"></div>
+            </div>
+        </center>
+
+        <!-- Telegram popup overlay & dialog -->
+        <div class="popup-overlay" id="telegram-popup-overlay" aria-hidden="true"></div>
+
+        <div class="telegram-popup" id="telegram-popup" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="tg-title">
+          <button class="close-btn" id="close-telegram-popup" aria-label="Close">&times;</button>
+          <h2 id="tg-title">Join Our Telegram Channel</h2>
+          <p>Stay updated with the latest channels, updates, and exclusive content by joining our Telegram community!</p>
+          <a class="btn telegram" id="tgJoin" href="https://t.me/+UtUw3caO8mYwOTg1" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-telegram fab-icon" aria-hidden="true"></i> Join Now
+          </a>
+          <div style="margin-top:12px" class="small-muted">No spam — only important updates.</div>
+        </div>
+
+        <script>
+			function focusBodySafely() {
+			const body = document.body;
+			const hadTabIndex = body.hasAttribute('tabindex');
+			const prevTab = body.getAttribute('tabindex');
+			if (!hadTabIndex) body.setAttribute('tabindex', '-1');
+			body.focus();
+			if (!hadTabIndex) body.removeAttribute('tabindex');
+			else body.setAttribute('tabindex', prevTab);
+			}
+
+            function showTelegramPopup(){
+              const popup = document.getElementById('telegram-popup');
+              const overlay = document.getElementById('telegram-popup-overlay');
+              if (!popup || !overlay) return;
+
+              overlay.style.display = 'flex';
+              popup.style.display = 'block';
+              overlay.setAttribute('aria-hidden','false');
+              popup.setAttribute('aria-hidden','false');
+
+              // stop clicks inside popup from closing it (bubble)
+              popup.addEventListener('click', function (ev) {
+                ev.stopPropagation();
+              }, { once: false });
+
+              // bind close handlers once
+              const closeBtn = document.getElementById('close-telegram-popup');
+              if (closeBtn && !closeBtn._listenerAdded) {
+                closeBtn.addEventListener('click', closeTelegramPopup);
+                closeBtn._listenerAdded = true;
+              }
+              if (!overlay._listenerAdded) {
+                overlay.addEventListener('click', closeTelegramPopup);
+                overlay._listenerAdded = true;
+              }
+
+              // handle Escape key to close
+              if (!showTelegramPopup._escBound) {
+                window.addEventListener('keydown', function onEsc(e) {
+                  if (e.key === 'Escape' || e.key === 'Esc' ) {
+                    closeTelegramPopup();
+                  }
+                });
+                showTelegramPopup._escBound = true;
+              }
+            }
+
+            function closeTelegramPopup(){
+              const popup = document.getElementById('telegram-popup');
+              const overlay = document.getElementById('telegram-popup-overlay');
+              if (!popup || !overlay) return;
+              popup.style.display = 'none';
+              overlay.style.display = 'none';
+              popup.setAttribute('aria-hidden','true');
+              overlay.setAttribute('aria-hidden','true');
+            }
+
+            // Optionally show popup after delay (3s). Adjust or remove as needed.
+            document.addEventListener('DOMContentLoaded', function () {
+              // Show after a small delay so the player UI can initialize
+              setTimeout(showTelegramPopup, 3000);
+            });
+            async function init() {
+                const e = document.getElementById("video").ui;
+                const r = e.getControls();
+                const n = r.getPlayer();
+
+                // Configure DRM
+                n.configure({
+                    drm: {
+                        clearKeys: {
+                            'ad59b720bd4b44d063686212b99484b5':'e1744990edf98acc729c0773a3766583',
+                        },
+                    },
+
+                });
+
+                // Only add the Authorization header if it's required
+                const token =
+                    ""; // You can change this value dynamically
+                if (token) {
+                    n.getNetworkingEngine().registerRequestFilter((e, r) => {
+                        if (e !== shaka.net.NetworkingEngine.RequestType.MANIFEST && e !== shaka.net.NetworkingEngine.RequestType.SEGMENT) return;
+                        r.headers.Authorization = ` ${token}`;
+                    });
+                }
+
+                e.configure({
+                    controlPanelElements: ["play_pause", "mute", "volume", "spacer", "time_and_duration", "picture_in_picture", "fullscreen", "overflow_menu"],
+                    volumeBarColors: { base: "rgba(255, 0, 150, 0.7)", level: "rgba(0, 204, 255, 0.7)" },
+                    seekBarColors: { base: "rgba(0, 204, 255, 0.7)", buffered: "rgba(255, 0, 150, 0.7)", played: "rgba(0, 204, 255, 0.7)" },
+                });
+
+                window.player = n;
+                window.ui = e;
+                n.addEventListener("error", onPlayerErrorEvent);
+                r.addEventListener("error", onUIErrorEvent);
+
+                // Show the spinner while the video is loading
+                document.getElementById("loadingSpinner").style.display = "block";
+
+                try {
+                    await n.load("https://ev-fast-mpd.starzplayarabia.com/live/eds/CricLifeMax/DASH/CricLifeMax.mpd");
+                    // Hide the spinner once the video has loaded
+                    document.getElementById("loadingSpinner").style.display = "none";
+                } catch (e) {
+                    onPlayerError(e);
+                }
+            }
+
+            function onPlayerErrorEvent(e) {
+                onPlayerError(e.detail);
+            }
+
+            function onPlayerError(e) {
+                // Handle error
+                console.error("Shaka Player Error:", e);
+            }
+
+            function onUIErrorEvent(e) {
+                onPlayerError(e.detail);
+            }
+
+            function initFailed(e) {
+                // Handle failure
+                console.error("Shaka UI Load Failed:", e);
+            }
+
+            document.addEventListener("shaka-ui-loaded", init);
+            document.addEventListener("shaka-ui-load-failed", initFailed);
+        </script>
+    </body>
+</html>
