@@ -1,67 +1,110 @@
 <!DOCTYPE html>
-      <html>
-      <head>
-        <title>TG: @finally_live_streaming</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <style>
-          * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-          }
-          body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #1a1a1a;
-            min-height: 100vh;
-          }
-          .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-          }
-          .iframe-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
-            background: #000;
-            transition: transform 0.3s ease;
-          }
-          .iframe-wrapper:hover {
-            transform: scale(1.02);
-          }
-          iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: transparent;
-          }
-          @media (max-width: 768px) {
-            body {
-              padding: 10px;
-            }
-            .iframe-wrapper {
-              border-radius: 8px;
-            }
-          }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <div class="iframe-wrapper">
-            <iframe 
-              src="https://vk.com/video_ext.php?oid=889693256&id=456239034&hd=2&autoplay=1"
-              allow="fullscreen; autoplay"
-              sandbox="allow-same-origin allow-scripts allow-popups"
-              loading="eager"
-            ></iframe>
-          </div>
-        </div>
-      </body>
-      </html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram-Finally Live</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #000;
+      color: white;
+    }
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border: 4px solid #fff;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px #00ffcc;
+    }
+    .button-group {
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      background-color: #007bff;
+      color: white;
+      transition: background 0.3s;
+    }
+    button.active {
+      background-color: #28a745;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <iframe id="videoFrame" src="https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_3500.m3u8" allowfullscreen></iframe>
+
+  <!-- Language buttons -->
+  <div class="button-group">
+    <button id="btnHindi" class="active" onclick="setLanguage('hindi')">Hindi</button>
+    <button id="btnEnglish" onclick="setLanguage('english')">English</button>
+  </div>
+
+  <!-- Quality buttons -->
+  <div class="button-group">
+    <button id="btn1080p" class="active" onclick="setQuality('1080p')">1080p</button>
+    <button id="btn720p" onclick="setQuality('720p')">720p</button>
+    <button id="btn360p" onclick="setQuality('360p')">360p</button>
+    <button id="btn240p" onclick="setQuality('240p')">240p</button>
+  </div>
+
+  <script>
+    if (confirm("Join Our Telegram Channel @Finally_Live_Streaming")) {
+      window.location.href = "https://telegram.me/Finally_Live_Streaming";
+    }
+
+    let currentLanguage = 'hindi';
+    let currentQuality = '1080p';
+
+    const sources = {
+      hindi: {
+        '1080p': 'https://livecfdai-mp.slivcdn.com/out/v1/f49a11874cc64fc08051bfaa78ef5484/std_mdh-800300010_11.m3u8?hdntl=exp=1758686541~acl=*~hmac=94cead6dffa6c2d9ce78f35e2785a2eee6701ac9a7316e6974b6ef798ce27706&originpath=/linear/hls/pb/event/AN3dE5kTSt6ZIfxddIcoag/stream/a79b32dc-fe9c-4785-9e0f-c6bc09b1703a:TPE2/variant/05c05f065cbbb2662eca6385ae14fef1/bandwidth/2513627.m3u8',
+        '720p':  'https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_1300.m3u8',
+        '360p':  'https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_664.m3u8',
+        '240p':  'https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_224.m3u8'
+      },
+      english: {
+        '1080p': 'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_3500.m3u8',
+        '720p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_1300.m3u8',
+        '360p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_664.m3u8',
+        '240p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_224.m3u8'
+      }
+    };
+
+    function updateStream() {
+      const iframe = document.getElementById("videoFrame");
+      iframe.src = sources[currentLanguage][currentQuality];
+    }
+
+    function setLanguage(lang) {
+      currentLanguage = lang;
+      document.getElementById("btnHindi").classList.toggle("active", lang === 'hindi');
+      document.getElementById("btnEnglish").classList.toggle("active", lang === 'english');
+      updateStream();
+    }
+
+    function setQuality(q) {
+      currentQuality = q;
+      ['1080p', '720p', '360p', '240p'].forEach(res => {
+        document.getElementById('btn' + res).classList.remove('active');
+      });
+      document.getElementById('btn' + q).classList.add('active');
+      updateStream();
+    }
+  </script>
+
+</body>
+</html>
