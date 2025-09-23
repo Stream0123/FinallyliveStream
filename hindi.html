@@ -1,110 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telegram-Finally Live</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
-      background-color: #000;
-      color: white;
-    }
-    iframe {
-      width: 100%;
-      max-width: 800px;
-      height: 450px;
-      border: 4px solid #fff;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 10px #00ffcc;
-    }
-    .button-group {
-      margin: 10px 0;
-    }
-    button {
-      padding: 10px 20px;
-      margin: 5px;
-      font-size: 16px;
-      cursor: pointer;
-      border: none;
-      border-radius: 6px;
-      background-color: #007bff;
-      color: white;
-      transition: background 0.3s;
-    }
-    button.active {
-      background-color: #28a745;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TG_@Cricket_SportsTv</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      color: #1e90ff;
+      margin: 20px 0;
+    }
+    iframe {
+      width: 95%;
+      height: 250px;
+      border: none;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    .section {
+      margin: 20px 0;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      background: #444;
+      color: #fff;
+    }
+    .btn.active {
+      background: #1e90ff;
+    }
+    .telegram {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 12px 25px;
+      background: #1e90ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
 
-  <iframe id="videoFrame" src="https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_3500.m3u8" allowfullscreen></iframe>
+  <h1>TG_@Cricket_SportsTv</h1>
 
-  <!-- Language buttons -->
-  <div class="button-group">
-    <button id="btnHindi" class="active" onclick="setLanguage('hindi')">Hindi</button>
-    <button id="btnEnglish" onclick="setLanguage('english')">English</button>
-  </div>
+  <!-- Iframe for streaming -->
+  <iframe id="streamFrame" src="" allowfullscreen></iframe>
 
-  <!-- Quality buttons -->
-  <div class="button-group">
-    <button id="btn1080p" class="active" onclick="setQuality('1080p')">1080p</button>
-    <button id="btn720p" onclick="setQuality('720p')">720p</button>
-    <button id="btn360p" onclick="setQuality('360p')">360p</button>
-    <button id="btn240p" onclick="setQuality('240p')">240p</button>
-  </div>
+  <!-- Hindi Quality Buttons -->
+  <div class="section">
+    <h2>Hindi</h2>
+    <button class="btn" id="hindi1080" onclick="setStream('https://livecfdai-mp.slivcdn.com/out/v1/f49a11874cc64fc08051bfaa78ef5484/std_mdh-800300010_11.m3u8?hdntl=exp=1758686541~acl=*~hmac=94cead6dffa6c2d9ce78f35e2785a2eee6701ac9a7316e6974b6ef798ce27706&originpath=/linear/hls/pb/event/AN3dE5kTSt6ZIfxddIcoag/stream/a79b32dc-fe9c-4785-9e0f-c6bc09b1703a:TPE2/variant/05c05f065cbbb2662eca6385ae14fef1/bandwidth/2513627.m3u8')">1080p</button>
+    <button class="btn" onclick="setStream('https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_1300.m3u8 ')">720p</button>
+    <button class="btn" onclick="setStream('https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_664.m3u8')">360p</button> 
+  </div>
 
-  <script>
-    if (confirm("Join Our Telegram Channel @Finally_Live_Streaming")) {
-      window.location.href = "https://telegram.me/Finally_Live_Streaming";
-    }
+  <!-- English Quality Buttons -->
+  <div class="section">
+    <h2>English</h2>
+    <button class="btn" onclick="setStream('https://tataplay.slivcdn.com/hls/live/2011747/TEN1HD/master_3500.m3u8')">1080p</button>
+    <button class="btn" onclick="setStream('https://tataplay.slivcdn.com/hls/live/2011747/TEN1HD/master_2000.m3u8')">720p</button>
+    <button class="btn" onclick="setStream('https://tataplay.slivcdn.com/hls/live/2011747/TEN1HD/master_664.m3u8')">360p</button>
+  </div>
 
-    let currentLanguage = 'hindi';
-    let currentQuality = '1080p';
+  <!-- Telegram -->
+  <a class="telegram" href="https://t.me/Cricket_SportsTv" target="_blank">Join us on Telegram</a>
 
-    const sources = {
-      hindi: {
-        '1080p': 'https://livecfdai-mp.slivcdn.com/out/v1/f49a11874cc64fc08051bfaa78ef5484/std_mdh-800300010_11.m3u8?hdntl=exp=1758686541~acl=*~hmac=94cead6dffa6c2d9ce78f35e2785a2eee6701ac9a7316e6974b6ef798ce27706&originpath=/linear/hls/pb/event/AN3dE5kTSt6ZIfxddIcoag/stream/a79b32dc-fe9c-4785-9e0f-c6bc09b1703a:TPE2/variant/05c05f065cbbb2662eca6385ae14fef1/bandwidth/2513627.m3u8',
-        '720p':  'https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_1300.m3u8',
-        '360p':  'https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_664.m3u8',
-        '240p':  'https://dish.slivcdn.com/hls/live/2020591/TEN3HD/master_224.m3u8'
-      },
-      english: {
-        '1080p': 'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_3500.m3u8',
-        '720p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_1300.m3u8',
-        '360p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_664.m3u8',
-        '240p':  'https://dish.slivcdn.com/hls/live/2011747/TEN1HD/master_224.m3u8'
-      }
-    };
+  <script>
+    function setStream(url) {
+      document.getElementById("streamFrame").src = url;
 
-    function updateStream() {
-      const iframe = document.getElementById("videoFrame");
-      iframe.src = sources[currentLanguage][currentQuality];
-    }
+      // active button highlight
+      document.querySelectorAll(".btn").forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
+    }
 
-    function setLanguage(lang) {
-      currentLanguage = lang;
-      document.getElementById("btnHindi").classList.toggle("active", lang === 'hindi');
-      document.getElementById("btnEnglish").classList.toggle("active", lang === 'english');
-      updateStream();
-    }
+    // ✅ Auto-load Hindi 1080p when page opens
+    window.onload = function() {
+      let defaultUrl = "https://tataplay.slivcdn.com/hls/live/2020591/TEN3HD/master_3500.m3u8";
+      document.getElementById("streamFrame").src = defaultUrl;
+      document.getElementById("hindi1080").classList.add("active");
+    }
+  </script>
 
-    function setQuality(q) {
-      currentQuality = q;
-      ['1080p', '720p', '360p', '240p'].forEach(res => {
-        document.getElementById('btn' + res).classList.remove('active');
-      });
-      document.getElementById('btn' + q).classList.add('active');
-      updateStream();
-    }
-  </script>
+  <script>
+    // Optional Telegram popup
+    if (confirm("Join Our Telegram Channel @Cricket_SportsTv") == true) {
+      window.open("https://t.me/Cricket_SportsTv ", '_blank');
+    }
+  </script>
 
 </body>
 </html>
