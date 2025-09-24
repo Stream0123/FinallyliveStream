@@ -453,7 +453,7 @@
                 n.configure({
                     drm: {
                         clearKeys: {
-                            '5ccdccf0818d3d9ff6c26076fc1153ac':'f8d7fda7e3f11a29b346a37e98f749d4',
+                            '8268467a7a974698b18c9e63b13f73a4':'6affb3ad6e781bc4afafad402e1d4510',
                         },
                     },
 
@@ -484,7 +484,7 @@
                 document.getElementById("loadingSpinner").style.display = "block";
 
                 try {
-                    await n.load("https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/i2pcjr4pe5/out/v1/912e9db56d75403b8a9ac0a719110f36/cenc.mpd");
+                    await n.load("https://sundirectgo-live.pc.cdn.bitgravity.com/hd21/dth.mpd");
                     // Hide the spinner once the video has loaded
                     document.getElementById("loadingSpinner").style.display = "none";
                 } catch (e) {
