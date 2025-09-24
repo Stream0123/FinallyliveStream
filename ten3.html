@@ -1,0 +1,517 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Final Live</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="referrer" content="no-referrer" />
+        <link href="fav.png" rel="shortcut icon" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.12.5/shaka-player.ui.min.js" crossorigin="anonymous" defer></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.12.5/controls.min.css" />
+
+        <style>
+            :root{
+                --mint: #00d8ff;
+                --muted: #cbd5e1;
+                --glass-border: rgba(255,255,255,0.06);
+                --radius: 12px;
+            }
+
+            html {
+                box-sizing: border-box;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            *,
+            ::before,
+            ::after {
+                box-sizing: inherit;
+            }
+            body {
+                height: 100%;
+                line-height: 1;
+                margin: 0;
+                outline: 0;
+                overflow: hidden;
+                padding: 12px;
+                background: #0b0b10;
+                color: #fff;
+                font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            }
+
+            .body::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: -1;
+                border-radius: 10px; /* Match the outer element's border radius */
+                background: linear-gradient(to right bottom, rgba(255, 0, 150, 0.7), rgba(0, 204, 255, 0.7));
+                padding: 3px; /* Border thickness */
+            }
+
+            .video-container {
+                align-items: center;
+                border-radius: 12px;
+                box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px, rgba(0, 0, 0, 0.3) 0 7px 13px -3px, rgba(0, 0, 0, 0.2) 0 -3px 0 inset;
+                display: flex;
+                height: 100%;
+                justify-content: center;
+                margin-bottom: 0;
+                overflow: hidden;
+                padding: 3px;
+                position: relative;
+                width: 100%;
+            }
+
+            .video-container::before {
+                background: ;
+                background-size: 300% 300%;
+                border: px solid transparent;
+                border-radius: 12px;
+                content: "";
+                inset: 0;
+                position: absolute;
+                z-index: 1;
+                animation: gradientShift 6s ease infinite;
+            }
+
+            @keyframes gradientShift {
+                0% {
+                    background-position: 0% 50%;
+                }
+                50% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
+            }
+
+            /* Video element style */
+            #video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                border-radius: 12px;
+            }
+
+            /* Logo Image */
+            img {
+                position: absolute;
+                top: 10px;
+                left: 15px;
+                height: auto;
+                max-width: 115px;
+                width: 100%;
+                max-height: 25px;
+            }
+
+            /* Prevent body overflow */
+            html,
+            body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+            }
+
+            /* Desktop view adjustments */
+            @media (min-width: 1024px) {
+                .video-container {
+                    height: 94vh;
+                }
+
+                #video {
+                    height: 100%;
+                    width: 100%;
+                    object-fit: fill;
+                }
+            }
+
+            /* Mobile view */
+            @media (max-width: 1023px) {
+                .video-container {
+                    padding-bottom: 56.25%;
+                    min-height: 100%;
+                }
+
+                #video {
+                    object-fit: contain;
+                }
+
+                @media (max-width: 767px) {
+                    img {
+                        max-width: 90px;
+                        max-height: 20px;
+                        left: 5px;
+                        top: 5px;
+                    }
+
+                    .shaka-overlay .shaka-controls .shaka-control-button.shaka-button-overflow-menu {
+                        transform: scale(0.7);
+                    }
+
+                    .shaka-overlay .shaka-controls {
+                        padding: 5px;
+                    }
+                }
+
+                @media (orientation: landscape) {
+                    .video-container {
+                        height: 100vh;
+                        padding-bottom: 0;
+                    }
+
+                    #video {
+                        object-fit: fill;
+                    }
+                }
+            }
+
+            .shaka-overflow-menu,
+            .shaka-settings-menu {
+                background-color: rgba(255, 0, 120, 0.9);
+            }
+
+            .shaka-current-selection-span,
+            .shaka-settings-menu button {
+                color: #00ffcc;
+                font-weight: bold;
+            }
+
+            .shaka-overflow-menu button:hover,
+            .shaka-settings-menu button:hover {
+                background-color: #000;
+            }
+
+            .shaka-overflow-button-label {
+                color: #ffffe6;
+                font-weight: bold;
+            }
+
+            .material-icons-round {
+                color: #e6e6e6;
+            }
+
+            img {
+                -webkit-animation: 5s ease-in-out infinite both blink3;
+                animation: 5s ease-in-out infinite both blink3;
+            }
+
+            @-webkit-keyframes blink3 {
+                0%, 100%, 50% { opacity: 1; }
+                25%, 75% { opacity: 0; }
+            }
+            @keyframes blink3 {
+                0%, 100%, 50% { opacity: 1; }
+                25%, 75% { opacity: 0; }
+            }
+
+            /* Container for the spinner */
+            .shaka-spinner-container {
+                position: relative;
+                width: 110px; /* Default size for larger screens */
+                height: 110px; /* Default size for larger screens */
+                background: transparent;
+                border: 2px solid #0066ff; /* Example border to match the theme */
+                border-radius: 50%;
+                text-align: center;
+                line-height: 110px;
+                font-family: sans-serif;
+                font-size: 15px;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                text-shadow: 0 0 20px #fff000;
+                margin: 0 auto; /* Center the spinner horizontally */
+            }
+
+            /* Spinner element inside the container */
+            .shaka-spinner {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top: 5px solid #fff000; /* Matches the spinning border */
+                border-right: 5px solid #fff000;
+                animation: animateSpinner 2s linear infinite;
+            }
+
+            /* Path inside the spinner, if needed, you can add further styling here */
+            .shaka-spinner-path {
+                position: absolute;
+                stroke: none;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top: 5px solid #fff000;
+                border-right: 5px solid #fff000;
+                animation: animateSpinner 2s linear infinite;
+            }
+
+            /* Keyframes to animate the spinner */
+            @keyframes animateSpinner {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            @media (max-width: 480px) {
+                .shaka-spinner-container {
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 100%;
+                    flex-shrink: 1;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: none;
+                }
+
+                .shaka-spinner {
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    margin: 0;
+                    box-sizing: border-box;
+                    padding: calc(15.6% / 2);
+                    width: 0;
+                    height: 0;
+                    filter: drop-shadow(0 0 2px rgba(255 255 255 / 50%));
+                }
+
+                .shaka-spinner-path {
+                    stroke: #0066ff;
+                    stroke-dashoffset: 0;
+                    animation: dash 1s ease-in-out infinite;
+                    stroke-linecap: round;
+                    color: none;
+                }
+                @keyframes rotate { 100% { transform: rotate(360deg); } }
+                @keyframes dash {
+                    0% { stroke-dasharray: 1, 200; stroke-dashoffset: 0; }
+                    50% { stroke-dasharray: 89, 200; stroke-dashoffset: -35px; }
+                    100% { stroke-dasharray: 89, 200; stroke-dashoffset: -124px; }
+                }
+            }
+
+            /* Redesigned Modal / Telegram Popup Styles */
+            .popup-overlay{
+              position:fixed;
+              inset:0;
+              background:linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.6));
+              display:none;
+              align-items:center;
+              justify-content:center;
+              z-index:9999; /* higher than player UI */
+              backdrop-filter: blur(4px);
+            }
+            .telegram-popup{
+              position:fixed;
+              top:50%;
+              left:50%;
+              transform:translate(-50%,-50%);
+              background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+              border-radius:var(--radius);
+              padding:24px;
+              border:1px solid var(--glass-border);
+              box-shadow:0 20px 40px rgba(0,0,0,0.6);
+              z-index:10000;
+              max-width:420px;
+              width:90%;
+              text-align:center;
+              display:none;
+            }
+            .telegram-popup h2{ margin:0 0 8px; font-size:1.25rem; color:var(--mint); }
+            .telegram-popup p{ margin:0 0 18px; color:var(--muted); font-size:13px; line-height:1.4; }
+            .telegram-popup .btn{ display:inline-flex; gap:8px; align-items:center; padding:10px 16px; border-radius:8px; background:#FFD400; color:#041014; font-weight:700; text-decoration:none; border:none; box-shadow:0 8px 20px rgba(255,212,64,0.12); cursor:pointer; }
+            .telegram-popup .btn .fab-icon{ font-size:16px; }
+            .telegram-popup .close-btn{ position:absolute; top:10px; right:10px; background:transparent; border:none; color:var(--muted); font-size:20px; cursor:pointer; }
+            .small-muted{ font-size:12px; color:var(--muted); }
+
+            /* responsive small tweaks */
+            @media (max-width: 767px) {
+              .telegram-popup{ padding:18px; }
+              .telegram-popup h2{ font-size:1.05rem; }
+            }
+        </style>
+    </head>
+
+    <body>
+        <center>
+            <!-- Video Container with Shaka Player -->
+            <div class="video-container" data-shaka-player-container>
+                <video autoplay data-shaka-player id="video" muted poster="https://iili.io/Kc9Sa7p.png" preload="auto"></video>
+
+                <!-- Logo Image -->
+                <img src="https://iili.io/Kc9jgtf.png" />
+
+                <!-- Loading Spinner -->
+                <div class="loader" id="loadingSpinner"></div>
+            </div>
+        </center>
+
+        <!-- Telegram popup overlay & dialog -->
+        <div class="popup-overlay" id="telegram-popup-overlay" aria-hidden="true"></div>
+
+        <div class="telegram-popup" id="telegram-popup" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="tg-title">
+          <button class="close-btn" id="close-telegram-popup" aria-label="Close">&times;</button>
+          <h2 id="tg-title">Join Our Telegram Channel</h2>
+          <p>Stay updated with the latest channels, updates, and exclusive content by joining our Telegram community!</p>
+          <a class="btn telegram" id="tgJoin" href="https://t.me/+UtUw3caO8mYwOTg1" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-telegram fab-icon" aria-hidden="true"></i> Join Now
+          </a>
+          <div style="margin-top:12px" class="small-muted">No spam — only important updates.</div>
+        </div>
+
+        <script>
+			function focusBodySafely() {
+			const body = document.body;
+			const hadTabIndex = body.hasAttribute('tabindex');
+			const prevTab = body.getAttribute('tabindex');
+			if (!hadTabIndex) body.setAttribute('tabindex', '-1');
+			body.focus();
+			if (!hadTabIndex) body.removeAttribute('tabindex');
+			else body.setAttribute('tabindex', prevTab);
+			}
+
+            function showTelegramPopup(){
+              const popup = document.getElementById('telegram-popup');
+              const overlay = document.getElementById('telegram-popup-overlay');
+              if (!popup || !overlay) return;
+
+              overlay.style.display = 'flex';
+              popup.style.display = 'block';
+              overlay.setAttribute('aria-hidden','false');
+              popup.setAttribute('aria-hidden','false');
+
+              // stop clicks inside popup from closing it (bubble)
+              popup.addEventListener('click', function (ev) {
+                ev.stopPropagation();
+              }, { once: false });
+
+              // bind close handlers once
+              const closeBtn = document.getElementById('close-telegram-popup');
+              if (closeBtn && !closeBtn._listenerAdded) {
+                closeBtn.addEventListener('click', closeTelegramPopup);
+                closeBtn._listenerAdded = true;
+              }
+              if (!overlay._listenerAdded) {
+                overlay.addEventListener('click', closeTelegramPopup);
+                overlay._listenerAdded = true;
+              }
+
+              // handle Escape key to close
+              if (!showTelegramPopup._escBound) {
+                window.addEventListener('keydown', function onEsc(e) {
+                  if (e.key === 'Escape' || e.key === 'Esc' ) {
+                    closeTelegramPopup();
+                  }
+                });
+                showTelegramPopup._escBound = true;
+              }
+            }
+
+            function closeTelegramPopup(){
+              const popup = document.getElementById('telegram-popup');
+              const overlay = document.getElementById('telegram-popup-overlay');
+              if (!popup || !overlay) return;
+              popup.style.display = 'none';
+              overlay.style.display = 'none';
+              popup.setAttribute('aria-hidden','true');
+              overlay.setAttribute('aria-hidden','true');
+            }
+
+            // Optionally show popup after delay (3s). Adjust or remove as needed.
+            document.addEventListener('DOMContentLoaded', function () {
+              // Show after a small delay so the player UI can initialize
+              setTimeout(showTelegramPopup, 3000);
+            });
+            async function init() {
+                const e = document.getElementById("video").ui;
+                const r = e.getControls();
+                const n = r.getPlayer();
+
+                // Configure DRM
+                n.configure({
+                    drm: {
+                        clearKeys: {
+                            '162e06450b01432dbf9a98cc8c06e637':'fb10bbb01a468e7c41614fc0803648aa
+',
+                        },
+                    },
+
+                });
+
+                // Only add the Authorization header if it's required
+                const token =
+                    ""; // You can change this value dynamically
+                if (token) {
+                    n.getNetworkingEngine().registerRequestFilter((e, r) => {
+                        if (e !== shaka.net.NetworkingEngine.RequestType.MANIFEST && e !== shaka.net.NetworkingEngine.RequestType.SEGMENT) return;
+                        r.headers.Authorization = ` ${token}`;
+                    });
+                }
+
+                e.configure({
+                    controlPanelElements: ["play_pause", "mute", "volume", "spacer", "time_and_duration", "picture_in_picture", "fullscreen", "overflow_menu"],
+                    volumeBarColors: { base: "rgba(255, 0, 150, 0.7)", level: "rgba(0, 204, 255, 0.7)" },
+                    seekBarColors: { base: "rgba(0, 204, 255, 0.7)", buffered: "rgba(255, 0, 150, 0.7)", played: "rgba(0, 204, 255, 0.7)" },
+                });
+
+                window.player = n;
+                window.ui = e;
+                n.addEventListener("error", onPlayerErrorEvent);
+                r.addEventListener("error", onUIErrorEvent);
+
+                // Show the spinner while the video is loading
+                document.getElementById("loadingSpinner").style.display = "block";
+
+                try {
+                    await n.load("https://sundirectgo-live.pc.cdn.bitgravity.com/src35/dth.mpd");
+                    // Hide the spinner once the video has loaded
+                    document.getElementById("loadingSpinner").style.display = "none";
+                } catch (e) {
+                    onPlayerError(e);
+                }
+            }
+
+            function onPlayerErrorEvent(e) {
+                onPlayerError(e.detail);
+            }
+
+            function onPlayerError(e) {
+                // Handle error
+                console.error("Shaka Player Error:", e);
+            }
+
+            function onUIErrorEvent(e) {
+                onPlayerError(e.detail);
+            }
+
+            function initFailed(e) {
+                // Handle failure
+                console.error("Shaka UI Load Failed:", e);
+            }
+
+            document.addEventListener("shaka-ui-loaded", init);
+            document.addEventListener("shaka-ui-load-failed", initFailed);
+        </script>
+    </body>
+</html>
