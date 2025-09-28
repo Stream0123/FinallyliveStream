@@ -1,118 +1,108 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TG_@Cricket_SportsTv</title>
-    <style>
-        /* General Page Styling */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background: linear-gradient(135deg, #242424, #3b5998);
-            color: #fff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-        }
-
-        /* Glowing Effect for Message */
-        .loading-message {
-            font-size: 18px;
-            font-weight: bold;
-            color: #ffcc00;
-            margin-bottom: 10px;
-            padding: 10px 20px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 30px #ffcc00;
-            animation: glow 1.5s infinite alternate;
-        }
-
-        @keyframes glow {
-            0% { box-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00, 0 0 30px #ffcc00; }
-            100% { box-shadow: 0 0 15px #ffcc00, 0 0 25px #ffcc00, 0 0 35px #ffcc00; }
-        }
-
-        /* Video Player Styling */
-        .player-container {
-            width: 95%;
-            max-width: 1200px;
-            margin: 20px auto;
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
-            border-radius: 15px;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .player-container iframe {
-            border-radius: 15px;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Join Telegram Button */
-        .join-telegram-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .join-telegram-btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            color: white;
-            background-color: #008fd6;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .join-telegram-btn:hover {
-            background-color: #006bb3;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>TG_@Finally_Live_Streaming</title>
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+    }
+    .video-js {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+    }
+    #my-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    /* 👇 Controls ko aur upar shift kiya */
+    .vjs-control-bar {
+      bottom: 100px !important;
+    }
+    /* 👇 Buttons ko bada kiya */
+    .vjs-control-bar .vjs-button {
+      font-size: 2em !important;
+      width: 60px !important;
+      height: 60px !important;
+    }
+    .vjs-control-bar .vjs-control {
+      line-height: 60px !important;
+    }
+    /* 👇 Progress bar ko bhi mota */
+    .vjs-progress-holder {
+      height: 8px !important;
+    }
+    /* 👇 Mobile ke liye aur responsive */
+    @media (max-width: 768px) {
+      .vjs-control-bar {
+        bottom: 120px !important;
+      }
+      .vjs-control-bar .vjs-button {
+        font-size: 2.5em !important;
+        width: 70px !important;
+        height: 70px !important;
+      }
+      .vjs-progress-holder {
+        height: 10px !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Loading Message -->
-    <div class="loading-message">Share The Links With Your Friends</div>
+<video
+  id="my-video"
+  class="video-js vjs-default-skin"
+  controls
+  autoplay
+  muted
+  playsinline
+  preload="auto"
+  poster=""
+>
+  <!-- Replace this with a valid permanent HLS URL -->
+  <source src="https://liveakmt-p-web.slivcdn.com/hls/live/2119921/cricacc12809/HIN/std_lrh-800300010.m3u8?hdnea=exp=1759116160~acl=/*~id=77259800088723949116205136098909~hmac=28c0a108385f589838df4574cd9df81c29ebf132a539f3abc44a8e806ae9119f" type="application/x-mpegURL" />
+</video>
 
-    <!-- Video Player Section -->
-    <div class="player-container">
-        <div style="padding:56.25% 0 0 0;position:relative;">
-            <iframe id="contentFrame" sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" 
-            frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen="true" scrolling="no" 
-            src="http://liveakmt-p-web.slivcdn.com/hls/live/2119921/cricacc12809/HIN/hdntl=exp=1759162140~acl=%2F*~id=77259800088723949116205136098909~data=hdntl,2119921,cricacc12809,HIN~hmac=fc26a95dacf525d2b143dfb157b896ff7f6e04b52e8ceb5d01b732ab687d1249/std_lrh-800300010_1080_4140000.m3u8" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
-        </div>
-    </div>
-
-    <!-- Join Telegram Button -->
-    <div class="join-telegram-container">
-        <button class="join-telegram-btn" onclick="window.open('https://t.me/+reJuqicdrwg5N2E1', '_blank')">Join Telegram Channel</button>
-    </div>
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
 <script>
-// alert('Join Our Telegram For Latest update')
-         if (confirm("Join Our Telegram Channel @Cricket_SportsTv") == true) {
-         window.open("
-https://t.me/+IhSW51QysxU3NzY1", '_blank');
-     }
+  const player = videojs('my-video');
+
+  player.ready(function () {
+    player.muted(false);
+    player.play().catch(() => {
+      console.warn('Autoplay might be blocked by browser.');
+    });
+  });
+
+  // 👇 Fullscreen change pe orientation lock/unlock
+  player.on('fullscreenchange', function () {
+    if (player.isFullscreen()) {
+      if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('landscape').catch(err => {
+          console.warn("Orientation lock not supported:", err);
+        });
+      }
+    } else {
+      if (screen.orientation && screen.orientation.lock) {
+        screen.orientation.lock('portrait').catch(err => {
+          console.warn("Orientation unlock failed:", err);
+        });
+      }
+    }
+  });
 </script>
+
 <script>
-// alert('Join Our Telegram For Latest update')
-         if (confirm("Join Our Telegram Channel@Finally_Live_Streaming") == true) {
-         window.open("https://t.me/+UtUw3caO8mYwOTg1", '_blank');
-     }
+  if (confirm("Join Our Telegram Channel @Finally_Live_Streaming")) {
+    window.open("https://t.me/+UtUw3caO8mYwOTg1", '_blank');
+  }
 </script>
 
 </body>
