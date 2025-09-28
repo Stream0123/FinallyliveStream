@@ -1,109 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>TG_@Finally_Live_Streaming</title>
-  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: black;
-    }
-    .video-js {
-      width: 100% !important;
-      height: 100% !important;
-      object-fit: cover;
-    }
-    #my-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    /* 👇 Controls ko aur upar shift kiya */
-    .vjs-control-bar {
-      bottom: 100px !important;
-    }
-    /* 👇 Buttons ko bada kiya */
-    .vjs-control-bar .vjs-button {
-      font-size: 2em !important;
-      width: 60px !important;
-      height: 60px !important;
-    }
-    .vjs-control-bar .vjs-control {
-      line-height: 60px !important;
-    }
-    /* 👇 Progress bar ko bhi mota */
-    .vjs-progress-holder {
-      height: 8px !important;
-    }
-    /* 👇 Mobile ke liye aur responsive */
-    @media (max-width: 768px) {
-      .vjs-control-bar {
-        bottom: 120px !important;
-      }
-      .vjs-control-bar .vjs-button {
-        font-size: 2.5em !important;
-        width: 70px !important;
-        height: 70px !important;
-      }
-      .vjs-progress-holder {
-        height: 10px !important;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>TG_@Finally_Live_Streaming</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Video.js CSS -->
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+    }
+    #my-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+    }
+
+    /* Controls ko upar shift kiya */
+    .vjs-control-bar {
+      bottom: 90px !important;
+    }
+
+    /* Buttons ko bada kiya */
+    .vjs-control-bar .vjs-button {
+      font-size: 1.8em !important;
+      width: 55px !important;
+      height: 55px !important;
+    }
+    .vjs-control-bar .vjs-control {
+      line-height: 55px !important;
+    }
+
+    /* Progress bar mota */
+    .vjs-progress-holder {
+      height: 6px !important;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .vjs-control-bar {
+        bottom: 110px !important;
+      }
+      .vjs-control-bar .vjs-button {
+        font-size: 2.2em !important;
+        width: 65px !important;
+        height: 65px !important;
+      }
+      .vjs-progress-holder {
+        height: 8px !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<video
-  id="my-video"
-  class="video-js vjs-default-skin"
-  controls
-  autoplay
-  muted
-  playsinline
-  preload="auto"
-  poster=""
->
-  <!-- Replace this with a valid permanent HLS URL -->
-  <source src="https://liveakmt-p-web.slivcdn.com/hls/live/2119921/cricacc12809/HIN/std_lrh-800300010.m3u8?hdnea=exp=1759116160~acl=/*~id=77259800088723949116205136098909~hmac=28c0a108385f589838df4574cd9df81c29ebf132a539f3abc44a8e806ae9119f" type="application/x-mpegURL" />
-</video>
+  <video
+    id="my-video"
+    class="video-js vjs-default-skin"
+    controls
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+  >
+    <source src="https://liveakmt-p-web.slivcdn.com/hls/live/2119921/cricacc12809/HIN/std_lrh-800300010.m3u8?hdnea=exp=1759116160~acl=/*~id=77259800088723949116205136098909~hmac=28c0a108385f589838df4574cd9df81c29ebf132a539f3abc44a8e806ae9119f" type="application/x-mpegURL" />
+  </video>
 
-<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-<script>
-  const player = videojs('my-video');
+  <!-- Video.js Script -->
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+  <script>
+    const player = videojs('my-video');
 
-  player.ready(function () {
-    player.muted(false);
-    player.play().catch(() => {
-      console.warn('Autoplay might be blocked by browser.');
-    });
-  });
+    player.ready(function () {
+      // Try to unmute if possible
+      player.muted(false);
+      player.play().catch(() => {
+        console.warn('Autoplay blocked, waiting for user interaction.');
+      });
+    });
 
-  // 👇 Fullscreen change pe orientation lock/unlock
-  player.on('fullscreenchange', function () {
-    if (player.isFullscreen()) {
-      if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('landscape').catch(err => {
-          console.warn("Orientation lock not supported:", err);
-        });
-      }
-    } else {
-      if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock('portrait').catch(err => {
-          console.warn("Orientation unlock failed:", err);
-        });
-      }
-    }
-  });
-</script>
+    // Fullscreen orientation handling
+    player.on('fullscreenchange', function () {
+      if (player.isFullscreen()) {
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock('landscape').catch(() => {});
+        }
+      } else {
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock('portrait').catch(() => {});
+        }
+      }
+    });
 
-<script>
-  if (confirm("Join Our Telegram Channel @Finally_Live_Streaming")) {
-    window.open("https://t.me/+UtUw3caO8mYwOTg1", '_blank');
-  }
-</script>
+    // Telegram prompt after load
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        if (confirm("Join Our Telegram Channel @Finally_Live_Streaming")) {
+          window.open("https://t.me/+UtUw3caO8mYwOTg1", '_blank');
+        }
+      }, 3000); // 3 sec delay so autoplay isn’t blocked
+    });
+  </script>
 
 </body>
 </html>
