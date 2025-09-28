@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -123,8 +122,7 @@
                 height: 100%;
             }
 
-Finally live, [9/28/2025 4:10 AM]
-/* Desktop view adjustments */
+            /* Desktop view adjustments */
             @media (min-width: 1024px) {
                 .video-container {
                     height: 94vh;
@@ -248,8 +246,7 @@ Finally live, [9/28/2025 4:10 AM]
                 animation: animateSpinner 2s linear infinite;
             }
 
-Finally live, [9/28/2025 4:10 AM]
-/* Path inside the spinner, if needed, you can add further styling here */
+            /* Path inside the spinner, if needed, you can add further styling here */
             .shaka-spinner-path {
                 position: absolute;
                 stroke: none;
@@ -313,8 +310,7 @@ Finally live, [9/28/2025 4:10 AM]
                 }
             }
 
-Finally live, [9/28/2025 4:10 AM]
-/* Redesigned Modal / Telegram Popup Styles */
+            /* Redesigned Modal / Telegram Popup Styles */
             .popup-overlay{
               position:fixed;
               inset:0;
@@ -384,21 +380,20 @@ Finally live, [9/28/2025 4:10 AM]
         </div>
 
         <script>
-      function focusBodySafely() {
-      const body = document.body;
-      const hadTabIndex = body.hasAttribute('tabindex');
-      const prevTab = body.getAttribute('tabindex');
-      if (!hadTabIndex) body.setAttribute('tabindex', '-1');
-      body.focus();
-      if (!hadTabIndex) body.removeAttribute('tabindex');
-      else body.setAttribute('tabindex', prevTab);
-      }
+			function focusBodySafely() {
+			const body = document.body;
+			const hadTabIndex = body.hasAttribute('tabindex');
+			const prevTab = body.getAttribute('tabindex');
+			if (!hadTabIndex) body.setAttribute('tabindex', '-1');
+			body.focus();
+			if (!hadTabIndex) body.removeAttribute('tabindex');
+			else body.setAttribute('tabindex', prevTab);
+			}
 
-Finally live, [9/28/2025 4:10 AM]
-function showTelegramPopup(){
+            function showTelegramPopup(){
               const popup = document.getElementById('telegram-popup');
               const overlay = document.getElementById('telegram-popup-overlay');
-              if (!popup  !overlay) return;
+              if (!popup || !overlay) return;
 
               overlay.style.display = 'flex';
               popup.style.display = 'block';
@@ -424,7 +419,7 @@ function showTelegramPopup(){
               // handle Escape key to close
               if (!showTelegramPopup._escBound) {
                 window.addEventListener('keydown', function onEsc(e) {
-                  if (e.key === 'Escape'  e.key === 'Esc' ) {
+                  if (e.key === 'Escape' || e.key === 'Esc' ) {
                     closeTelegramPopup();
                   }
                 });
@@ -456,7 +451,7 @@ function showTelegramPopup(){
                 n.configure({
                     drm: {
                         clearKeys: {
-                            '5deb190b1dac28e46c0bdada7668b7de':'ddd2b372702e42b0d2708a70b91dec8d',
+                            '5deb190b1dac28e46c0bdada7668b7de"':'ddd2b372702e42b0d2708a70b91dec8d',
                         },
                     },
 
@@ -468,7 +463,7 @@ function showTelegramPopup(){
                 if (token) {
                     n.getNetworkingEngine().registerRequestFilter((e, r) => {
                         if (e !== shaka.net.NetworkingEngine.RequestType.MANIFEST && e !== shaka.net.NetworkingEngine.RequestType.SEGMENT) return;
-                        r.headers.Authorization =  ${token};
+                        r.headers.Authorization = ` ${token}`;
                     });
                 }
 
@@ -486,8 +481,7 @@ function showTelegramPopup(){
                 // Show the spinner while the video is loading
                 document.getElementById("loadingSpinner").style.display = "block";
 
-Finally live, [9/28/2025 4:10 AM]
-try {
+                try {
                     await n.load("https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/bsaaetko8v/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd");
                     // Hide the spinner once the video has loaded
                     document.getElementById("loadingSpinner").style.display = "none";
