@@ -1,27 +1,22 @@
-<title>Ten Cricket HD</title>
+<title>TEN CRICKET</title>
     <meta charset="UTF-8">
     <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/shaka-player.ui.min.js"></script><style * { margin:0; padding:0; box-sizing:border-box; }
-html, body { background:#000; height:100vh; width:100vw; overflow:hidden; }
-.shaka-video-container { position:absolute; inset:0; width:100%; height:100%; }
-video { width:100%; height:100%; object-fit:contain; background:#000; }
-.error-message { position:absolute; inset:0; display:flex; justify-content:center; align-items:center; color:#fff; font-size:2rem; text-align:center; padding:20px; background:rgba(0,0,0,0.8); z-index:1000; display:none; }
-.shaka-spinner-container, .shaka-spinner, .shaka-spinner-svg { display:none !important; visibility:hidden !important; opacity:0 !important; }
-    .shaka-spinner-container{display:none;}
-</style>"><style></style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/shaka-player.ui.min.js"></script><style type="text/css">* {user-select: auto !important; -webkit-user-select: auto !important;}</style><input type="hidden" id="inject_idm_text_selection"><style></style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.6/controls.min.css" rel="stylesheet">
 </head>
 <body bgcolor="black" style="margin:0;">
 <center>
     <div data-shaka-player-container="" style="width: 100%; height: 100%; cursor: none;" class="shaka-mobile shaka-video-container" shaka-controls="true">
-        <video poster="https://linear-poster.astro.com.my/prod/poster/Astro-Cricket_2024_IVP_LAND_917x516.jpg" autoplay="" data-shaka-player="" id="video" style="width: 100%; height: 100%;" class="shaka-video" src="blob:https://t20wc.pages.dev/da763d4e-fd51-4e2a-a817-2b73e4643682"></video>
+        <video poster="#" autoplay="" data-shaka-player="" id="video" style="width: 100%; height: 100%;" class="shaka-video" src="blob:https://t20wc.pages.dev/da763d4e-fd51-4e2a-a817-2b73e4643682"></video>
 </center>
-
+<style>
+ .shaka-spinner-container{display:none;} 
+</style>
 <script>
-    if(confirm("Join Our Telegram Channel @finally_live_streaming ")) { window.location.href = "https://t.me/+reJuqicdrwg5N2E1" }
+    if(confirm("Join Our Telegram Channel @Finally_Live_Streaming")) { window.location.href = "https://t.me/+reJuqicdrwg5N2E1" }
 const manifestUri =
-    'https://sundirectgo-live.pc.cdn.bitgravity.com/src35/dth.mpd';
+    'https://ottb.live.cf.ww.aiv-cdn.net/lhr-nitro/live/dash/enc/bsaaetko8v/out/v1/bd3b0c314fff4bb1ab4693358f3cd2d3/cenc.mpd';
 async function init() {
   // When using the UI, the player is made automatically by the UI object.
   const video = document.getElementById('video');
@@ -37,7 +32,7 @@ player.configure({
   drm: {
     clearKeys: {
       // 'key-id-in-hex': 'key-in-hex',
-      '162e06450b01432dbf9a98cc8c06e637': 'fb10bbb01a468e7c41614fc0803648aa',
+      '5deb190b1dac28e46c0bdada7668b7de':'ddd2b372702e42b0d2708a70b91dec8d',
     }
   }
 });
