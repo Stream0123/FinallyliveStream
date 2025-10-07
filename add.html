@@ -1,5 +1,9 @@
+addEventListener('fetch', event => {
+  event.respondWith(handleRequest(event.request))
+})
 
-<!DOCTYPE html>
+async function handleRequest(request) {
+ const html = <!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Meta Pixel Code -->
