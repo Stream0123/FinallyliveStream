@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Popup</title>
+  <style>
+    :root {
+      --primary-glow-color: rgba(0, 234, 255, 0.7);
+      --primary-color: #00eaff;
+      --primary-gradient: linear-gradient(135deg, #00eaff, #007bff);
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Overlay background with a subtle fade */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.5s ease-in-out forwards;
+      z-index: 9999;
+      opacity: 0; /* Start hidden for animation */
+      backdrop-filter: blur(5px);
+    }
+
+    /* Popup box with modern styling */
+    .popup {
+      background: rgba(10, 15, 28, 0.85);
+      color: white;
+      text-align: center;
+      border-radius: 16px;
+      padding: 30px 25px;
+      width: 90%;
+      max-width: 380px;
+      box-shadow: 0 0 40px var(--primary-glow-color);
+      border: 1px solid rgba(0, 234, 255, 0.4);
+      transform: scale(0.8);
+      opacity: 0;
+      animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards;
+    }
+
+    .popup h2 {
+      color: var(--primary-color);
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .popup p {
+      font-size: 16px;
+      margin-bottom: 25px;
+      line-height: 1.5;
+      color: #e0e0e0;
+    }
+
+    .popup button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .join-btn {
+      background: var(--primary-gradient);
+      color: #050810;
+      box-shadow: 0 0 15px var(--primary-glow-color);
+    }
+    .join-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 0 25px var(--primary-glow-color);
+    }
+
+    .joined-btn {
+      background: transparent;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+    .joined-btn:hover {
+      background: var(--primary-color);
+      color: #050810;
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    /* Animation for closing the popup */
+    .popup.closing {
+       animation: zoomOut 0.4s ease-in-out forwards;
+    }
+
+
+    /* Keyframe Animations */
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    @keyframes zoomIn {
+      to { transform: scale(1); opacity: 1; }
+    }
+    @keyframes zoomOut {
+       from { transform: scale(1); opacity: 1; }
+       to { transform: scale(0.8); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <iframe id="contentFrame"
+          sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation"
+          frameborder="0"
+          gesture="media"
+          allow="encrypted-media"
+          allowfullscreen="true"
+          scrolling="no"
+          src="https://cricketstan.github.io/Channel-12">
+  </iframe>
+
+  <div class="overlay" id="popupOverlay">
+    <div class="popup" id="telegramPopup">
+      <h2>Support Us!</h2>
+      <p>Join our Telegram channel <b>@Finally_Live_Streaming</b> <br>for instant updates, highlights & exclusive links.</p>
+      <button class="join-btn" onclick="window.open('https://t.me/HDCRICKETWALLS','_blank')">🚀 Join Now</button>
+      <button class="joined-btn" onclick="closePopup()">✅ Already Joined</button>
+    </div>
+  </div>
+
+  <script>
+    function closePopup() {
+      const overlay = document.getElementById('popupOverlay');
+      const popup = document.getElementById('telegramPopup');
+      
+      // Add the closing animation class
+      popup.classList.add('closing');
+      
+      // Wait for the animation to finish before hiding the overlay
+      setTimeout(() => {
+        overlay.style.display = 'none';
+      }, 400); // Must match the animation duration in CSS
+    }
+  </script>
+</body>
+</html>
