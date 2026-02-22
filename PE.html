@@ -17,7 +17,7 @@
 <script>
     if(confirm("Join Our Telegram Channel @Finally_Live_Streaming")) { window.location.href = "https://t.me/Finally_Live_Streaming" }
 const manifestUri =
-    'https://ta.bia-cf.live.pv-cdn.net/bom-nitro/live/clients/dash/enc/hw7wthhsys/out/v1/51e65f7749fe4cc78f6c108fa09ff29c/cenc.mpd';
+    'https://live-pv-ta.amazon.fastly-edge.com/syd-nitro/live/clients/dash/enc/wwrmho82pc/out/v1/d7130f460d41486ea7e8e3eb45f0522f/cenc.mpd';
 async function init() {
   // When using the UI, the player is made automatically by the UI object.
   const video = document.getElementById('video');
@@ -33,7 +33,7 @@ player.configure({
   drm: {
     clearKeys: {
       // 'key-id-in-hex': 'key-in-hex',
-      'ed76c18710d621a87c89dedc7c13019f':'7241c82fe48525a9dc6be6d7bb86611f',
+      'baafdb8ebcbbc0655332291da6f121da':'60ac892e0ea0b2c46fc6837c97ed641a',
     }
   }
 });
