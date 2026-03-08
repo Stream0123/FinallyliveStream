@@ -49,9 +49,9 @@ background:#000
 
 <script>
 
-    if (confirm("Join Our Telegram Channel @livecrichdofficial")) { 
-        window.location.href = "https://telegram.me/livecrichdofficial"; 
-    }
+if (confirm("Join Our Telegram Channel @livecrichdofficial")) {
+  window.location.href = "https://telegram.me/livecrichdofficial";
+}
 
 const params = new URLSearchParams(window.location.search)
 const id = params.get("id") || "C1"
@@ -82,12 +82,10 @@ throw new Error("Invalid Stream")
 }
 
 const CONFIG = {
-
 streamUrl:stream.mpd,
 keyId:stream.keyId,
 key:stream.key,
 cookieUrl:"https://allrounder-live.pages.dev/api/cookie.json"
-
 }
 
 document.addEventListener("DOMContentLoaded",async()=>{
@@ -107,9 +105,7 @@ await player.attach(video)
 const ui=new shaka.ui.Overlay(player,container,video)
 
 ui.configure({
-
 addBigPlayButton:true,
-
 controlPanelElements:[
 "mute",
 "play_pause",
@@ -119,35 +115,29 @@ controlPanelElements:[
 "picture_in_picture",
 "fullscreen"
 ],
-
 seekBarColors:{
 base:"white",
 buffered:"white",
 played:"white"
 }
-
 })
 
 player.configure({
-
 drm:{clearKeys:{[CONFIG.keyId]:CONFIG.key}},
-
 manifest:{defaultPresentationDelay:5},
-
 streaming:{
 lowLatencyMode:true,
 bufferingGoal:10,
 rebufferingGoal:2,
 safeSeekOffset:5
 }
-
 })
 
 let cookieValue=""
 
 try{
 
-const response=await fetch(CONFIG.cookieUrl,{cache:"no-store"})
+const response=await fetch(CONFIG.cookieUrl)
 const data=await response.json()
 
 cookieValue=data.cookie || ""
@@ -162,17 +152,19 @@ request.headers["Referer"]="https://www.jiotv.com/"
 request.headers["User-Agent"]="plaYtv/7.1.5 (Linux;Android 13) ExoPlayerLib/2.11.6"
 request.headers["Cookie"]=cookieValue
 
-let urlCookie=cookieValue.startsWith("hdnea=")
+let urlCookie=cookieValue.startsWith("__hdnea__=")
 ?cookieValue.substring(10)
 :cookieValue
 
-if((type===shaka.net.NetworkingEngine.RequestType.MANIFEST ||
+if(
+(type===shaka.net.NetworkingEngine.RequestType.MANIFEST ||
 type===shaka.net.NetworkingEngine.RequestType.SEGMENT) &&
-!request.uris[0].includes("hdnea")){
+!request.uris[0].includes("__hdnea__")
+){
 
 const sep=request.uris[0].includes("?")?"&":"?"
 
-request.uris[0]+=sep+"hdnea="+urlCookie
+request.uris[0]+=sep+"__hdnea__="+urlCookie
 
 }
 
