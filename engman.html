@@ -150,8 +150,7 @@ if(isSandboxedEnv()){
 const CONFIG={
   streamUrl:"https://jiotvmblive.cdn.jio.com//bpk-tv/Star_Sports_HD1_BTS/output/index.mpd",
   keyId:"965dc2ddb1d85138ad787999a7f30ca5",
-  key:"859695076e67fe961836b564db6d689c",
-  cookieUrl:"https://allrounder-live2.pages.dev/api/cookie.json"
+  key:"859695076e67fe961836b564db6d689c"
 };
 
 document.addEventListener("DOMContentLoaded",async()=>{
@@ -165,10 +164,8 @@ document.addEventListener("DOMContentLoaded",async()=>{
   const player=new shaka.Player();
   await player.attach(video);
 
-  // ✅ FIXED (removed Z)
   new shaka.ui.Overlay(player,container,video);
 
-  // ✅ Error listener
   player.addEventListener('error', e => {
     console.error('Shaka Error', e.detail);
   });
@@ -182,15 +179,8 @@ document.addEventListener("DOMContentLoaded",async()=>{
     }
   });
 
-  let cookieValue="";
-
-  try{
-    const res=await fetch(CONFIG.cookieUrl,{cache:"no-store"});
-    const data=await res.json();
-    cookieValue=data.cookie||"";
-  }catch(e){
-    console.error("Cookie fetch error:", e);
-  }
+  // ✅ HARD CODED COOKIE HERE
+  let cookieValue = "__hdnea__=st=1774925368~exp=1775011768~acl=/*~hmac=9deb8c1930715c6a49b27570eff8279fa785e4350b8f515b6e62f7645066b3b7";
 
   if(cookieValue){
     player.getNetworkingEngine().registerRequestFilter((type,request)=>{
