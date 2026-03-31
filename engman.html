@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Star Sports // Dillzy</title>
+<title>Star Sports</title>
 <meta name="referrer" content="no-referrer">
 
 <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.16.2/dist/shaka-player.ui.min.js"></script>
@@ -106,28 +107,26 @@ gtag('config', 'G-FMP9REY96D');
 
 <body>
 
-<div class="shaka-video-container" id="player-container" shaka-controls="true">
-  <video id="video" autoplay muted playsinline preload="metadata"></video>
+<div class="shaka-video-container shaka-mobile" id="player-container" shaka-controls="true">
+  
+  <video id="video" autoplay muted playsinline preload="metadata" class="shaka-video"></video>
+  
   <div class="custom-watermark"></div>
+
 </div>
 
-<script>
 <script>
 (function(){
   
   function isSandboxedEnv(){
     try {
       if (window.self === window.top) return false;
-      if (window.frameElement && window.frameElement.hasAttribute("sandbox")) {
-        return true;
-      }
+      if (window.frameElement && window.frameElement.hasAttribute("sandbox")) return true;
+
       try {
         document.domain = document.domain;
-        if (window.frameElement && !window.frameElement.getAttribute("sandbox")) {
-             return false;
-        }
       } catch (e) {
-         return true;
+        return true;
       }
       return false;
     } catch(e) {
@@ -147,7 +146,6 @@ gtag('config', 'G-FMP9REY96D');
 
     const overlay = document.createElement("div");
     overlay.className = "block-overlay";
-    overlay.id = "sandbox-block-display";
     overlay.innerHTML = `
       <div class="block-box">
         <div class="block-title">${title}</div>
@@ -216,21 +214,11 @@ gtag('config', 'G-FMP9REY96D');
 
     let cookieValue="";
 
-    // ✅ ORIGINAL FETCH (UNCHANGED)
     try{
       const response=await fetch(CONFIG.cookieUrl,{cache:"no-store"});
       const data=await response.json();
       cookieValue=data.cookie||"";
     }catch(e){}
-
-    // ✅ LOCAL JSON FALLBACK (ADDED ONLY)
-    const LOCAL_JSON = {
-      cookie: "PASTE_YOUR_COOKIE_HERE"
-    };
-
-    if(!cookieValue){
-      cookieValue = LOCAL_JSON.cookie;
-    }
 
     if(cookieValue){
       player.getNetworkingEngine().registerRequestFilter((type,request)=>{
@@ -261,7 +249,6 @@ gtag('config', 'G-FMP9REY96D');
   });
 
 })();
-</script>
 </script>
 
 </body>
