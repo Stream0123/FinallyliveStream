@@ -133,12 +133,12 @@ function triggerBlockScreen(title, message){
 
   const overlay = document.createElement("div");
   overlay.className = "block-overlay";
-  overlay.innerHTML = 
+  overlay.innerHTML = `
     <div class="block-box">
       <div class="block-title">${title}</div>
       <div class="block-sub">${message}</div>
     </div>
-  ;
+  `;
   document.body.appendChild(overlay);
 }
 
@@ -165,7 +165,14 @@ document.addEventListener("DOMContentLoaded",async()=>{
   const player=new shaka.Player();
   await player.attach(video);
 
-  new shaka.ui.Overlay(player,container,video);Z
+  // ✅ FIXED (removed Z)
+  new shaka.ui.Overlay(player,container,video);
+
+  // ✅ Error listener
+  player.addEventListener('error', e => {
+    console.error('Shaka Error', e.detail);
+  });
+
   player.configure({
     drm:{clearKeys:{[CONFIG.keyId]:CONFIG.key}},
     streaming:{
@@ -181,7 +188,9 @@ document.addEventListener("DOMContentLoaded",async()=>{
     const res=await fetch(CONFIG.cookieUrl,{cache:"no-store"});
     const data=await res.json();
     cookieValue=data.cookie||"";
-  }catch(e){}
+  }catch(e){
+    console.error("Cookie fetch error:", e);
+  }
 
   if(cookieValue){
     player.getNetworkingEngine().registerRequestFilter((type,request)=>{
@@ -192,7 +201,9 @@ document.addEventListener("DOMContentLoaded",async()=>{
   try{
     await player.load(CONFIG.streamUrl);
     await video.play();
-  }catch(e){}
+  }catch(e){
+    console.error("Playback error:", e);
+  }
 
 });
 })();
