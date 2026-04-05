@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TG_@Cricinsider365</title>
+<title>Star Sports // Dillzy </title>
 <meta name="referrer" content="no-referrer">
 <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.16.2/dist/shaka-player.ui.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@4.16.2/dist/controls.css"/>
@@ -115,7 +115,7 @@ line-height:1.6;
 
 <script>
 (function(){
-
+  
   function isSandboxedEnv(){
     try {
       if (window.self === window.top) return false;
@@ -138,7 +138,7 @@ line-height:1.6;
   function triggerBlockScreen(title, message){
     const container = document.getElementById("player-container");
     const video = document.getElementById("video");
-
+    
     try {
       video.pause();
       video.removeAttribute('src');
@@ -148,17 +148,18 @@ line-height:1.6;
     const overlay = document.createElement("div");
     overlay.className = "block-overlay";
     overlay.id = "sandbox-block-display";
-    overlay.innerHTML = 
+    overlay.innerHTML = `
       <div class="block-box">
         <div class="block-title">${title}</div>
         <div class="block-sub">${message}</div>
       </div>
-    ;
+    `;
     document.body.appendChild(overlay);
     container.style.display = 'none';
   }
   if(isSandboxedEnv()){
-[05-04-2026 14:47] ਰੌਣਕ ( Ronak ): triggerBlockScreen('Disable Sandbox', 'Opening Chrome Browser Only & Disable Ad blocker');
+
+    triggerBlockScreen('Disable Sandbox', 'Opening Chrome Browser Only & Disable Ad blocker');
     return;
   }
   const CONFIG={
@@ -212,7 +213,7 @@ line-height:1.6;
       }
     });
 
-    let cookieValue="hdnea=st=1775370547~exp=1775456947~acl=/*~hmac=c94c324abf3cae8f90d791778e154cd35fb1bd0af38825648a1b031c7ae6de2d";
+    let cookieValue="";
 
     try{
       const response=await fetch(CONFIG.cookieUrl,{cache:"no-store"});
@@ -222,14 +223,14 @@ line-height:1.6;
 
     if(cookieValue){
       player.getNetworkingEngine().registerRequestFilter((type,request)=>{
-
-        let urlCookie=cookieValue.startsWith("hdnea=")?cookieValue.substring(10):cookieValue;
+        
+        let urlCookie=cookieValue.startsWith("__hdnea__=st=1775370547~exp=1775456947~acl=/*~hmac=c94c324abf3cae8f90d791778e154cd35fb1bd0af38825648a1b031c7ae6de2d")?cookieValue.substring(10):cookieValue;
 
         if((type===shaka.net.NetworkingEngine.RequestType.MANIFEST||
         type===shaka.net.NetworkingEngine.RequestType.SEGMENT)&&
-        !request.uris[0].includes("hdnea")){
+        !request.uris[0].includes("__hdnea__")){
           const sep=request.uris[0].includes("?")?"&":"?";
-          request.uris[0]+=sep+"hdnea="+urlCookie;
+          request.uris[0]+=sep+"__hdnea__="+urlCookie;
         }
       });
     }
@@ -246,13 +247,7 @@ line-height:1.6;
   });
 })();
 </script>
-  <script>(function(s){s.dataset.zone='10603308',s.src=''})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-<script>
-// alert('Join Our Telegram For More Live Links')
-         if (confirm("Join Our Telegram Channel @Cricinsider365") == true) {
-         window.open("https://t.me/+IhSW51QysxU3NzY1", '_blank');
-     }
-</script>
-
+  <script>(function(s){s.dataset.zone='10603308',s.src='https://bvtpk.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+  
 </body>
 </html>
