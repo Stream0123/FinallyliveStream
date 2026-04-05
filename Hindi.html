@@ -163,9 +163,9 @@ line-height:1.6;
     return;
   }
   const CONFIG={
-    streamUrl:"https://jiotvpllive.cdn.jio.com/bpk-tv//Star_Sports_HD1_Hindi_BTS/output/index.mpd",
-    keyId:"400131994b445d8c8817202248760fda",
-    key:"2d56cb6f07a75b9aff165d534ae2bfc4",
+    streamUrl:"https://jiotvioslive.cdn.jio.com//bpk-tv/Star_Sports_1_Hindi_BTS/output/index.mpd",
+    keyId:"8ea9b607549252068e260a5f4d7dd321",
+    key:"350c0aaffedf51cc1502e9543c7c885e",
     cookieUrl:""
   };
 
@@ -228,7 +228,7 @@ line-height:1.6;
 
         if((type===shaka.net.NetworkingEngine.RequestType.MANIFEST||
         type===shaka.net.NetworkingEngine.RequestType.SEGMENT)&&
-        !request.uris[0].includes("__hdnea__")){
+        !request.uris[0].includes("__hdnea__st=1775369715~exp=1775456115~acl=/*~hmac=7c1dfc36fb25179c72b05c31f12865f3bce03b77bd2e5da4efb5bc968caffacd")){
           const sep=request.uris[0].includes("?")?"&":"?";
           request.uris[0]+=sep+"__hdnea__="+urlCookie;
         }
