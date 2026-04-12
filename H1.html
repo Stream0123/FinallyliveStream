@@ -7,96 +7,102 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            background: #121212; 
+            background: #1e1e1e; /* Match photo's dark grey */
             color: #fff; 
             font-family: system-ui, -apple-system, sans-serif;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            overflow: hidden;
             text-align: center;
         }
 
+        /* Hero Section (Aapki photo jaisa main container) - Hidden by default till modal closes */
         .hero-section {
             width: 90%;
-            max-width: 600px;
-            padding: 30px;
+            max-width: 450px;
+            padding: 40px;
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
+            border-radius: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: none; /* Show only when modal closes */
         }
+
+        .hero-section.show { display: block; }
 
         .title { 
             font-size: 3rem; 
-            color: #ff3333; /* Red for Live theme */
+            color: #ff3333; /* Red color for Live theme */
             margin-bottom: 20px; 
             text-transform: uppercase;
             font-weight: 800;
         }
 
-        /* Main Button Style */
+        .sub-text {
+            color: #aaaaaa;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Main Orange Button (From your photo) - Leads directly to Telegram channel */
         .btn-main {
-            background-color: #ff9933; /* Orange for attention */
+            background-color: #ff9933; /* Orange */
             color: white;
-            padding: 18px 40px;
+            padding: 20px 50px;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
             display: inline-block;
-            margin-top: 10px;
             box-shadow: 0 4px 15px rgba(255, 153, 51, 0.4);
             cursor: pointer;
             border: none;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             transition: transform 0.2s;
         }
 
         .btn-main:hover { transform: scale(1.05); }
 
-        /* Pop-up (Modal) Styles */
+        /* Modern Pop-up (Modal) Styles */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: none; /* Hidden by default */
+            background: rgba(0, 0, 0, 0.8); /* Darker background overlay */
+            display: flex; /* Shown by default */
             align-items: center;
             justify-content: center;
             z-index: 1000;
         }
 
         .modal-box {
-            background: #1e1e1e;
+            background: #252525;
             padding: 30px;
-            border-radius: 15px;
+            border-radius: 20px;
             width: 90%;
             max-width: 400px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
             transform: scale(0.8);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease-out;
         }
 
-        .modal-overlay.open { display: flex; }
         .modal-overlay.open .modal-box { transform: scale(1); }
 
         .modal-title {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #fff;
             margin-bottom: 15px;
         }
 
         .modal-text {
             color: #aaaaaa;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-size: 1rem;
         }
 
-        /* Modal Action Buttons */
+        /* Modal Action Buttons (Updated as requested) */
         .modal-actions {
             display: flex;
             gap: 15px;
@@ -104,13 +110,13 @@
         }
 
         .btn-modal {
-            padding: 12px 24px;
+            padding: 14px 28px;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-weight: bold;
             cursor: pointer;
             border: none;
-            font-size: 1rem;
+            font-size: 1.1rem;
             flex: 1;
         }
 
@@ -119,53 +125,66 @@
             color: white;
         }
 
-        .btn-cancel {
-            background-color: #444; /* Grey for Cancel */
+        .btn-already-joined {
+            background-color: #444; /* Grey for Cancel/Already Joined */
             color: #ccc;
         }
 
         .btn-join:hover { background-color: #006699; }
-        .btn-cancel:hover { background-color: #555; }
+        .btn-already-joined:hover { background-color: #555; }
 
     </style>
 </head>
-<body>
+<body class="modal-active">
 
-    <div class="hero-section">
-        <h1 class="title">FINALLY LIVE</h1>
-        <p class="sub-text" style="color: #aaaaaa; margin-bottom: 20px;">Click below to get the direct live match link.</p>
-        
-        <button class="btn-main" id="watchBtn">🔴 Watch Live Match Now</button>
-    </div>
-
-    <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-overlay open" id="modalOverlay">
         <div class="modal-box">
-            <h2 class="modal-title">Action Required</h2>
-            <p class="modal-text">Join our Telegram channel to get instant match links and updates.</p>
+            <h2 class="modal-title">JOIN TELEGRAM</h2>
+            <p class="modal-text">Join our official Telegram channel for direct, high-speed match links and live updates.</p>
             
             <div class="modal-actions">
-                <a href="https://t.me/+TYZa2M15XlA4ZGY1" class="btn-modal btn-join" target="_blank" id="joinBtn">JOIN NOW</a>
-                <button class="btn-modal btn-cancel" id="cancelBtn">Cancel</button>
+                <a href="https://t.me/AapkaTelegramLink" class="btn-modal btn-join" target="_blank" id="joinNowBtn">JOIN NOW</a>
+                
+                <button class="btn-modal btn-already-joined" id="alreadyJoinedBtn">Already Joined</button>
             </div>
         </div>
     </div>
 
+    <div class="hero-section" id="heroSection">
+        <h1 class="title">FINALLY LIVE</h1>
+        <p class="sub-text">Click below to get the direct live match link.</p>
+        
+        <a href="https://t.me/AapkaTelegramLink" class="btn-main" target="_blank">🔴 Watch Live Match Now</a>
+    </div>
+
     <script>
-        const watchBtn = document.getElementById('watchBtn');
         const modalOverlay = document.getElementById('modalOverlay');
-        const cancelBtn = document.getElementById('cancelBtn');
-        const joinBtn = document.getElementById('joinBtn');
+        const alreadyJoinedBtn = document.getElementById('alreadyJoinedBtn');
+        const heroSection = document.getElementById('heroSection');
+        const joinNowBtn = document.getElementById('joinNowBtn');
 
-        // Open Modal
-        watchBtn.addEventListener('click', () => {
-            modalOverlay.classList.add('open');
-        });
-
-        // Close Modal on Cancel
-        cancelBtn.addEventListener('click', () => {
+        // Automatic action - shows main page only after modal interaction
+        function showMainPage() {
             modalOverlay.classList.remove('open');
-        });
+            heroSection.classList.add('show');
+            document.body.classList.remove('modal-active');
+        }
+
+        // Close Modal if clicking "Already Joined" (cancel action) - shows main page
+        alreadyJoinedBtn.addEventListener('click', showMainPage);
+
+        // Optional: Close modal after clicking Join Now (though redirect happens)
+        joinNowBtn.addEventListener('click', showMainPage);
 
         // Close Modal if clicking outside the box
-        modalOverlay.addEventListener('click', (e
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('open');
+            }
+        });
+    </script>
+
+</body>
+</html>
+
 
