@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finally Live - Live Match Link</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: #1e1e1e; /* Match photo's dark grey */
+            color: #fff; 
+            font-family: system-ui, -apple-system, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        /* Hero Section (Main Container from your photo) - Initially Hidden */
+        .hero-section {
+            width: 90%;
+            max-width: 450px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            display: none; /* Show only when modal closes */
+        }
+
+        .hero-section.show { display: block; }
+
+        .title { 
+            font-size: 3rem; 
+            color: #ff3333; /* Red color for Live theme */
+            margin-bottom: 20px; 
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .sub-text {
+            color: #aaaaaa;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Main Orange Button (Leads directly to Telegram channel) */
+        .btn-main {
+            background-color: #ff9933; /* Orange */
+            color: white;
+            padding: 20px 50px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(255, 153, 51, 0.4);
+            cursor: pointer;
+            border: none;
+            font-size: 1.3rem;
+            transition: transform 0.2s;
+        }
+
+        .btn-main:hover { transform: scale(1.05); }
+
+        /* Modern Pop-up (Modal) Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85); /* Black overlay */
+            display: flex; /* Shown by default */
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-box {
+            background: #252525;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            transform: scale(0.8);
+            transition: transform 0.3s ease-out;
+        }
+
+        .modal-overlay.open .modal-box { transform: scale(1); }
+
+        .modal-title {
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .modal-text {
+            color: #aaaaaa;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        /* Modal Action Buttons */
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-modal {
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+            flex: 1;
+        }
+
+        .btn-join {
+            background-color: #0088cc; /* Telegram Blue */
+            color: white;
+        }
+
+        .btn-already-joined {
+            background-color: #444; /* Grey for Already Joined */
+            color: #ccc;
+        }
+
+        .btn-join:hover { background-color: #006699; }
+        .btn-already-joined:hover { background-color: #555; }
+
+    </style>
+</head>
+<body>
+
+    <div class="modal-overlay open" id="modalOverlay">
+        <div class="modal-box">
+            <h2 class="modal-title">JOIN TELEGRAM</h2>
+            <p class="modal-text">Join our official Telegram channel for direct, high-speed match links and live updates.</p>
+            
+            <div class="modal-actions">
+                <a href="https://telegram.me/+M0y3Y_eAxDI0MTA1" class="btn-modal btn-join" target="_blank">JOIN NOW</a>
+                
+                <button class="btn-modal btn-already-joined" id="alreadyJoinedBtn">Already Joined</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-section" id="heroSection">
+        <h1 class="title">FINALLY LIVE</h1>
+        <p class="sub-text">Click below to get the direct live match link.</p>
+        
+        <a href="https://telegram.me/+TYZa2M15XlA4ZGY1" class="btn-main" target="_blank">🔴 Watch Live Match Now</a>
+    </div>
+
+    <script>
+        const modalOverlay = document.getElementById('modalOverlay');
+        const alreadyJoinedBtn = document.getElementById('alreadyJoinedBtn');
+        const heroSection = document.getElementById('heroSection');
+
+        // Close Modal and Show Main Page Content
+        function removeModal() {
+            modalOverlay.style.display = 'none'; // Instantly removes modal
+            heroSection.classList.add('show');
+        }
+
+        // Action when 'Already Joined' is clicked
+        alreadyJoinedBtn.addEventListener('click', removeModal);
+
+        // Action if clicking outside the modal box
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                removeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+
