@@ -17,7 +17,7 @@
             text-align: center;
         }
 
-        /* Hero Section (Aapki photo jaisa main container) - Hidden by default till modal closes */
+        /* Hero Section (Main Container from your photo) - Initially Hidden */
         .hero-section {
             width: 90%;
             max-width: 450px;
@@ -44,7 +44,7 @@
             font-size: 1.1rem;
         }
 
-        /* Main Orange Button (From your photo) - Leads directly to Telegram channel */
+        /* Main Orange Button (Leads directly to Telegram channel) */
         .btn-main {
             background-color: #ff9933; /* Orange */
             color: white;
@@ -69,7 +69,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8); /* Darker background overlay */
+            background: rgba(0, 0, 0, 0.85); /* Black overlay */
             display: flex; /* Shown by default */
             align-items: center;
             justify-content: center;
@@ -102,7 +102,7 @@
             font-size: 1rem;
         }
 
-        /* Modal Action Buttons (Updated as requested) */
+        /* Modal Action Buttons */
         .modal-actions {
             display: flex;
             gap: 15px;
@@ -126,7 +126,7 @@
         }
 
         .btn-already-joined {
-            background-color: #444; /* Grey for Cancel/Already Joined */
+            background-color: #444; /* Grey for Already Joined */
             color: #ccc;
         }
 
@@ -135,7 +135,7 @@
 
     </style>
 </head>
-<body class="modal-active">
+<body>
 
     <div class="modal-overlay open" id="modalOverlay">
         <div class="modal-box">
@@ -143,7 +143,7 @@
             <p class="modal-text">Join our official Telegram channel for direct, high-speed match links and live updates.</p>
             
             <div class="modal-actions">
-                <a href="https://t.me/+M0y3Y_eAxDI0MTA1" class="btn-modal btn-join" target="_blank" id="joinNowBtn">JOIN NOW</a>
+                <a href="https://t.me/AapkaTelegramLink" class="btn-modal btn-join" target="_blank">JOIN NOW</a>
                 
                 <button class="btn-modal btn-already-joined" id="alreadyJoinedBtn">Already Joined</button>
             </div>
@@ -154,37 +154,33 @@
         <h1 class="title">FINALLY LIVE</h1>
         <p class="sub-text">Click below to get the direct live match link.</p>
         
-        <a href="https://t.me/+M0y3Y_eAxDI0MTA1" class="btn-main" target="_blank">🔴 Watch Live Match Now</a>
+        <a href="https://t.me/AapkaTelegramLink" class="btn-main" target="_blank">🔴 Watch Live Match Now</a>
     </div>
 
     <script>
         const modalOverlay = document.getElementById('modalOverlay');
         const alreadyJoinedBtn = document.getElementById('alreadyJoinedBtn');
         const heroSection = document.getElementById('heroSection');
-        const joinNowBtn = document.getElementById('joinNowBtn');
 
-        // Automatic action - shows main page only after modal interaction
-        function showMainPage() {
-            modalOverlay.classList.remove('open');
+        // Close Modal and Show Main Page Content
+        function removeModal() {
+            modalOverlay.style.display = 'none'; // Instantly removes modal
             heroSection.classList.add('show');
-            document.body.classList.remove('modal-active');
         }
 
-        // Close Modal if clicking "Already Joined" (cancel action) - shows main page
-        alreadyJoinedBtn.addEventListener('click', showMainPage);
+        // Action when 'Already Joined' is clicked
+        alreadyJoinedBtn.addEventListener('click', removeModal);
 
-        // Optional: Close modal after clicking Join Now (though redirect happens)
-        joinNowBtn.addEventListener('click', showMainPage);
-
-        // Close Modal if clicking outside the box
+        // Action if clicking outside the modal box
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) {
-                modalOverlay.classList.remove('open');
+                removeModal();
             }
         });
     </script>
 
 </body>
 </html>
+
 
 
