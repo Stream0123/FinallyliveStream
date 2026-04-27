@@ -191,11 +191,12 @@ function renderMatches(matches){
         <p class="text-gray-400 text-xs mt-2 uppercase tracking-widest font-bold">
           ${m.tournament}
         </p>
-[27-04-2026 13:33] ਰੌਣਕ ( Ronak ): <p class="text-gray-500 text-xs mt-1 mb-5">
+
+        <p class="text-gray-500 text-xs mt-1 mb-5">
           ${m.startTime}
         </p>
 
-        <div onclick="${isLive ? openQuality(${index}) : ''}" 
+        <div onclick="${isLive ? `openQuality(${index})` : ''}" 
              class="btn-watch ${!isLive ? 'not-live' : ''}">
 
           ${isLive ? '<i class="fas fa-play-circle mr-2"></i> WATCH LIVE' : 'NOT LIVE'}
@@ -204,7 +205,7 @@ function renderMatches(matches){
 
       </div>
 
-    ;
+    `;
 
     container.appendChild(card);
 
@@ -244,7 +245,7 @@ function openQuality(index){
 
       btn.className="quality-btn";
 
-      btn.innerHTML=
+      btn.innerHTML=`
         <span>${resolution}</span>
         <i class="fas fa-chevron-right"></i>
       `;
