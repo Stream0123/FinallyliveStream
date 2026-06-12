@@ -91,7 +91,7 @@
         player.configure({
             drm: {
                 clearKeys: {
-                    '01c9bbf8137e58378a5ead514998a7b4': "fb01e61809e80e5e93a889cd31daab22"
+                    'b747068e2de9e8f23beba7222e101c9a': "db11aac16c4f8c7dc5e8aaf19f25830d"
                 }
             }
         });
@@ -115,7 +115,7 @@ window.player = player;
         controls.addEventListener("error", onUIErrorEvent);
 
         try {
-            await player.load("https://dck1-fs-live.dtcdn.dazn.com/out/v1/814bffb9b389f652/d65feac5647949e6b45b2674d4715398/index.mpd");
+            await player.load("https://sundirectgo-live.pc.cdn.bitgravity.com/svchd18/dth.mpd");
             console.log("The video has now been loaded!");
         } catch (error) {
             onPlayerError(error);
