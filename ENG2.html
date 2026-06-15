@@ -91,7 +91,7 @@
         player.configure({
             drm: {
                 clearKeys: {
-                    '9d1b6aecde7126db892929de13dea33a': "bc9fb7ccf6054f4090314fa8e4904a9e"
+                    '3aa6f9df41c299f659aaee15d0067900': "0434703fb407fb12980f51944271a1f8"
                 }
             }
         });
@@ -115,7 +115,7 @@ window.player = player;
         controls.addEventListener("error", onUIErrorEvent);
 
         try {
-            await player.load("https://sundirectgo-live.pc.cdn.bitgravity.com/svchd14/dth.mpd");
+            await player.load("https://a57live-pv-ta-amazon.akamaized.net/iad-nitro/live/clients/dash/enc/ldgnvordfu/out/v1/430b37000b9148379747ac5cfb2ada46/cenc.mpd");
             console.log("The video has now been loaded!");
         } catch (error) {
             onPlayerError(error);
