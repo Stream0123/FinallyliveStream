@@ -1,149 +1,259 @@
-<html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="no-referrer">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TG_@Finallylive</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/shaka-player.ui.min.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.7.1/controls.min.css" crossorigin="anonymous">
-<style>
-    body {
-        background-color: #000;
-        margin: 0;
-    }
+<meta name="referrer" content="no-referrer">
+<script src="https://cdn.jsdelivr.net/npm/shaka-player@4.16.2/dist/shaka-player.ui.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@4.16.2/dist/controls.css"/>
 
-    /* Container for video and logo */
-    .video-container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        background-color: black;
-    }
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-FMP9REY96D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    /* Style for the logo */
-    .logo {
-        position: absolute;
-        top: 10px; /* Adjust vertical position */
-        left: 10px; /* Adjust horizontal position */
-        z-index: 1; /* Ensure the logo appears above the video */
-        max-width: 120px; /* Set maximum width for the logo */
-        max-height: 120px; /* Set maximum height for the logo */
-        pointer-events: none; /* Prevent interference with video controls */
-    }
+  gtag('config', 'G-FMP9REY96D');
+</script>
+  <style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
 
-    .shaka-spinner-container {
-        display: none;
-    }
+.shaka-video-container{
+position:fixed;
+inset:0;
+background:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+}
 
-    .uc {
-        pointer-events: none;
-    }
+video{
+width:100%;
+height:100%;
+object-fit:contain;
+background:#000;
+}
+
+.custom-watermark{
+position:absolute;
+z-index:40;
+pointer-events:none;
+top:65%;
+left:6%;
+transform:translateY(-50%);
+font-size:11px;
+font-weight:600;
+color:rgba(255,255,255,0.12);
+}
+
+/* --- Updated Modern Blocker Styles --- */
+.block-overlay{
+position:fixed;
+inset:0;
+z-index:99999;
+display:flex;
+align-items:center;
+justify-content:center;
+background:radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+text-align:center;
+}
+
+.block-box{
+padding:40px;
+max-width:500px;
+width:90%;
+background:rgba(20, 20, 20, 0.95);
+border-radius:16px;
+border:1px solid rgba(255, 255, 255, 0.1);
+box-shadow:0 20px 50px rgba(0,0,0,0.5);
+animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+.block-title{
+font-size:42px;
+font-weight:800;
+color:#ffffff;
+text-transform:uppercase;
+letter-spacing:2px;
+margin-bottom:20px;
+text-shadow:0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.block-sub{
+font-size:14px;
+font-weight:500;
+color:rgba(255, 255, 255, 0.6);
+line-height:1.6;
+}
+
+/* Icon hidden as requested, but keeping structure if needed later */
+.block-icon{ display: none; }
+.block-note{ display: none; }
+
+@media(max-width:700px){
+.custom-watermark{font-size:9px;top:60%;left:16%}
+.block-title{font-size:28px}
+.block-box{padding:25px}
+.block-sub{font-size:12px}
+}
 </style>
 </head>
-
 <body>
-    <!-- Video container -->
-    <div class="video-container">
-        <!-- Logo inside the video -->
-        <img src="https://i.postimg.cc/fRSw4ZRD/IMG-20250925-223757.jpg" alt="Logo" class="logo">
 
-        <!-- Video player -->
-        <div data-shaka-player-container style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-            <video autoplay muted data-shaka-player id="video" poster="https://i.postimg.cc/zX5R78S1/In-Shot-20250930-163713042.jpg" style="width:100%; height:100%;"></video>
-        </div>
-    </div>
+<div class="shaka-video-container" id="player-container">
+<video id="video" autoplay muted playsinline preload="metadata"></video>
+<div class="custom-watermark"> </div>
+</div>
 
-    <script>
-    // Restrict iframe embedding
-    if (window.top !== window.self) {
-        window.addEventListener('DOMContentLoaded', function() {
-            // Clear the existing content
-            document.body.innerHTML = '';
+<script>
+(function(){
 
-            // Add custom message
-            const messageDiv = document.createElement('div');
-            messageDiv.id = 'message';
-            messageDiv.textContent = 'Ab to copy mat kar chutiye By @Cricinsider365';
-
-            // Style the message
-            messageDiv.style.color = '#fff';
-            messageDiv.style.backgroundColor = '#000';
-            messageDiv.style.position = 'fixed';
-            messageDiv.style.top = '50%';
-            messageDiv.style.left = '50%';
-            messageDiv.style.transform = 'translate(-50%, -50%)';
-            messageDiv.style.padding = '20px';
-            messageDiv.style.borderRadius = '10px';
-            messageDiv.style.textAlign = 'center';
-            messageDiv.style.fontFamily = 'Arial, sans-serif';
-            messageDiv.style.fontSize = '20px';
-
-            // Append the message to the body
-            document.body.appendChild(messageDiv);
-        });
-    }
-
-    async function init() {
-        const video = document.getElementById("video");
-        const ui = video.ui;
-        const controls = ui.getControls();
-        const player = controls.getPlayer();
-
-        player.configure({
-            drm: {
-                clearKeys: {
-                    '3aa6f9df41c299f659aaee15d0067900': "0434703fb407fb12980f51944271a1f8"
-                }
-            }
-        });
-
-        ui.configure({
-            controlPanelElements: ["play_pause", "mute", "volume", "spacer", "time_and_duration", "quality", "fullscreen", "overflow_menu"],
-            volumeBarColors: {
-                base: "rgba(0, 0, 255, 1)", // Blue base color for the volume bar
-                level: "rgb(0, 255, 0)"     // Green color for the volume level
-            },
-            seekBarColors: {
-                base: "rgb(255, 0, 0)",       // Red base color for the seek bar
-                buffered: "rgb(255, 255, 0)", // Yellow color for the buffered portion
-                played: "rgba(0, 128, 128, 1)" // Teal color for the played portion
-            }
-        });
-window.player = player;
-        window.ui = ui;
-
-        player.addEventListener("error", onPlayerErrorEvent);
-        controls.addEventListener("error", onUIErrorEvent);
-
-        try {
-            await player.load("https://a57live-pv-ta-amazon.akamaized.net/iad-nitro/live/clients/dash/enc/ldgnvordfu/out/v1/430b37000b9148379747ac5cfb2ada46/cenc.mpd");
-            console.log("The video has now been loaded!");
-        } catch (error) {
-            onPlayerError(error);
+  function isSandboxedEnv(){
+    try {
+      if (window.self === window.top) return false;
+      if (window.frameElement && window.frameElement.hasAttribute("sandbox")) {
+        return true;
+      }
+      try {
+        document.domain = document.domain;
+        if (window.frameElement && !window.frameElement.getAttribute("sandbox")) {
+             return false;
         }
+      } catch (e) {
+         return true;
+      }
+      return false;
+    } catch(e) {
+      return true;
+    }
+  }
+  function triggerBlockScreen(title, message){
+    const container = document.getElementById("player-container");
+    const video = document.getElementById("video");
+
+    try {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+    } catch(e){}
+
+    const overlay = document.createElement("div");
+    overlay.className = "block-overlay";
+    overlay.id = "sandbox-block-display";
+    overlay.innerHTML = `
+      <div class="block-box">
+        <div class="block-title">${title}</div>
+        <div class="block-sub">${message}</div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    container.style.display = 'none';
+  }
+  if(isSandboxedEnv()){
+
+    triggerBlockScreen('Disable Sandbox', 'Opening Chrome Browser Only & Disable Ad blocker');
+    return;
+  }
+  const CONFIG={
+    streamUrl:"https://jiotvmblive.cdn.jio.com/bpk-tv/AWSN_MOB/WDVLive/index.mpd",
+    keyId:"08638117638b55649c6befa7f5cb34f6",
+    key:"58ddb6bbdf8d8b1e2aac2b5312e99086",
+    cookieUrl:""
+  };
+
+  document.addEventListener("DOMContentLoaded",async()=>{
+
+    shaka.polyfill.installAll();
+    if(!shaka.Player.isBrowserSupported()) return;
+
+    const video=document.getElementById("video");
+    const container=document.getElementById("player-container");
+
+    video.muted=true;
+
+    const player=new shaka.Player();
+    await player.attach(video);
+
+    const ui=new shaka.ui.Overlay(player,container,video);
+
+    ui.configure({
+  addBigPlayButton: true,
+  controlPanelElements: [
+    "mute",           // First - volume/mute button
+    "play_pause",     // Second - play/pause button  
+    "time_and_duration", // Third - timeline timings (00:00 / 00:00)
+    "spacer",
+    "quality",
+    "picture_in_picture",
+    "fullscreen"
+  ],
+  seekBarColors: {
+    base: "white",
+    buffered: "red", 
+    played: "green"
+  }
+});
+
+    player.configure({
+      drm:{clearKeys:{[CONFIG.keyId]:CONFIG.key}},
+      manifest:{defaultPresentationDelay:5},
+      streaming:{
+        lowLatencyMode:true,
+        bufferingGoal:10,
+        rebufferingGoal:2,
+        safeSeekOffset:5
+      }
+    });
+
+    let cookieValue="__hdnea__=st=1781659826~exp=1781681426~acl=/bpk-tv/SonySportsTen3HinHDSTB_BTS/WDVLive/*~hmac=a9a3924f8c7615c3d598c26b6cd0931c5af9be29cc6ef0784bfea80884fd252a";
+
+    try{
+      const response=await fetch(CONFIG.cookieUrl,{cache:"no-store"});
+      const data=await response.json();
+      cookieValue=data.cookie||"";
+    }catch(e){}
+
+    if(cookieValue){
+      player.getNetworkingEngine().registerRequestFilter((type,request)=>{
+
+        let urlCookie=cookieValue.startsWith("__hdnea__=")?cookieValue.substring(10):cookieValue;
+
+        if((type===shaka.net.NetworkingEngine.RequestType.MANIFEST||
+        type===shaka.net.NetworkingEngine.RequestType.SEGMENT)&&
+        !request.uris[0].includes("__hdnea__")){
+          const sep=request.uris[0].includes("?")?"&":"?";
+          request.uris[0]+=sep+"__hdnea__="+urlCookie;
+        }
+      });
     }
 
-    function onPlayerErrorEvent(event) {
-        onPlayerError(event.detail);
-    }
+    try{
+      await player.load(CONFIG.streamUrl);
+      video.play().catch(()=>{});
+    }catch(e){}
 
-    function onPlayerError(error) {
-        console.error("Error code", error.code, "object", error);
-    }
+    video.addEventListener("play",()=>{
+      video.muted=false;
+    });
 
-    function onUIErrorEvent(event) {
-        onPlayerError(event.detail);
-    }
+  });
+})();
+</script>
+  <script>(function(s){s.dataset.zone='10603308',s.src=''})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<script>
+// alert('Join Our Telegram For More Live Links')
+         if (confirm("Join Our Telegram Channel @Finallylive") == true) {
+         window.open("https://t.me/Finally_Live_Streaming", '_blank');
+     }
+</script>
 
-    function initFailed() {
-        console.error("Unable to load the UI library!");
-    }
-
-    document.addEventListener("shaka-ui-loaded", init);
-    document.addEventListener("shaka-ui-load-failed", initFailed);
-
-    if (confirm("Join For More Links!!")) {
-        window.location.href = "https://t.me/Finally_Live_Streaming";
-    }
-    </script>
 </body>
 </html>
