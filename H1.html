@@ -1,186 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finally Live - Live Match Link</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: #1e1e1e; /* Match photo's dark grey */
-            color: #fff; 
-            font-family: system-ui, -apple-system, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-        }
 
-        /* Hero Section (Main Container from your photo) - Initially Hidden */
-        .hero-section {
-            width: 90%;
-            max-width: 450px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            display: none; /* Show only when modal closes */
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TG_@Finallylive</title>
+<script>(function(s){s.dataset.zone='11621694',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<meta name="referrer" content="no-referrer">
 
-        .hero-section.show { display: block; }
+<script src="https://cdn.jsdelivr.net/npm/shaka-player@4.16.2/dist/shaka-player.ui.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@4.16.2/dist/controls.css">
 
-        .title { 
-            font-size: 3rem; 
-            color: #ff3333; /* Red color for Live theme */
-            margin-bottom: 20px; 
-            text-transform: uppercase;
-            font-weight: 800;
-        }
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif}
 
-        .sub-text {
-            color: #aaaaaa;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
+.shaka-video-container{
+position:fixed;
+inset:0;
+background:#000;
+display:flex;
+align-items:center;
+justify-content:center;
+}
 
-        /* Main Orange Button (Leads directly to Telegram channel) */
-        .btn-main {
-            background-color: #ff9933; /* Orange */
-            color: white;
-            padding: 20px 50px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(255, 153, 51, 0.4);
-            cursor: pointer;
-            border: none;
-            font-size: 1.3rem;
-            transition: transform 0.2s;
-        }
+video{
+width:100%;
+height:100%;
+object-fit:contain;
+background:#000;
+}
 
-        .btn-main:hover { transform: scale(1.05); }
+.custom-watermark{
+position:absolute;
+z-index:40;
+pointer-events:none;
+top:65%;
+left:6%;
+transform:translateY(-50%);
+font-size:11px;
+font-weight:600;
+color:rgba(255,255,255,0.12);
+}
 
-        /* Modern Pop-up (Modal) Styles */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85); /* Black overlay */
-            display: flex; /* Shown by default */
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
+.block-overlay{
+position:fixed;
+inset:0;
+z-index:99999;
+display:flex;
+align-items:center;
+justify-content:center;
+background:radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+text-align:center;
+}
 
-        .modal-box {
-            background: #252525;
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
-            transform: scale(0.8);
-            transition: transform 0.3s ease-out;
-        }
+.block-box{
+padding:40px;
+max-width:500px;
+width:90%;
+background:rgba(20, 20, 20, 0.95);
+border-radius:16px;
+border:1px solid rgba(255, 255, 255, 0.1);
+box-shadow:0 20px 50px rgba(0,0,0,0.5);
+animation: fadeInUp 0.6s ease-out;
+}
 
-        .modal-overlay.open .modal-box { transform: scale(1); }
+@keyframes fadeInUp {
+from { opacity: 0; transform: translateY(30px); }
+to { opacity: 1; transform: translateY(0); }
+}
 
-        .modal-title {
-            font-size: 1.6rem;
-            color: #fff;
-            margin-bottom: 15px;
-        }
+.block-title{
+font-size:42px;
+font-weight:800;
+color:#ffffff;
+text-transform:uppercase;
+letter-spacing:2px;
+margin-bottom:20px;
+}
 
-        .modal-text {
-            color: #aaaaaa;
-            margin-bottom: 30px;
-            font-size: 1rem;
-        }
+.block-sub{
+font-size:14px;
+color:rgba(255,255,255,0.6);
+line-height:1.6;
+}
 
-        /* Modal Action Buttons */
-        .modal-actions {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-        }
+@media(max-width:700px){
+.custom-watermark{font-size:9px;top:60%;left:16%}
+.block-title{font-size:28px}
+.block-box{padding:25px}
+.block-sub{font-size:12px}
+}
+</style>
 
-        .btn-modal {
-            padding: 14px 28px;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            border: none;
-            font-size: 1.1rem;
-            flex: 1;
-        }
 
-        .btn-join {
-            background-color: #0088cc; /* Telegram Blue */
-            color: white;
-        }
 
-        .btn-already-joined {
-            background-color: #444; /* Grey for Already Joined */
-            color: #ccc;
-        }
-
-        .btn-join:hover { background-color: #006699; }
-        .btn-already-joined:hover { background-color: #555; }
-
-    </style>
 </head>
+
 <body>
 
-    <div class="modal-overlay open" id="modalOverlay">
-        <div class="modal-box">
-            <h2 class="modal-title">JOIN TELEGRAM</h2>
-            <p class="modal-text">Join our official Telegram channel for direct, high-speed match links and live updates.</p>
-            
-            <div class="modal-actions">
-                <a href="https://telegram.me/+M0y3Y_eAxDI0MTA1" class="btn-modal btn-join" target="_blank">JOIN NOW</a>
-                
-                <button class="btn-modal btn-already-joined" id="alreadyJoinedBtn">Already Joined</button>
-            </div>
-        </div>
-    </div>
+<div class="shaka-video-container shaka-mobile" id="player-container" shaka-controls="true">
 
-    <div class="hero-section" id="heroSection">
-        <h1 class="title">FINALLY LIVE</h1>
-        <p class="sub-text">Click below to get the direct live match link.</p>
-        
-        <a href="https://telegram.me/+TYZa2M15XlA4ZGY1" class="btn-main" target="_blank">🔴 Watch Live Match Now</a>
-    </div>
+  <video id="video" autoplay muted playsinline preload="metadata" class="shaka-video"></video>
 
-    <script>
-        const modalOverlay = document.getElementById('modalOverlay');
-        const alreadyJoinedBtn = document.getElementById('alreadyJoinedBtn');
-        const heroSection = document.getElementById('heroSection');
+  <div class="custom-watermark"></div>
 
-        // Close Modal and Show Main Page Content
-        function removeModal() {
-            modalOverlay.style.display = 'none'; // Instantly removes modal
-            heroSection.classList.add('show');
+</div>
+
+<script>
+if (confirm("Join Our Telegram Channel @5")) {window.location.href = "https://t.me/Finally_Live_Streaming";}
+
+  (function(){
+
+  function isSandboxedEnv(){
+    try {
+      if (window.self === window.top) return false;
+      if (window.frameElement && window.frameElement.hasAttribute("sandbox")) return true;
+
+      try {
+        document.domain = document.domain;
+      } catch (e) {
+        return true;
+      }
+      return false;
+    } catch(e) {
+      return true;
+    }
+  }
+
+  function triggerBlockScreen(title, message){
+    const container = document.getElementById("player-container");
+    const video = document.getElementById("video");
+
+    try {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+    } catch(e){}
+
+    const overlay = document.createElement("div");
+    overlay.className = "block-overlay";
+    overlay.innerHTML = `
+      <div class="block-box">
+        <div class="block-title">${title}</div>
+        <div class="block-sub">${message}</div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    container.style.display = 'none';
+  }
+
+  if(isSandboxedEnv()){
+    triggerBlockScreen('Disable Sandbox', 'Opening Chrome Browser Only & Disable Ad blocker');
+    return;
+  }
+
+  const CONFIG={
+    streamUrl:"https://jiotvmblive.cdn.jio.com/bpk-tv/Ten_3_MOB/WDVLive/index.mpd",
+    keyId:"68318f7c97c55ba6ab8d0398a88fed3e",
+    key:"d312fb3325b4eb9462b4a0d2b6794adf",
+    cookieUrl:"https://allrounder2-0.pages.dev/api/Sony-3.json"
+  };
+
+  document.addEventListener("DOMContentLoaded",async()=>{
+
+    shaka.polyfill.installAll();
+    if(!shaka.Player.isBrowserSupported()) return;
+
+    const video=document.getElementById("video");
+    const container=document.getElementById("player-container");
+
+    video.muted=true;
+
+    const player=new shaka.Player();
+    await player.attach(video);
+
+    const ui=new shaka.ui.Overlay(player,container,video);
+
+    ui.configure({
+      addBigPlayButton: true,
+      controlPanelElements: [
+        "mute",
+        "play_pause",
+        "time_and_duration",
+        "spacer",
+        "quality",
+        "picture_in_picture",
+        "fullscreen"
+      ],
+      seekBarColors: {
+        base: "white",
+        buffered: "red", 
+        played: "green"
+      }
+    });
+
+    player.configure({
+      drm:{clearKeys:{[CONFIG.keyId]:CONFIG.key}},
+      manifest:{defaultPresentationDelay:5},
+      streaming:{
+        lowLatencyMode:true,
+        bufferingGoal:10,
+        rebufferingGoal:2,
+        safeSeekOffset:5
+      }
+    });
+
+    let cookieValue="";
+
+    try{
+      const response=await fetch(CONFIG.cookieUrl,{cache:"no-store"});
+      const data=await response.json();
+      cookieValue=data.cookie||"";
+    }catch(e){}
+
+    if(cookieValue){
+      player.getNetworkingEngine().registerRequestFilter((type,request)=>{
+        request.headers["Referer"]="https://www.jiotv.com/";
+        request.headers["User-Agent"]="plaYtv/7.1.5 (Linux;Android 13) ExoPlayerLib/2.11.6";
+        request.headers["Cookie"]=cookieValue;
+
+        let urlCookie=cookieValue.startsWith("__hdnea__=")?cookieValue.substring(10):cookieValue;
+
+        if((type===shaka.net.NetworkingEngine.RequestType.MANIFEST||
+        type===shaka.net.NetworkingEngine.RequestType.SEGMENT)&&
+        !request.uris[0].includes("__hdnea__")){
+          const sep=request.uris[0].includes("?")?"&":"?";
+          request.uris[0]+=sep+"__hdnea__="+urlCookie;
         }
+      });
+    }
 
-        // Action when 'Already Joined' is clicked
-        alreadyJoinedBtn.addEventListener('click', removeModal);
+    try{
+      await player.load(CONFIG.streamUrl);
+      video.play().catch(()=>{});
+    }catch(e){}
 
-        // Action if clicking outside the modal box
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                removeModal();
-            }
-        });
-    </script>
+    video.addEventListener("play",()=>{
+      video.muted=false;
+    });
+
+  });
+
+})();
+</script>
 
 </body>
 </html>
-
-
-
