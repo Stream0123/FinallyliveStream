@@ -1,493 +1,681 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
-<meta
-    name="referrer"
-    content="no-referrer"
->
-
-<title>TG_@Finallylive</title>
-<script>(function(s){s.dataset.zone='11621694',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-
-<script src="https://cdn.jsdelivr.net/npm/shaka-player@5.1.10/dist/shaka-player.ui.min.js"></script>
-
-<link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/shaka-player@5.1.10/dist/controls.min.css"
->
+<title>TG_@FinallyLive</title>
+    <script>(function(s){s.dataset.zone='12166291',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@4.3.4/dist/controls.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 
-html,
-body {
-    width: 100%;
-    height: 100%;
+:root {
+    --bg-color: #070b1a;
+    --primary-red: #4f46e5;
+    --primary-red-dark: #9333ea;
+    --card-bg: #0f172a;
+    --text-light: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border-color: #1e293b;
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-light);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================
+   EARN REWARD HEADER
+========================= */
+
+.reward-header {
+    width: 100%;
+    min-height: 115px;
+
+    padding: 18px 28px;
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    border-radius: 28px;
+
+    background: linear-gradient(
+        100deg,
+        #ff9200 0%,
+        #ffad00 45%,
+        #ffd21a 100%
+    );
+
+    border: 2px solid rgba(255, 220, 80, 0.8);
+
+    box-shadow:
+        0 0 12px rgba(255, 190, 0, 0.8),
+        0 0 30px rgba(255, 200, 0, 0.55),
+        0 0 60px rgba(255, 190, 0, 0.3);
+
+    cursor: pointer;
+
+    margin-bottom: 1rem;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
     overflow: hidden;
-    background: #000;
 }
 
-.shaka-video-container {
-    width: 100%;
-    height: 100%;
-    background: #000;
+.reward-header:hover {
+    transform: scale(1.01);
+
+    box-shadow:
+        0 0 18px rgba(255, 210, 0, 1),
+        0 0 40px rgba(255, 200, 0, 0.7),
+        0 0 75px rgba(255, 190, 0, 0.4);
 }
 
-#videoPlayer {
+
+/* =========================
+   GOLD COIN
+========================= */
+
+.reward-coin {
+    width: 75px;
+    height: 75px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 43px;
+    font-weight: 800;
+
+    color: #6b3d00;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #fff3a0 0%,
+            #ffd52e 25%,
+            #ffb300 60%,
+            #d98200 100%
+        );
+
+    border: 5px solid #e39a00;
+
+    box-shadow:
+        inset 0 3px 5px rgba(255,255,255,0.7),
+        inset 0 -5px 8px rgba(120,60,0,0.35),
+        0 4px 8px rgba(100,50,0,0.35),
+        0 0 15px rgba(255,230,80,0.8);
+
+    text-shadow:
+        1px 2px 2px rgba(255,255,255,0.35);
+
+    animation: coinGlow 1.5s infinite alternate;
+}
+
+@keyframes coinGlow {
+
+    from {
+        box-shadow:
+            inset 0 3px 5px rgba(255,255,255,0.7),
+            inset 0 -5px 8px rgba(120,60,0,0.35),
+            0 4px 8px rgba(100,50,0,0.35),
+            0 0 10px rgba(255,230,80,0.6);
+    }
+
+    to {
+        box-shadow:
+            inset 0 3px 5px rgba(255,255,255,0.7),
+            inset 0 -5px 8px rgba(120,60,0,0.35),
+            0 4px 8px rgba(100,50,0,0.35),
+            0 0 25px rgba(255,240,100,1);
+    }
+}
+
+
+/* =========================
+   REWARD TEXT
+========================= */
+
+.reward-text {
+    flex: 1;
+}
+
+.reward-title {
+    font-size: 2rem;
+
+    line-height: 1.1;
+
+    font-weight: 800;
+
+    letter-spacing: 0.5px;
+
+    color: #210d00;
+
+    text-shadow:
+        1px 2px 1px rgba(255,255,255,0.15);
+}
+
+.reward-subtitle {
+    margin-top: 7px;
+
+    font-size: 1.35rem;
+
+    font-weight: 500;
+
+    color: #6b3d00;
+}
+
+.reward-subtitle span {
+    font-size: 1rem;
+    margin-left: 3px;
+}
+
+
+/* =========================
+   RIGHT ARROW
+========================= */
+.reward-arrow {
+    font-size: 4rem;
+
+    line-height: 1;
+
+    font-weight: 300;
+
+    color: #795000;
+
+    text-shadow:
+        0 2px 3px rgba(255,255,255,0.2);
+
+    padding-right: 5px;
+
+    animation: arrowMove 1s infinite alternate;
+}
+
+@keyframes arrowMove {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(6px);
+    }
+}
+
+
+/* =========================
+   PLAYER
+========================= */
+
+#player-container {
     width: 100%;
-    height: 100%;
-    background: #000;
-    object-fit: contain;
+
+    aspect-ratio: 16/9;
+
+    max-height: 70vh;
+
+    background-color: #000;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================
+   INFO CARD
+========================= */
+
+.info-card {
+    background-color: var(--card-bg);
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 12px;
+
+    padding: 1.25rem;
+
+    margin-top: 1rem;
+
+    text-align: center;
+}
+
+.info-card h2 {
+    font-size: 1rem;
+
+    font-weight: 600;
+
+    margin-bottom: 1rem;
+
+    color: var(--text-muted);
+}
+
+
+/* =========================
+   ACTION BUTTON
+========================= */
+
+.action-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 0.75rem;
+
+    width: 100%;
+
+    padding: 0.8rem 1rem;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary-red),
+            var(--primary-red-dark)
+        );
+
+    color: white;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    border: none;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.action-button:hover {
+    transform: translateY(-2px);
+}
+
+.action-button.copied {
+    background:
+        linear-gradient(
+            90deg,
+            #22c55e,
+            #4ade80
+        );
+}
+
+
+/* =========================
+   BACK LINK
+========================= */
+
+.back-link {
+    display: block;
+
+    text-align: center;
+
+    margin-top: 1.5rem;
+
+    color: var(--text-muted);
+
+    text-decoration: none;
+
+    padding: 0.5rem;
+
+    border-radius: 8px;
+}
+
+.back-link:hover {
+    background-color: var(--card-bg);
+
+    color: var(--text-light);
+}
+
+
+/* =========================
+   TELEGRAM POPUP
+========================= */
+
+.telegram-popup {
+    position: fixed;
+
+    inset: 0;
+
+    margin: auto;
+
+    width: 90%;
+
+    max-width: 400px;
+
+    height: fit-content;
+
+    background: #0f172a;
+
+    padding: 30px 20px;
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 0 40px rgba(79, 70, 229, 0.6);
+
+    text-align: center;
+
+    display: none;
+
+    z-index: 10000;
+}
+
+.telegram-popup h2 {
+    color: var(--primary-red);
+
+    margin-bottom: 1rem;
+}
+
+.telegram-popup button {
+    width: 100%;
+
+    padding: 12px;
+
+    margin-top: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.join-btn {
+    background:
+        linear-gradient(
+            90deg,
+            var(--primary-red),
+            var(--primary-red-dark)
+        );
+
+    color: white;
+}
+
+.joined-btn {
+    background: var(--border-color);
+
+    color: white;
+}
+
+
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+
+@media (max-width: 600px) {
+
+    .reward-header {
+        min-height: 95px;
+
+        padding: 13px 16px;
+
+        gap: 15px;
+
+        border-radius: 22px;
+    }
+
+    .reward-coin {
+        width: 60px;
+        height: 60px;
+
+        font-size: 34px;
+
+        border-width: 4px;
+    }
+
+    .reward-title {
+        font-size: 1.35rem;
+    }
+
+    .reward-subtitle {
+        font-size: 0.95rem;
+
+        margin-top: 4px;
+    }
+
+    .reward-arrow {
+        font-size: 3rem;
+    }
 }
 
 </style>
-
 </head>
+
 
 <body>
 
-<div
-    id="videoContainer"
-    class="shaka-video-container"
->
+<main class="container">
 
-    <video
-        id="videoPlayer"
-        playsinline
-        autoplay
-        muted
-    ></video>
+<div id="stream-content">
+<!-- =========================
+     VIDEO PLAYER
+========================= -->
+
+<div id="player-container">
+
+    <iframe
+        src="https://finallylivestream.pages.dev/willow"
+        style="width:100%; height:100%; border:0;"
+        allow="encrypted-media; autoplay"
+        allowfullscreen>
+    </iframe>
+
+</div>
+
+
+<!-- =========================
+     TELEGRAM
+========================= -->
+
+<div class="info-card">
+
+    <h2>
+        <i class="fa-solid fa-bell"></i>
+        Follow us for Updates!
+    </h2>
+
+    <a
+        href="https://t.me/Finally_Live_Streaming"
+        target="_blank"
+        class="action-button">
+
+        <i class="fa-brands fa-telegram"></i>
+
+        Click Here To Join Telegram
+
+    </a>
+
+</div>
+
+
+<!-- =========================
+     SHARE
+========================= -->
+
+<div class="info-card">
+
+    <h2>
+        <i class="fa-solid fa-link"></i>
+        Copy Link & Share
+    </h2>
+
+    <button
+        class="action-button"
+        id="shareButton">
+
+        <i class="fa-solid fa-share-nodes"></i>
+
+        Click Here To Share This Page Link
+
+    </button>
+
+</div>
+
+
+<a href="#" class="back-link">
+
+    <i class="fa-solid fa-arrow-left"></i>
+
+    Back to All Streams
+
+</a>
+
+
+</div>
+
+</main>
+
+
+<!-- =========================
+     TELEGRAM POPUP
+========================= -->
+
+<div class="telegram-popup" id="telegramPopup">
+
+    <h2>
+        <i class="fa-brands fa-telegram"></i>
+        Support Us!
+    </h2>
+
+    <p>
+        Join our Telegram channel
+        <strong>@FinallyLive</strong>
+    </p>
+
+    <a
+        href="https://t.me/Finally_Live_Streaming"
+        target="_blank">
+
+        <button class="join-btn">
+            Join Now
+        </button>
+
+    </a>
+
+    <button
+        class="joined-btn"
+        onclick="document.getElementById('telegramPopup').style.display='none';">
+
+        Already Joined
+
+    </button>
 
 </div>
 
 
 <script>
 
-const STREAM_URL =
-    "https://jiotvmblive.cdn.jio.com/bpk-tv/Ten_3_MOB/WDVLive/index.mpd";
 
+/* =========================
+   SHARE BUTTON
+========================= */
 
-const DRM_KEYS =
-    "68318f7c97c55ba6ab8d0398a88fed3e:d312fb3325b4eb9462b4a0d2b6794adf";
+document
+.getElementById('shareButton')
+.addEventListener('click', async () => {
 
+    const btn =
+        document.getElementById('shareButton');
 
-const COOKIE_JSON_URL =
-    "https://sonujson-v4.pages.dev/Data/sports.json";
-
-
-const CHANNEL_ID =
-    "STEN3";
-
-
-const videoElement =
-    document.getElementById(
-        "videoPlayer"
-    );
-
-
-const videoContainer =
-    document.getElementById(
-        "videoContainer"
-    );
-
-
-let player;
-let ui;
-
-
-function parseDrmKeys(value) {
-
-    const clearKeys = {};
-
-    const pairs =
-        String(value || "")
-            .split(",")
-            .map(
-                pair =>
-                    pair.trim()
-            )
-            .filter(Boolean);
-
-
-    for (
-        const pair of pairs
-    ) {
-
-        const separator =
-            pair.indexOf(":");
-
-
-        if (
-            separator === -1
-        ) {
-
-            console.warn(
-                "Invalid DRM pair:",
-                pair
-            );
-
-            continue;
-        }
-
-
-        const kid =
-            pair
-                .slice(
-                    0,
-                    separator
-                )
-                .trim()
-                .toLowerCase();
-
-
-        const key =
-            pair
-                .slice(
-                    separator + 1
-                )
-                .trim()
-                .toLowerCase();
-
-
-        if (
-            !kid ||
-            !key
-        ) {
-
-            continue;
-        }
-
-
-        clearKeys[kid] =
-            key;
-
-    }
-
-
-    return clearKeys;
-}
-
-
-async function getCookie() {
-
-    const response =
-        await fetch(
-            COOKIE_JSON_URL,
-            {
-                method: "GET",
-                cache: "no-store"
-            }
-        );
-
-
-    if (
-        !response.ok
-    ) {
-
-        throw new Error(
-            "Cookie JSON request failed: " +
-            response.status
-        );
-
-    }
-
-
-    const data =
-        await response.json();
-
-
-    if (
-        !data ||
-        !Array.isArray(
-            data.channels
-        )
-    ) {
-
-        throw new Error(
-            "Invalid JSON format."
-        );
-
-    }
-
-
-    const channel =
-        data.channels.find(
-            item =>
-                String(
-                    item.id || ""
-                )
-                    .trim()
-                    .toLowerCase() ===
-                CHANNEL_ID
-                    .toLowerCase()
-        );
-
-
-    if (!channel) {
-
-        throw new Error(
-            "Channel not found: " +
-            CHANNEL_ID
-        );
-
-    }
-
-
-    const cookie =
-        String(
-            channel.cookie || ""
-        ).trim();
-
-
-    if (!cookie) {
-
-        throw new Error(
-            "Cookie not found for " +
-            CHANNEL_ID
-        );
-
-    }
-
-
-    return cookie;
-}
-
-
-function configureStreamRequests(
-    cookie
-) {
-
-    if (!cookie) {
-        return;
-    }
-
-
-    const networkingEngine =
-        player.getNetworkingEngine();
-
-
-    if (!networkingEngine) {
-        return;
-    }
-
-
-    networkingEngine.registerRequestFilter(
-        (type, request) => {
-
-            if (
-                !request.uris ||
-                !request.uris[0]
-            ) {
-
-                return;
-            }
-
-
-            request.headers =
-                request.headers || {};
-
-
-            request.headers["Cookie"] =
-                cookie;
-
-
-            const url =
-                request.uris[0];
-
-
-            if (
-                (type === 0 || type === 1) &&
-                !url.includes(
-                    "__hdnea="
-                ) &&
-                !url.includes(
-                    "__hdnea__"
-                ) &&
-                !url.includes(
-                    "hdnts="
-                )
-            ) {
-
-                request.uris[0] =
-                    url +
-                    (
-                        url.includes("?")
-                            ? "&"
-                            : "?"
-                    ) +
-                    cookie;
-
-            }
-
-        }
-    );
-}
-
-
-function configureDrm() {
-
-    const clearKeys =
-        parseDrmKeys(
-            DRM_KEYS
-        );
-
-
-    player.configure({
-
-        drm: {
-            clearKeys:
-                clearKeys
-        },
-
-        manifest: {
-            defaultPresentationDelay: 5
-        },
-
-        streaming: {
-            lowLatencyMode: true,
-            bufferingGoal: 10,
-            rebufferingGoal: 2,
-            safeSeekOffset: 5
-        }
-
-    });
-}
-
-
-async function initPlayer() {
+    const original =
+        btn.innerHTML;
 
     try {
 
-        shaka.polyfill.installAll();
-
-
-        if (
-            !shaka.Player
-                .isBrowserSupported()
-        ) {
-
-            throw new Error(
-                "This browser does not support Shaka Player."
-            );
-
-        }
-
-
-        player =
-            new shaka.Player();
-
-
-        await player.attach(
-            videoElement
+        await navigator.clipboard.writeText(
+            window.location.href
         );
 
+        btn.innerHTML =
+            '<i class="fa-solid fa-check"></i> Link Copied!';
 
-        ui =
-            new shaka.ui.Overlay(
-                player,
-                videoContainer,
-                videoElement
-            );
+        btn.classList.add('copied');
 
+        setTimeout(() => {
 
-        ui.configure({
+            btn.innerHTML = original;
 
-            controlPanelElements: [
-                "play_pause",
-                "time_and_duration",
-                "mute",
-                "volume",
-                "spacer",
-                "quality",
-                "picture_in_picture",
-                "fullscreen"
-            ]
+            btn.classList.remove('copied');
 
-        });
-
-
-        player.addEventListener(
-            "error",
-            event => {
-
-                console.error(
-                    "Shaka Player Error:",
-                    event.detail
-                );
-
-            }
-        );
-
-
-        const cookie =
-            await getCookie();
-
-
-        configureStreamRequests(
-            cookie
-        );
-
-
-        configureDrm();
-
-
-        await player.load(
-            STREAM_URL
-        );
-
-
-        try {
-
-            await videoElement.play();
-
-        } catch (error) {
-
-            console.log(
-                "Autoplay blocked."
-            );
-
-        }
-
+        }, 2000);
 
     } catch (error) {
 
-        console.error(
-            "Player initialization failed:",
-            error
+        alert(
+            'Unable to copy link. Please copy it manually.'
         );
 
     }
 
-}
+});
 
 
-initPlayer();
+/* =========================
+   TELEGRAM POPUP
+========================= */
 
+setTimeout(() => {
 
-window.addEventListener(
-    "beforeunload",
-    () => {
+    document
+    .getElementById('telegramPopup')
+    .style.display = 'block';
 
-        if (player) {
+}, 1500);
 
-            player.destroy()
-                .catch(
-                    () => {}
-                );
-
-        }
-
-    }
-);
 
 </script>
 
