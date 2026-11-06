@@ -3,680 +3,402 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+<script>(function(s){s.dataset.zone='12166291',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
 <title>TG_@FinallyLive</title>
-    <script>(function(s){s.dataset.zone='12166291',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@4.3.4/dist/controls.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-
 :root {
-    --bg-color: #070b1a;
-    --primary-red: #4f46e5;
-    --primary-red-dark: #9333ea;
+    --bg-color: #070b19;
     --card-bg: #0f172a;
-    --text-light: #e2e8f0;
+    --card-border: rgba(255, 255, 255, 0.08);
+    --primary-blue: #0088cc;
+    --primary-purple: #4f46e5;
+    --text-white: #f8fafc;
     --text-muted: #94a3b8;
-    --border-color: #1e293b;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
-    color: var(--text-light);
-
+    color: var(--text-white);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-
-    min-height: 100vh;
-    padding: 1rem;
+    align-items: flex-start;
+    padding: 14px 12px;
 }
 
 .container {
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
-
-    animation: fadeIn 0.5s ease-out forwards;
 }
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 
 /* =========================
-   EARN REWARD HEADER
+   TOP STATUS BADGE
 ========================= */
-
-.reward-header {
-    width: 100%;
-    min-height: 115px;
-
-    padding: 18px 28px;
-
+.top-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 25px;
-
-    border-radius: 28px;
-
-    background: linear-gradient(
-        100deg,
-        #ff9200 0%,
-        #ffad00 45%,
-        #ffd21a 100%
-    );
-
-    border: 2px solid rgba(255, 220, 80, 0.8);
-
-    box-shadow:
-        0 0 12px rgba(255, 190, 0, 0.8),
-        0 0 30px rgba(255, 200, 0, 0.55),
-        0 0 60px rgba(255, 190, 0, 0.3);
-
-    cursor: pointer;
-
-    margin-bottom: 1rem;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-
-    overflow: hidden;
+    margin-bottom: 12px;
+    padding: 0 4px;
 }
 
-.reward-header:hover {
-    transform: scale(1.01);
-
-    box-shadow:
-        0 0 18px rgba(255, 210, 0, 1),
-        0 0 40px rgba(255, 200, 0, 0.7),
-        0 0 75px rgba(255, 190, 0, 0.4);
-}
-
-
-/* =========================
-   GOLD COIN
-========================= */
-
-.reward-coin {
-    width: 75px;
-    height: 75px;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    font-size: 43px;
-    font-weight: 800;
-
-    color: #6b3d00;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #fff3a0 0%,
-            #ffd52e 25%,
-            #ffb300 60%,
-            #d98200 100%
-        );
-
-    border: 5px solid #e39a00;
-
-    box-shadow:
-        inset 0 3px 5px rgba(255,255,255,0.7),
-        inset 0 -5px 8px rgba(120,60,0,0.35),
-        0 4px 8px rgba(100,50,0,0.35),
-        0 0 15px rgba(255,230,80,0.8);
-
-    text-shadow:
-        1px 2px 2px rgba(255,255,255,0.35);
-
-    animation: coinGlow 1.5s infinite alternate;
-}
-
-@keyframes coinGlow {
-
-    from {
-        box-shadow:
-            inset 0 3px 5px rgba(255,255,255,0.7),
-            inset 0 -5px 8px rgba(120,60,0,0.35),
-            0 4px 8px rgba(100,50,0,0.35),
-            0 0 10px rgba(255,230,80,0.6);
-    }
-
-    to {
-        box-shadow:
-            inset 0 3px 5px rgba(255,255,255,0.7),
-            inset 0 -5px 8px rgba(120,60,0,0.35),
-            0 4px 8px rgba(100,50,0,0.35),
-            0 0 25px rgba(255,240,100,1);
-    }
-}
-
-
-/* =========================
-   REWARD TEXT
-========================= */
-
-.reward-text {
-    flex: 1;
-}
-
-.reward-title {
-    font-size: 2rem;
-
-    line-height: 1.1;
-
-    font-weight: 800;
-
-    letter-spacing: 0.5px;
-
-    color: #210d00;
-
-    text-shadow:
-        1px 2px 1px rgba(255,255,255,0.15);
-}
-
-.reward-subtitle {
-    margin-top: 7px;
-
-    font-size: 1.35rem;
-
-    font-weight: 500;
-
-    color: #6b3d00;
-}
-
-.reward-subtitle span {
-    font-size: 1rem;
-    margin-left: 3px;
-}
-
-
-/* =========================
-   RIGHT ARROW
-========================= */
-.reward-arrow {
-    font-size: 4rem;
-
-    line-height: 1;
-
-    font-weight: 300;
-
-    color: #795000;
-
-    text-shadow:
-        0 2px 3px rgba(255,255,255,0.2);
-
-    padding-right: 5px;
-
-    animation: arrowMove 1s infinite alternate;
-}
-
-@keyframes arrowMove {
-
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(6px);
-    }
-}
-
-
-/* =========================
-   PLAYER
-========================= */
-
-#player-container {
-    width: 100%;
-
-    aspect-ratio: 16/9;
-
-    max-height: 70vh;
-
-    background-color: #000;
-
-    border-radius: 12px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.5);
-}
-
-
-/* =========================
-   INFO CARD
-========================= */
-
-.info-card {
-    background-color: var(--card-bg);
-
-    border: 1px solid var(--border-color);
-
-    border-radius: 12px;
-
-    padding: 1.25rem;
-
-    margin-top: 1rem;
-
-    text-align: center;
-}
-
-.info-card h2 {
-    font-size: 1rem;
-
-    font-weight: 600;
-
-    margin-bottom: 1rem;
-
-    color: var(--text-muted);
-}
-
-
-/* =========================
-   ACTION BUTTON
-========================= */
-
-.action-button {
+.live-indicator {
     display: inline-flex;
-
     align-items: center;
+    gap: 6px;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #ef4444;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
 
-    justify-content: center;
+.live-dot {
+    width: 6px;
+    height: 6px;
+    background: #ef4444;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #ef4444;
+}
 
-    gap: 0.75rem;
-
-    width: 100%;
-
-    padding: 0.8rem 1rem;
-
-    border-radius: 8px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--primary-red),
-            var(--primary-red-dark)
-        );
-
-    color: white;
-
+.channel-tag {
+    font-size: 0.8rem;
     font-weight: 600;
-
-    text-decoration: none;
-
-    border: none;
-
-    cursor: pointer;
-
-    transition: 0.2s ease;
+    color: #38bdf8;
 }
-
-.action-button:hover {
-    transform: translateY(-2px);
-}
-
-.action-button.copied {
-    background:
-        linear-gradient(
-            90deg,
-            #22c55e,
-            #4ade80
-        );
-}
-
 
 /* =========================
-   BACK LINK
+   VIDEO PLAYER
 ========================= */
+.player-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-color: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+}
 
-.back-link {
+.player-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
     display: block;
+}
 
-    text-align: center;
+/* =========================
+   ACTION BUTTONS
+========================= */
+.buttons-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+}
 
-    margin-top: 1.5rem;
-
-    color: var(--text-muted);
-
+.action-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 12px;
     text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
 
-    padding: 0.5rem;
+.action-btn:active {
+    transform: scale(0.98);
+}
 
-    border-radius: 8px;
+.telegram-btn {
+    background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
+    color: #ffffff;
+    box-shadow: 0 6px 18px rgba(0, 136, 204, 0.35);
+}
+
+.share-btn {
+    background: #0f172a;
+    color: var(--text-white);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.share-btn.copied {
+    background: #10b981;
+    border-color: #10b981;
+    color: #ffffff;
+}
+
+/* Back Link */
+.back-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 22px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-decoration: none;
+    font-weight: 500;
 }
 
 .back-link:hover {
-    background-color: var(--card-bg);
-
-    color: var(--text-light);
+    color: var(--text-white);
 }
-
-
-/* =========================
-   TELEGRAM POPUP
-========================= */
-
-.telegram-popup {
+/* ====================================
+   FIXED MODAL POPUP (CENTER ALIGNED)
+==================================== */
+.modal-overlay {
     position: fixed;
-
-    inset: 0;
-
-    margin: auto;
-
-    width: 90%;
-
-    max-width: 400px;
-
-    height: fit-content;
-
-    background: #0f172a;
-
-    padding: 30px 20px;
-
-    border-radius: 16px;
-
-    box-shadow:
-        0 0 40px rgba(79, 70, 229, 0.6);
-
-    text-align: center;
-
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(4, 7, 18, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: none;
-
-    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    padding: 20px;
 }
 
-.telegram-popup h2 {
-    color: var(--primary-red);
-
-    margin-bottom: 1rem;
+.modal-overlay.active {
+    display: flex;
 }
 
-.telegram-popup button {
+.modal-card {
+    position: relative;
     width: 100%;
+    max-width: 320px;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 22px;
+    padding: 24px 20px 20px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 136, 204, 0.3);
+    animation: modalScale 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
 
-    padding: 12px;
+@keyframes modalScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
-    margin-top: 10px;
-
+.modal-close-icon {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
     border: none;
-
-    border-radius: 8px;
-
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+}
 
+.modal-tg-logo {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0088cc, #00a8ff);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 4px auto 14px auto;
+    box-shadow: 0 8px 20px rgba(0, 136, 204, 0.4);
+}
+
+.modal-card h2 {
+    font-size: 1.22rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.modal-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    margin-bottom: 18px;
+}
+
+.modal-card p span {
+    color: #38bdf8;
     font-weight: 600;
 }
 
-.join-btn {
-    background:
-        linear-gradient(
-            90deg,
-            var(--primary-red),
-            var(--primary-red-dark)
-        );
-
-    color: white;
+.popup-join-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(0, 136, 204, 0.35);
+    border: none;
+    cursor: pointer;
 }
 
-.joined-btn {
-    background: var(--border-color);
-
-    color: white;
+.popup-dismiss-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 12px;
+    cursor: pointer;
+    padding: 6px;
 }
 
-
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
-
-@media (max-width: 600px) {
-
-    .reward-header {
-        min-height: 95px;
-
-        padding: 13px 16px;
-
-        gap: 15px;
-
-        border-radius: 22px;
-    }
-
-    .reward-coin {
-        width: 60px;
-        height: 60px;
-
-        font-size: 34px;
-
-        border-width: 4px;
-    }
-
-    .reward-title {
-        font-size: 1.35rem;
-    }
-
-    .reward-subtitle {
-        font-size: 0.95rem;
-
-        margin-top: 4px;
-    }
-
-    .reward-arrow {
-        font-size: 3rem;
-    }
+.popup-dismiss-btn:hover {
+    color: #ffffff;
 }
-
 </style>
 </head>
-
 
 <body>
 
 <main class="container">
+    <!-- Header -->
+    <div class="top-header">
+        <div class="live-indicator">
+            <span class="live-dot"></span> LIVE STREAM
+        </div>
+        <div class="channel-tag">@FinallyLive</div>
+    </div>
 
-<div id="stream-content">
-<!-- =========================
-     VIDEO PLAYER
-========================= -->
+    <!-- Video Box -->
+    <div class="player-wrapper">
+        <iframe 
+    src="https://ci365.pages.dev/star?id=STEN1"
+    allow="encrypted-media; autoplay; fullscreen"
+    allowfullscreen
+    webkitallowfullscreen
+    playsinline
+    style="width: 100%; height: 100%; border: none;">
+</iframe>
+    </div>
+ <!-- Quick Buttons -->
+    <div class="buttons-group">
+        <a href="https://t.me/Finally_Live_Streaming" target="_blank" class="action-btn telegram-btn">
+            <i class="fa-brands fa-telegram"></i> Click Here To Join Telegram
+        </a>
 
-<div id="player-container">
+        <button class="action-btn share-btn" id="shareBtn">
+            <i class="fa-solid fa-share-nodes"></i> Share Stream Link
+        </button>
+    </div>
 
-    <iframe
-        src="https://ci365.pages.dev/star?id=STEN3"
-        style="width:100%; height:100%; border:0;"
-        allow="encrypted-media; autoplay"
-        allowfullscreen>
-    </iframe>
-
-</div>
-
-
-<!-- =========================
-     TELEGRAM
-========================= -->
-
-<div class="info-card">
-
-    <h2>
-        <i class="fa-solid fa-bell"></i>
-        Follow us for Updates!
-    </h2>
-
-    <a
-        href="https://t.me/Finally_Live_Streaming"
-        target="_blank"
-        class="action-button">
-
-        <i class="fa-brands fa-telegram"></i>
-
-        Click Here To Join Telegram
-
+    <a href="#" class="back-link">
+        <i class="fa-solid fa-arrow-left"></i> Back to All Streams
     </a>
-
-</div>
-
-
-<!-- =========================
-     SHARE
-========================= -->
-
-<div class="info-card">
-
-    <h2>
-        <i class="fa-solid fa-link"></i>
-        Copy Link & Share
-    </h2>
-
-    <button
-        class="action-button"
-        id="shareButton">
-
-        <i class="fa-solid fa-share-nodes"></i>
-
-        Click Here To Share This Page Link
-
-    </button>
-
-</div>
-
-
-<a href="#" class="back-link">
-
-    <i class="fa-solid fa-arrow-left"></i>
-
-    Back to All Streams
-
-</a>
-
-
-</div>
-
 </main>
 
-
-<!-- =========================
-     TELEGRAM POPUP
-========================= -->
-
-<div class="telegram-popup" id="telegramPopup">
-
-    <h2>
-        <i class="fa-brands fa-telegram"></i>
-        Support Us!
-    </h2>
-
-    <p>
-        Join our Telegram channel
-        <strong>@FinallyLive</strong>
-    </p>
-
-    <a
-        href="https://t.me/Finally_Live_Streaming"
-        target="_blank">
-
-        <button class="join-btn">
-            Join Now
+<!-- Centered Telegram Popup -->
+<div class="modal-overlay" id="telegramModal">
+    <div class="modal-card">
+        <button class="modal-close-icon" id="closeModal">
+            <i class="fa-solid fa-xmark"></i>
         </button>
 
-    </a>
+        <div class="modal-tg-logo">
+            <i class="fa-brands fa-telegram"></i>
+        </div>
 
-    <button
-        class="joined-btn"
-        onclick="document.getElementById('telegramPopup').style.display='none';">
+        <h2>Join Community</h2>
+        <p>Live matches, backup links aur fast updates ke liye <span>@Finally_Live_Streaming</span> join karein.</p>
 
-        Already Joined
+        <a href="https://t.me/Finally_Live_Streaming" target="_blank" class="popup-join-btn">
+            <i class="fa-brands fa-telegram"></i> Join Telegram Now
+        </a>
 
-    </button>
-
+        <button class="popup-dismiss-btn" id="dismissModal">
+            Already Joined / Skip
+        </button>
+    </div>
 </div>
 
-
 <script>
+// Modal Controls
+const modal = document.getElementById('telegramModal');
+const closeModal = document.getElementById('closeModal');
+const dismissModal = document.getElementById('dismissModal');
 
+function hidePopup() {
+    modal.classList.remove('active');
+}
 
-/* =========================
-   SHARE BUTTON
-========================= */
+closeModal.addEventListener('click', hidePopup);
+dismissModal.addEventListener('click', hidePopup);
 
-document
-.getElementById('shareButton')
-.addEventListener('click', async () => {
-
-    const btn =
-        document.getElementById('shareButton');
-
-    const original =
-        btn.innerHTML;
-
-    try {
-
-        await navigator.clipboard.writeText(
-            window.location.href
-        );
-
-        btn.innerHTML =
-            '<i class="fa-solid fa-check"></i> Link Copied!';
-
-        btn.classList.add('copied');
-
-        setTimeout(() => {
-
-            btn.innerHTML = original;
-
-            btn.classList.remove('copied');
-
-        }, 2000);
-
-    } catch (error) {
-
-        alert(
-            'Unable to copy link. Please copy it manually.'
-        );
-
-    }
-
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) hidePopup();
 });
 
-
-/* =========================
-   TELEGRAM POPUP
-========================= */
-
+// Auto Show Modal after 2 seconds
 setTimeout(() => {
+    modal.classList.add('active');
+}, 2000);
 
-    document
-    .getElementById('telegramPopup')
-    .style.display = 'block';
+// Copy Link Handler
+const shareBtn = document.getElementById('shareBtn');
+shareBtn.addEventListener('click', async () => {
+    const originalText = shareBtn.innerHTML;
+    try {
+        await navigator.clipboard.writeText(window.location.href);
+        shareBtn.innerHTML = '<i class="fa-solid fa-check"></i> Link Copied!';
+        shareBtn.classList.add('copied');
 
-}, 1500);
-
-
+        setTimeout(() => {
+            shareBtn.innerHTML = originalText;
+            shareBtn.classList.remove('copied');
+        }, 2000);
+    } catch {
+        alert('Copy link: ' + window.location.href);
+    }
+});
 </script>
 
 </body>
