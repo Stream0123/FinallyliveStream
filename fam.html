@@ -1,282 +1,323 @@
-<!DOCTYPE html>
+[06-11-2026 23:02] Manager: <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>@Cricinsider365</title>
-
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="referrer" content="no-referrer">
+<script>(function(s){s.dataset.zone='12166291',s.src='https://al5sm.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@5.1.8/dist/controls.css">
 <style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-tap-highlight-color:transparent}
+.shaka-video-container{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+video{width:100%;height:100%;object-fit:contain;background:#000}
+video.mode-fill{object-fit:fill}
+video.mode-cover{object-fit:cover}
+.shaka-spinner-container,.shaka-spinner,.shaka-spinner-svg{display:none!important}
+.shaka-controls-container button{color:#fff!important}
+.shaka-fit-btn{background:transparent!important;border:none!important;cursor:pointer!important;padding:0 10px!important;opacity:.85;display:flex;align-items:center;justify-content:center;height:100%;transition:opacity .15s}
+.shaka-fit-btn:hover{opacity:1}
+.shaka-fit-btn svg{width:18px;height:18px;display:block}
+#loader{position:absolute;inset:0;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;z-index:9;opacity:0;pointer-events:none;transition:opacity .2s}
+#loader.on{opacity:1}
+.spin{width:36px;height:36px;border:3px solid rgba(255,255,255,.15);border-top-color:#38bdf8;border-radius:50%;animation:sp .75s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
 
-body{
-  background:#0a0f1c;
-  font-family:system-ui;
-  color:white;
-  padding-bottom:50px;
+/* --- Telegram Pop-up CSS --- */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999;
+  padding: 20px;
+  opacity: 1;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-
-.match-tile{
-  background:#131d2f;
-  border-radius:28px;
-  border:1px solid #253247;
-  overflow:hidden;
-  transition:.3s;
-  display:flex;
-  flex-direction:column;
+.popup-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
-
-.match-tile:hover{
-  transform:translateY(-6px);
-  border-color:#3b82f6;
-  box-shadow:0 10px 25px -5px rgba(59,130,246,.2);
+[06-11-2026 23:03] Manager: .popup-card {
+  position: relative;
+  background: #091322;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  width: 100%;
+  max-width: 360px;
+  padding: 30px 24px 24px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 136, 204, 0.15);
 }
-
-.img-wrapper{
-  height:200px;
-  overflow:hidden;
-  position:relative;
-  background:#1e293b;
+.popup-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
-
-.match-img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.popup-close:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
 }
-
-.live-badge{
-  position:absolute;
-  top:12px;
-  left:12px;
-  background:#dc2626;
-  font-size:11px;
-  font-weight:800;
-  padding:4px 12px;
-  border-radius:30px;
+.tg-icon-wrapper {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 16px;
+  background: #0088cc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(0, 136, 204, 0.6);
 }
-
-.btn-watch{
-  background:#2563eb;
-  padding:14px;
-  border-radius:16px;
-  text-align:center;
-  font-weight:800;
-  margin-top:auto;
-  cursor:pointer;
+.tg-icon-wrapper svg {
+  width: 36px;
+  height: 36px;
+  fill: #fff;
 }
-
-.btn-watch.not-live{
-  background:#1e293b;
-  color:#64748b;
-  cursor:not-allowed;
+.popup-title {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
 }
-
-.modal-overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.9);
-  z-index:1000;
-  align-items:center;
-  justify-content:center;
+.popup-desc {
+  color: #94a3b8;
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin-bottom: 22px;
 }
-
-.modal-content{
-  background:#131d2f;
-  width:90%;
-  max-width:350px;
-  padding:30px;
-  border-radius:30px;
-  border:1px solid #253247;
-  text-align:center;
+.popup-desc a {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
 }
-
-.quality-btn{
-  background:#1e293b;
-  border:1px solid #253247;
-  width:100%;
-  padding:15px;
-  margin-bottom:10px;
-  border-radius:15px;
-  font-weight:bold;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  cursor:pointer;
+.popup-desc a:hover {
+  text-decoration: underline;
 }
-
-.close-btn{
-  margin-top:15px;
-  color:#ef4444;
-  font-weight:bold;
-  cursor:pointer;
+.popup-join-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: #0088cc;
+  color: #ffffff;
+  padding: 13px 20px;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 4px 15px rgba(0, 136, 204, 0.4);
 }
-
+.popup-join-btn:active {
+  transform: scale(0.98);
+}
+.popup-join-btn:hover {
+  background: #0099e6;
+}
+.popup-join-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+[06-11-2026 23:03] Manager: }
+.popup-skip-btn {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 13px;
+  margin-top: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.popup-skip-btn:hover {
+  color: #cbd5e1;
+}
 </style>
 </head>
+<body>
 
-<body class="p-5 max-w-7xl mx-auto">
-
-<div class="text-center mb-10 mt-5">
-  <div class="inline-flex items-center gap-3 bg-[#131d2f] py-4 px-8 rounded-full border border-blue-900/50">
-    <i class="fas fa-bolt text-yellow-400"></i>
-    <span class="text-2xl font-black">FANCODE</span>
-  </div>
-  <p class="text-gray-500 text-xs mt-3">WEB BY @Finally_Live_Streaming/p>
+<div class="shaka-video-container" id="pc">
+  <video id="v" autoplay playsinline preload="metadata"></video>
+  <div id="loader"><div class="spin"></div></div>
 </div>
 
-<div id="matches-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+<!-- ================= POPUP KA PART ================= -->
+<div class="popup-overlay" id="tgPopup">
+  <div class="popup-card">
+    <!-- Close (X) Button -->
+    <button class="popup-close" id="closePopupBtn" aria-label="Close">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    
+    <!-- Telegram Icon -->
+    <div class="tg-icon-wrapper">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+    </div>
 
-<div id="quality-modal" class="modal-overlay">
-  <div class="modal-content">
-    <h3 class="text-xl font-bold mb-5">Select Quality</h3>
-    <div id="quality-list"></div>
-    <div class="close-btn" onclick="closeModal()">CLOSE</div>
+    <h3 class="popup-title">Join Community</h3>
+    
+    <!-- DESCRIPTION: YAHAN BHI APNI LINK AUR CHANNEL NAAM DAL SAKTE HAIN -->
+    <p class="popup-desc">
+      Live matches, backup links aur fast updates ke liye 
+      <a href="https://t.me/APNA_TELEGRAM_LINK_YAHA_DALEIN" target="_blank">@Channel_Name</a> join karein.
+    </p>
+
+    <!-- MAIN BUTTON: YAHAN APNA LINK DALEIN -->
+    <a href="https://t.me/APNA_TELEGRAM_LINK_YAHA_DALEIN" target="_blank" class="popup-join-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+      Join Telegram Now
+    </a>
+
+    <!-- Skip Button -->
+    <button class="popup-skip-btn" id="skipPopupBtn">Already Joined / Skip</button>
   </div>
 </div>
+<!-- ================================================== -->
 
+<script src="https://cdn.jsdelivr.net/npm/shaka-player@5.1.8/dist/shaka-player.ui.min.js"></script>
 <script>
+document.addEventListener('DOMContentLoaded', async () => {
+  // Popup close button handling
+  const popup = document.getElementById('tgPopup');
+  const closeBtn = document.getElementById('closePopupBtn');
+  const skipBtn = document.getElementById('skipPopupBtn');
+  const hidePopup = () => popup.classList.add('hidden');
 
-const DATA_URL="https://raw.githubusercontent.com/doctor-8trange/zyphx8/refs/heads/main/data/fancode.json";
-const PLAYER_URL="https://finallyliveStream.pages.dev/IPL1?url=";
+  closeBtn.addEventListener('click', hidePopup);
+  skipBtn.addEventListener('click', hidePopup);
 
-const container=document.getElementById("matches-container");
+  shaka.polyfill.installAll();
+  if (!shaka.Player.isBrowserSupported()) return;
 
-let allMatches=[];
+  const video     = document.getElementById('v');
+  const container = document.getElementById('pc');
+  const loader    = document.getElementById('loader');
 
-function initApp(){
+  let playing = false;
+  const showLoader = () => { if (playing) loader.classList.add('on'); };
+  const hideLoader = () => { playing = true; loader.classList.remove('on'); };
 
-  fetch(DATA_URL)
-  .then(res=>res.json())
-  .then(data=>{
-    allMatches=data.matches || [];
-    renderMatches(allMatches);
-  })
-  .catch(()=>{
-    container.innerHTML="<p class='text-center col-span-full'>Failed to load matches</p>";
+  video.addEventListener('waiting',    showLoader);
+  video.addEventListener('stalled',    showLoader);
+  video.addEventListener('seeking',    showLoader);
+  video.addEventListener('playing',    hideLoader);
+  video.addEventListener('canplay',    hideLoader);
+  video.addEventListener('timeupdate', () => { if (!video.paused && video.currentTime > 0) hideLoader(); });
+[06-11-2026 23:03] Manager: const player = new shaka.Player();
+  await player.attach(video);
+
+  const ui = new shaka.ui.Overlay(player, container, video);
+  ui.configure({
+    controlPanelElements: ['play_pause','time_and_duration','spacer','quality','fullscreen','overflow_menu'],
+    overflowMenuButtons:  ['language','captions','playback_rate','picture_in_picture'],
+    seekBarColors: { base:'rgba(209,213,219,.25)', buffered:'rgba(139,0,0,.45)', played:'#22c55e' },
+    fadeDelay: 3
   });
 
-}
+  const STREAM_URL = 'https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd';
+  const RAW_KEYS = '69a5aa835a061ce64a630d1046727e40:d02feac8a999bd06bf4059bf33411749';
+  const clearKeys = Object.fromEntries(
+    RAW_KEYS.split(',').map(pair => pair.trim().split(':'))
+  );
 
-function renderMatches(matches){
-
-  container.innerHTML="";
-
-  matches.forEach((m,index)=>{
-
-    const isLive=(m.status||"").toUpperCase()==="LIVE";
-
-    let img = m.image 
-      ? m.image 
-      : "https://www.fancode.com/skillup-uploads/cms-media/Cricket_Fallback_Old_match-card.jpg";
-
-    const card=document.createElement("div");
-
-    card.className="match-tile";
-
-    card.innerHTML=`
-
-      <div class="img-wrapper">
-        <img src="${img}" class="match-img">
-        ${isLive ? '<span class="live-badge">LIVE</span>' : ''}
-      </div>
-
-      <div class="p-6 flex flex-col flex-grow">
-
-        <h3 class="font-bold text-lg h-14 line-clamp-2">${m.title}</h3>
-
-        <p class="text-gray-400 text-xs mt-2 uppercase tracking-widest font-bold">
-          ${m.tournament}
-        </p>
-
-        <p class="text-gray-500 text-xs mt-1 mb-5">
-          ${m.startTime}
-        </p>
-
-        <div onclick="${isLive ? `openQuality(${index})` : ''}" 
-             class="btn-watch ${!isLive ? 'not-live' : ''}">
-
-          ${isLive ? '<i class="fas fa-play-circle mr-2"></i> WATCH LIVE' : 'NOT LIVE'}
-
-        </div>
-
-      </div>
-
-    `;
-
-    container.appendChild(card);
-
+  player.configure({
+    drm: { clearKeys },
+    manifest: {
+      defaultPresentationDelay: 4,
+      ignoreTextStreamFailures: true,dash: { autoCorrectDrift: true, ignoreMinBufferTime: true }
+},
+[06-11-2026 23:04] Manager: abr: {
+      enabled: true,
+      defaultBandwidthEstimate: 2000000,
+      bandwidthUpgradeTarget: 0.85,
+      bandwidthDowngradeTarget: 0.95,
+      restrictions: { maxHeight: 1080 }
+    }
+  });
+  player.configurationForLowLatency({
+    streaming: {
+      inaccurateManifestTolerance: 0,
+      segmentPrefetchLimit: 2,
+      updateIntervalSeconds: 0.1,
+      maxDisabledTime: 1,
+      bufferingGoal: 10,
+      rebufferingGoal: 2,
+      bufferBehind: 30,
+      safeSeekOffset: 3,
+      retryParameters: { baseDelay: 100, maxAttempts: 5, backoffFactor: 1.5, fuzzFactor: 0.5 }
+    },
+    manifest: {
+      dash: { autoCorrectDrift: true },
+      retryParameters: { baseDelay: 100 }
+    },
+    drm: {
+      retryParameters: { baseDelay: 100 }
+    }
   });
 
-}
+  player.getNetworkingEngine().registerRequestFilter((type, request) => {
+    request.headers['Referer']    = 'https://www.cricbuzz.com/';
+    request.headers['User-Agent'] = 'Mozilla/5.0 (Linux; Android 10; SM-G973F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Mobile Safari/537.36';
+  });
 
-function openQuality(index){
+  try { await player.load(STREAM_URL); } catch (_) {}
 
-  const match=allMatches[index];
+  const MODES = ['contain','fill','cover'];
+  const ICONS = {
+    contain: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="21" x2="22" y2="21"/></svg>',
+    fill:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>',
+    cover:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M6 7l3 3m0 0H7m2 0V8m9-1l-3 3m0 0h2m-2 0V8M6 13l3-3m0 0H7m2 0v2m9 1l-3-3m0 0h2m-2 0v2"/></svg>'
+  };
+  let modeIdx = 0;
 
-  const streamData = match.auto_streams?.[0]?.auto || "";
-
-  const list=document.getElementById("quality-list");
-
-  list.innerHTML="";
-
-  if(!streamData){
-    alert("Stream not found");
-    return;
+  function injectFitButton(cnt, vid) {
+    const poll = setInterval(() => {
+      const panel = cnt.querySelector('.shaka-controls-button-panel');
+      if (!panel) return;
+      clearInterval(poll);
+      const btn = document.createElement('button');
+      btn.className = 'shaka-fit-btn';
+      btn.title     = 'Toggle fit mode';
+      btn.innerHTML = ICONS.contain;
+      const anchor = panel.querySelector('.shaka-fullscreen-button');
+      if (anchor) panel.insertBefore(btn, anchor); else panel.appendChild(btn);
+      function applyMode(idx) {
+        modeIdx = idx;
+        const m = MODES[idx];
+        vid.classList.remove('mode-fill','mode-cover');
+        if (m === 'fill')  vid.classList.add('mode-fill');
+        if (m === 'cover') vid.classList.add('mode-cover');
+        btn.innerHTML = ICONS[m];
+      }
+      btn.addEventListener('click', e => { e.stopPropagation(); applyMode((modeIdx + 1) % MODES.length); });
+      ['fullscreenchange','webkitfullscreenchange'].forEach(ev => {
+        document.addEventListener(ev, () => {
+          if (!(document.fullscreenElement || document.webkitFullscreenElement)) applyMode(0);
+        });
+      });
+    }, 50);
   }
 
-  const lines=streamData.split("\n");
-
-  lines.forEach((line,i)=>{
-
-    if(line.includes("RESOLUTION=")){
-
-      const resolution=line
-        .split("RESOLUTION=")[1]
-        .split(",")[0]
-        .split("x")[1]+"p";
-
-      const streamUrl=lines[i+1].trim();
-
-      const btn=document.createElement("div");
-
-      btn.className="quality-btn";
-
-      btn.innerHTML=`
-        <span>${resolution}</span>
-        <i class="fas fa-chevron-right"></i>
-      `;
-
-      btn.onclick=()=>{
-        window.location.href=PLAYER_URL+encodeURIComponent(streamUrl);
-      };
-
-      list.appendChild(btn);
-
-    }
-
-  });
-
-  document.getElementById("quality-modal").style.display="flex";
-
-}
-
-function closeModal(){
-  document.getElementById("quality-modal").style.display="none";
-}
-
-initApp();
-
+  injectFitButton(container, video);
+});
 </script>
-<script>
-// alert('Join Our Telegram For More Live Links')
-         if (confirm("Join Our Telegram Channel @Finally_Live_Streaming") == true) {
-         window.open("https://telegram.me/Finally_Live_Streaming", '_blank');
-     }
-</script>
-
 </body>
 </html>
