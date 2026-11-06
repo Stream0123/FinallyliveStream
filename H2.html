@@ -1,26 +1,22 @@
- <!DOCTYPE html>
+[06-11-2026 19:21] Manager: <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-<title>Live Streaming - TG @FinallyLive</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@4.3.4/dist/controls.css">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<title>TG_@FinallyLive</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
 :root {
-    --bg-color: #05070e;
-    --primary: #6366f1;
-    --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-    --telegram: #0088cc;
-    --telegram-gradient: linear-gradient(135deg, #00a8ff 0%, #0077b6 100%);
-    --card-bg: rgba(18, 24, 38, 0.7);
-    --border-color: rgba(255, 255, 255, 0.08);
+    --bg-color: #070b19;
+    --card-bg: #0f172a;
+    --card-border: rgba(255, 255, 255, 0.08);
+    --primary-blue: #0088cc;
+    --primary-purple: #4f46e5;
     --text-white: #f8fafc;
-    --text-dim: #94a3b8;
-    --live-red: #ef4444;
+    --text-muted: #94a3b8;
 }
 
 * {
@@ -31,226 +27,127 @@
 }
 
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     background-color: var(--bg-color);
-    background-image: 
-        radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 100% 100%, rgba(147, 51, 234, 0.08) 0%, transparent 40%);
     color: var(--text-white);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    min-height: 100vh;
-    padding: 12px;
+    padding: 14px 12px;
 }
 
 .container {
     width: 100%;
-    max-width: 760px;
+    max-width: 600px;
     margin: 0 auto;
-    padding-bottom: 2rem;
 }
 
 /* =========================
-   TOP LIVE BAR
+   TOP STATUS BADGE
 ========================= */
-.stream-header {
+.top-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 6px 4px 12px 4px;
-}
-
-.live-badge-group {
-    display: flex;
     align-items: center;
-    gap: 8px;
+    margin-bottom: 12px;
+    padding: 0 4px;
 }
 
-.badge-live {
-    background: rgba(239, 68, 68, 0.15);
-    border: 1px solid rgba(239, 68, 68, 0.4);
-    color: #fca5a5;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 3px 10px;
-    border-radius: 999px;
-    display: flex;
+.live-indicator {
+    display: inline-flex;
     align-items: center;
     gap: 6px;
-    text-transform: uppercase;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #ef4444;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
     letter-spacing: 0.5px;
 }
 
-.badge-live::before {
-    content: '';
-    width: 7px;
-    height: 7px;
-    background: var(--live-red);
+.live-dot {
+    width: 6px;
+    height: 6px;
+    background: #ef4444;
     border-radius: 50%;
-    box-shadow: 0 0 8px var(--live-red);
-    animation: livePulse 1.4s infinite;
+    box-shadow: 0 0 6px #ef4444;
 }
 
-@keyframes livePulse {
-    0% { transform: scale(0.95); opacity: 0.6; }
-    50% { transform: scale(1.3); opacity: 1; }
-    100% { transform: scale(0.95); opacity: 0.6; }
-}
-
-.live-viewers {
+.channel-tag {
     font-size: 0.8rem;
-    color: var(--text-dim);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.quality-tag {
-    font-size: 0.75rem;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--border-color);
-    padding: 2px 8px;
-    border-radius: 6px;
+    font-weight: 600;
     color: #38bdf8;
-    font-weight: 700;
 }
 
 /* =========================
-   PLAYER WRAPPER
+   VIDEO PLAYER
 ========================= */
 .player-wrapper {
-    position: relative;
-    border-radius: 20px;
-    padding: 1px;
-    background: linear-gradient(180deg, rgba(99, 102, 241, 0.3) 0%, rgba(255, 255, 255, 0.05) 100%);
-    box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 30px -10px rgba(99, 102, 241, 0.25);
-    overflow: hidden;
-}
-
-#player-container {
     width: 100%;
     aspect-ratio: 16/9;
     background-color: #000;
-    border-radius: 19px;
+    border-radius: 16px;
     overflow: hidden;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7);
+}
+
+.player-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
 }
 
 /* =========================
-   QUICK ACTION BUTTONS
+   ACTION BUTTONS
 ========================= */
-.quick-actions {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 50px;
+.buttons-group {
+    display: flex;
+    flex-direction: column;
     gap: 10px;
     margin-top: 14px;
 }
 
 .action-btn {
+    width: 100%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    padding: 12px 14px;
-    border-radius: 14px;
-    font-size: 0.9rem;
-    font-weight: 700;
+    gap: 10px;
+    padding: 13px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 12px;
     text-decoration: none;
-    cursor: pointer;
     border: none;
-    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    white-space: nowrap;
-}
-[06-11-2026 19:04] Manager: .action-btn:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
+    cursor: pointer;
+    transition: transform 0.15s ease, filter 0.15s ease;
 }
 
 .action-btn:active {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
-[06-11-2026 19:06] Manager: .action-btn.primary-tg {
-    background: var(--telegram-gradient);
+
+.telegram-btn {
+    background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
     color: #ffffff;
-    box-shadow: 0 6px 18px -4px rgba(0, 168, 255, 0.45);
+    box-shadow: 0 6px 18px rgba(0, 136, 204, 0.35);
 }
 
-.action-btn.secondary-share {
-    background: rgba(255, 255, 255, 0.07);
+.share-btn {
+    background: #0f172a;
     color: var(--text-white);
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-.action-btn.secondary-share:hover {
-    background: rgba(255, 255, 255, 0.12);
-}
-
-.action-btn.icon-only {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid var(--border-color);
-    color: var(--text-dim);
-    padding: 0;
-    font-size: 1rem;
-}
-
-.action-btn.icon-only:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.12);
-}
-
-.action-btn.copied {
-    background: #10b981 !important;
-    color: white !important;
-    border-color: #10b981 !important;
-}
-
-/* =========================
-   STREAM INFO CARD
-========================= */
-.stream-info-box {
-    margin-top: 14px;
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    backdrop-filter: blur(12px);
-    border-radius: 16px;
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.stream-details h3 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: #fff;
-}
-
-.stream-details p {
-    font-size: 0.78rem;
-    color: var(--text-dim);
-    margin-top: 2px;
-}
-
-.refresh-stream-btn {
-    background: rgba(99, 102, 241, 0.12);
-    border: 1px solid rgba(99, 102, 241, 0.25);
-    color: #a5b4fc;
-    font-size: 0.78rem;
-    font-weight: 600;
-    padding: 8px 12px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: 0.2s;
-}
-
-.refresh-stream-btn:hover {
-    background: rgba(99, 102, 241, 0.25);
-    color: #fff;
+.share-btn.copied {
+    background: #10b981;
+    border-color: #10b981;
+    color: #ffffff;
 }
 
 /* Back Link */
@@ -259,157 +156,144 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    margin: 20px auto 0;
-    color: var(--text-dim);
-    text-decoration: none;
+    margin-top: 22px;
+    color: var(--text-muted);
     font-size: 0.85rem;
-    font-weight: 600;
-    transition: 0.2s;
+    text-decoration: none;
+    font-weight: 500;
 }
 
 .back-link:hover {
-    color: #fff;
+    color: var(--text-white);
 }
-[06-11-2026 19:07] Manager: /* =========================
-   MODAL POPUP
-========================= */
+[06-11-2026 19:22] Manager: /* ====================================
+   FIXED MODAL POPUP (CENTER ALIGNED)
+==================================== */
 .modal-overlay {
     position: fixed;
-    inset: 0;
-    background: rgba(2, 4, 10, 0.82);
-    backdrop-filter: blur(10px);
-    display: flex;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(4, 7, 18, 0.78);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: none;
     align-items: center;
     justify-content: center;
-    z-index: 99999;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    padding: 16px;
+    z-index: 999999;
+    padding: 20px;
 }
 
 .modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
+    display: flex;
 }
 
-.telegram-popup {
-    background: #0f1629;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.modal-card {
+    position: relative;
     width: 100%;
-    max-width: 360px;
-    border-radius: 26px;
-    padding: 24px 20px;
+    max-width: 320px;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 22px;
+    padding: 24px 20px 20px;
     text-align: center;
-    position: relative;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 136, 204, 0.2);
-    transform: scale(0.9) translateY(10px);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 25px rgba(0, 136, 204, 0.3);
+    animation: modalScale 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.modal-overlay.active .telegram-popup {
-    transform: scale(1) translateY(0);
+@keyframes modalScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
-.close-btn {
+.modal-close-icon {
     position: absolute;
-    top: 14px;
-    right: 14px;
-    background: rgba(255, 255, 255, 0.05);
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
     border: none;
-    color: var(--text-dim);
-    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    width: 32px;
-    height: 32px;
+}
+
+.modal-tg-logo {
+    width: 62px;
+    height: 62px;
     border-radius: 50%;
+    background: linear-gradient(135deg, #0088cc, #00a8ff);
+    color: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 32px;
+    margin: 4px auto 14px auto;
+    box-shadow: 0 8px 20px rgba(0, 136, 204, 0.4);
 }
 
-.popup-icon-wrapper {
-    position: relative;
-    width: 72px;
-    height: 72px;
-    margin: 0 auto 16px;
+.modal-card h2 {
+    font-size: 1.22rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 6px;
 }
 
-.popup-icon {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: var(--telegram-gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 34px;
-    color: #fff;
-    box-shadow: 0 10px 25px rgba(0, 168, 255, 0.4);
-}
-
-.telegram-popup h2 {
-    font-size: 1.3rem;
-    font-weight: 800;
-    color: #fff;
-}
-
-.telegram-popup p {
-    font-size: 0.86rem;
-    color: var(--text-dim);
+.modal-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
     line-height: 1.45;
-    margin: 8px 0 20px;
+    margin-bottom: 18px;
 }
 
-.telegram-popup p span {
+.modal-card p span {
     color: #38bdf8;
     font-weight: 600;
 }
 
-.popup-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
 .popup-join-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0088cc 0%, #0077b5 100%);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    width: 100%;
-    padding: 13px;
-    border-radius: 14px;
-    background: var(--telegram-gradient);
-    color: #fff;
-    font-weight: 700;
-    font-size: 0.95rem;
-    text-decoration: none;
-    box-shadow: 0 8px 20px -3px rgba(0, 168, 255, 0.5);
-}
-
-.popup-close-action {
-    background: transparent;
+    box-shadow: 0 4px 14px rgba(0, 136, 204, 0.35);
     border: none;
-    color: var(--text-dim);
-    padding: 10px;
-    font-size: 0.82rem;
     cursor: pointer;
+}
+
+.popup-dismiss-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.8rem;
     font-weight: 600;
+    margin-top: 12px;
+    cursor: pointer;
+    padding: 6px;
 }
 
-.popup-close-action:hover {
-    color: #fff;
-}
-
-/* Responsive adjustments */
-@media (max-width: 480px) {
-    .quick-actions {
-        grid-template-columns: 1fr 1fr;
-    }
-    .action-btn.icon-only {
-        display: none;
-    }
+.popup-dismiss-btn:hover {
+    color: #ffffff;
 }
 </style>
 </head>
@@ -417,133 +301,91 @@ body {
 <body>
 
 <main class="container">
-    <!-- Stream Live Header -->
-    <div class="stream-header">
-        <div class="live-badge-group">
-            <div class="badge-live">Live</div>
-            <div class="live-viewers">
-                <i class="fa-solid fa-user-group" style="font-size: 0.75rem;"></i>
-                <span id="viewersCount">1,480</span> watching
-            </div>
+    <!-- Header -->
+    <div class="top-header">
+        <div class="live-indicator">
+            <span class="live-dot"></span> LIVE STREAM
         </div>
-        <div class="quality-tag">1080p 60fps</div>
+        <div class="channel-tag">@FinallyLive</div>
     </div>
 
-    <!-- Video Player with Ambient Glow -->
+    <!-- Video Box -->
     <div class="player-wrapper">
-        <div id="player-container">
-            <iframe
-                id="streamFrame"
-                src="https://finallylivestream.pages.dev/willow"
-                style="width: 100%; height: 100%; border: 0;"
-                allow="encrypted-media; autoplay"
-                allowfullscreen>
-            </iframe>
-        </div>
+        <iframe
+            src="https://finallylivestream.pages.dev/willow"
+            allow="encrypted-media; autoplay"
+            allowfullscreen>
+        </iframe>
     </div>
-
-    <!-- Smart Action Row -->
-    <div class="quick-actions">
- <a href="https://t.me/Finally_Live_Streaming" target="_blank" class="action-btn primary-tg">
-            <i class="fa-brands fa-telegram"></i> Join Updates
+[06-11-2026 19:22] Manager: <!-- Quick Buttons -->
+    <div class="buttons-group">
+        <a href="https://t.me/Finally_Live_Streaming" target="_blank" class="action-btn telegram-btn">
+            <i class="fa-brands fa-telegram"></i> Click Here To Join Telegram
         </a>
-        <button class="action-btn secondary-share" id="shareButton">
-            <i class="fa-solid fa-share-nodes"></i> Share
-        </button>
-        <button class="action-btn icon-only" title="Reload Player" onclick="reloadPlayer()">
-            <i class="fa-solid fa-rotate-right"></i>
+
+        <button class="action-btn share-btn" id="shareBtn">
+            <i class="fa-solid fa-share-nodes"></i> Share Stream Link
         </button>
     </div>
 
-    <!-- Live Stream Information Banner -->
-    <div class="stream-info-box">
-        <div class="stream-details">
-            <h3>Finally Live HD Stream</h3>
-            <p>If video buffers or stops, tap reload</p>
-        </div>
-        <button class="refresh-stream-btn" onclick="reloadPlayer()">
-            <i class="fa-solid fa-rotate"></i> Reload
-        </button>
-    </div>
-<!-- Back to Streams -->
     <a href="#" class="back-link">
         <i class="fa-solid fa-arrow-left"></i> Back to All Streams
     </a>
 </main>
 
-<!-- Modern Telegram Popup -->
+<!-- Centered Telegram Popup -->
 <div class="modal-overlay" id="telegramModal">
-    <div class="telegram-popup">
-        <button class="close-btn" id="closeModalBtn" aria-label="Close">
+    <div class="modal-card">
+        <button class="modal-close-icon" id="closeModal">
             <i class="fa-solid fa-xmark"></i>
         </button>
 
-        <div class="popup-icon-wrapper">
-            <div class="popup-icon">
-                <i class="fa-brands fa-telegram"></i>
-            </div>
+        <div class="modal-tg-logo">
+            <i class="fa-brands fa-telegram"></i>
         </div>
 
-        <h2>Never Miss a Match!</h2>
-        <p>Backup links, match scores, aur live events sabse pehle paane ke liye <span>@FinallyLive</span> join karein.</p>
+        <h2>Join Community</h2>
+        <p>Live matches, backup links aur fast updates ke liye <span>@FinallyLive</span> join karein.</p>
 
-        <div class="popup-actions">
-            <a href="https://t.me/Finally_Live_Streaming" target="_blank" class="popup-join-btn">
-                <i class="fa-brands fa-telegram"></i> Join Telegram Now
-            </a>
-            <button class="popup-close-action" id="alreadyJoinedBtn">
-                I'm already joined
-            </button>
-        </div>
+        <a href="https://t.me/Finally_Live_Streaming" target="_blank" class="popup-join-btn">
+            <i class="fa-brands fa-telegram"></i> Join Telegram Now
+        </a>
+
+        <button class="popup-dismiss-btn" id="dismissModal">
+            Already Joined / Skip
+        </button>
     </div>
 </div>
 
 <script>
-// Dynamic Viewers Simulator (Thoda live touch dene ke liye)
-let viewers = 1480;
-setInterval(() => {
-    const diff = Math.floor(Math.random() * 11) - 5;
-    viewers += diff;
-    const el = document.getElementById('viewersCount');
-    if (el) el.textContent = viewers.toLocaleString();
-}, 4000);
+// Modal Controls
+const modal = document.getElementById('telegramModal');
+const closeModal = document.getElementById('closeModal');
+const dismissModal = document.getElementById('dismissModal');
 
-// Reload stream function
-function reloadPlayer() {
-    const frame = document.getElementById('streamFrame');
-    if(frame) {
-        const src = frame.src;
-        frame.src = '';
-        setTimeout(() => { frame.src = src; }, 150);
-    }
+function hidePopup() {
+    modal.classList.remove('active');
 }
 
-// Modal handling
-const modal = document.getElementById('telegramModal');
-const closeModalBtn = document.getElementById('closeModalBtn');
-const alreadyJoinedBtn = document.getElementById('alreadyJoinedBtn');
+closeModal.addEventListener('click', hidePopup);
+dismissModal.addEventListener('click', hidePopup);
 
-const hideModal = () => modal.classList.remove('active');
-
-closeModalBtn.addEventListener('click', hideModal);
-alreadyJoinedBtn.addEventListener('click', hideModal);
 modal.addEventListener('click', (e) => {
-    if (e.target === modal) hideModal();
+    if (e.target === modal) hidePopup();
 });
 
-// Popup show after 2.5 seconds
+// Auto Show Modal after 2 seconds
 setTimeout(() => {
     modal.classList.add('active');
 }, 2000);
 
-// Share / Copy Link handling
-const shareBtn = document.getElementById('shareButton');
+// Copy Link Handler
+const shareBtn = document.getElementById('shareBtn');
 shareBtn.addEventListener('click', async () => {
     const originalText = shareBtn.innerHTML;
-
     try {
         await navigator.clipboard.writeText(window.location.href);
-        shareBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+        shareBtn.innerHTML = '<i class="fa-solid fa-check"></i> Link Copied!';
         shareBtn.classList.add('copied');
 
         setTimeout(() => {
@@ -551,7 +393,7 @@ shareBtn.addEventListener('click', async () => {
             shareBtn.classList.remove('copied');
         }, 2000);
     } catch {
-        alert('Stream URL: ' + window.location.href);
+        alert('Copy link: ' + window.location.href);
     }
 });
 </script>
