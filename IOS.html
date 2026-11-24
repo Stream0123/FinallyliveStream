@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <meta name="theme-color" content="#000000">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shaka-player@5.1.10/dist/controls.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/shaka-player@5.1.10/dist/shaka-player.ui.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html, body { width: 100%; height: 100%; background: #000; font-family: 'Sora', sans-serif; overflow: hidden; }
+        .shaka-video-container { position: relative; width: 100%; height: 100%; }
+        .shaka-video { width: 100%; height: 100%; }
+        .play-overlay {
+            position: absolute; inset: 0; z-index: 2000; display: flex; align-items: center; justify-content: center;
+            background: rgba(0, 0, 0, 0.65); cursor: pointer; border: none; width: 100%; height: 100%;
+            color: #fff; font-family: inherit;
+        }
+        .play-overlay[hidden] { display: none; }
+        .play-overlay span {
+            font-size: 15px; font-weight: 800; letter-spacing: 1px; padding: 14px 30px;
+            border-radius: 999px; background: #fff; color: #000;
+        }
+        .status-overlay {
+            position: absolute; inset: 0; z-index: 1999; display: flex; align-items: center; justify-content: center;
+            background: rgba(0, 0, 0, 0.85); color: #fff; font-family: inherit; font-size: 14px; font-weight: 600;
+            letter-spacing: 1px; text-align: center; padding: 20px;
+        }
+        .status-overlay[hidden] { display: none; }
+    </style>
+</head>
+
+<body>
+
+    <main id="videoContainer" class="shaka-video-container">
+        <video
+            id="videoPlayer"
+            class="shaka-video"
+            playsinline
+            webkit-playsinline
+            x5-playsinline
+            autoplay
+            muted
+        ></video>
+
+        <div id="statusOverlay" class="status-overlay">LOADING STREAM...</div>
+
+        <button type="button" id="playOverlay" class="play-overlay" hidden>
+            <span>▶ TAP TO PLAY</span>
+        </button>
+    </main>
+
+    <script>
+        const STREAM_URL = "https://liveakdai.slivcdn.com/hls/live/2119921/cricodi_2411/HIN/std_lrh-800300010.m3u8?hdnea=exp=1795540931~acl=/*~id=42533442359826935436253248685876~hmac=87ea8943906f9a403a1ee7d1dd9ff17f83fd0eb43341967a8f9707fc56d22b8b";
+
+        const videoElement = document.getElementById("videoPlayer");
+        const videoContainer = document.getElementById("videoContainer");
+        const playOverlay = document.getElementById("playOverlay");
+        const statusOverlay = document.getElementById("statusOverlay");
+
+        let player;
+
+        function showPlayOverlay() { playOverlay.hidden = false; }
+        function hidePlayOverlay() { playOverlay.hidden = true; }
+        function showStatus(text) { statusOverlay.textContent = text; statusOverlay.hidden = false; }
+        function hideStatus() { statusOverlay.hidden = true; }
+
+        async function safePlay() {
+            try {
+                await videoElement.play();
+                hidePlayOverlay();
+            } catch (error) {
+                showPlayOverlay();
+            }
+        }
+
+        playOverlay.addEventListener("click", async () => {
+            hidePlayOverlay();
+            try { await videoElement.play(); } catch (error) { showPlayOverlay(); }
+        });
+
+        videoElement.addEventListener("playing", () => {
+            hidePlayOverlay();
+            hideStatus();
+        });
+
+        function extractToken(streamUrl) {
+            const match = streamUrl.match(/[?&](hdnea|hdnts|__hdnea__)=([^&]+)/);
+            if (!match) return null;
+            return { name: match[1], value: match[2] };
+        }
+
+        function applyAkamaiToken(streamUrl) {
+            const token = extractToken(streamUrl);
+            if (!token) return;
+
+            const networkingEngine = player.getNetworkingEngine();
+            if (!networkingEngine) return;
+
+            networkingEngine.registerRequestFilter((type, request) => {
+                const uri = request.uris && request.uris[0];
+                if (!uri) return;
+                if (uri.includes(token.name + "=")) return;
+                request.uris[0] = uri + (uri.includes("?") ? "&" : "?") + token.name + "=" + token.value;
+            });
+        }
+
+        async function loadShakaStream(streamUrl) {
+            videoElement.removeAttribute("src");
+            videoElement.load();
+            await player.unload();
+            player.getNetworkingEngine()?.clearAllRequestFilters();
+            applyAkamaiToken(streamUrl);
+            await player.load(streamUrl);
+            await safePlay();
+        }
+
+        async function loadNativeStream(streamUrl) {
+            await player.unload();
+            player.getNetworkingEngine()?.clearAllRequestFilters();
+            videoElement.removeAttribute("src");
+            videoElement.src = streamUrl;
+            videoElement.load();
+            await safePlay();
+        }
+
+        async function loadStream() {
+            const streamUrl = String(STREAM_URL || "").trim();
+
+            if (!streamUrl) {
+                showStatus("NO STREAM LINK PROVIDED");
+                return;
+            }
+
+            showStatus("LOADING STREAM...");
+
+            try {
+                await loadShakaStream(streamUrl);
+            } catch (error) {
+                try {
+                    await loadNativeStream(streamUrl);
+                } catch (fallbackError) {
+                    showStatus("STREAM FAILED TO LOAD");
+                }
+            }
+        }
+
+        async function initPlayer() {
+            shaka.polyfill.installAll();
+
+            player = new shaka.Player();
+            await player.attach(videoElement);
+
+            const ui = new shaka.ui.Overlay(player, videoContainer, videoElement);
+            ui.configure({
+                controlPanelElements: [
+                    "play_pause", "time_and_duration", "mute", "volume", "spacer",
+                    "language", "quality", "picture_in_picture", "fullscreen"
+                ]
+            });
+
+            return true;
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            if (await initPlayer()) {
+                await loadStream();
+            }
+        });
+
+        window.addEventListener("beforeunload", () => {
+            player?.destroy();
+        });
+    </script>
+<script>
+// alert('Join Our Telegram For More Live Links')
+         if (confirm("Join Our Telegram Channel @Finally_live_streaming") == true) {
+         window.open("https://t.me/+m6xPfBhNpCs0NWE1", '_blank');
+     }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
